@@ -106,3 +106,8 @@ tr.older td.lib { padding-left: 24px; }
   h1 { font-size: 22px; }
   .stat { min-width: 0; flex: 1 1 40%; }
 }
+.backbar { background: var(--fg); color: var(--bg); font-size: 13px; }
+.backbar .wrap { display: flex; gap: 10px; align-items: center; padding-top: 6px; padding-bottom: 6px; flex-wrap: wrap; }
+.backbar a { color: var(--bg); text-decoration: none; opacity: .85; }
+.backbar a:hover { opacity: 1; text-decoration: underline; }
+.backbar span { opacity: .4; }

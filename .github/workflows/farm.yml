@@ -105,7 +105,10 @@ jobs:
       - name: Unpack plan state
         run: mkdir -p "$ESP32FARM" && tar -C "$ESP32FARM" -xzf state.tgz
       - name: Install arduino-cli and core ${{ matrix.core }}
-        run: python farm/setup_cores.py ${{ matrix.core }}
+        # pyserial: older cores run esptool.py (which imports it) to package the firmware on Linux
+        run: |
+          python -m pip install --quiet pyserial
+          python farm/setup_cores.py ${{ matrix.core }}
       - name: Compile
         run: |
           python farm/ci.py maxid > maxid.txt

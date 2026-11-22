@@ -1,6 +1,8 @@
 # Running the compile farm
 
-The farm is a few Python scripts around `arduino-cli`. It runs on Linux and Windows. It needs Python 3.11+ and no extra Python packages.
+The farm is a few Python scripts around `arduino-cli`. It runs on Linux and Windows. It needs Python 3.11+. The farm itself uses no extra Python packages, but on Linux the older cores (2.0.17, 3.0.x) run `esptool.py` with your `python3` and need **pyserial** (`pip install pyserial`), just as the Arduino IDE does.
+
+The cloud version runs on GitHub Actions ([`.github/workflows/farm.yml`](../.github/workflows/farm.yml)): a plan job splits the pending compiles into chunks, up to 20 machines compile in parallel (one core version per machine), and a publish job merges the results into the `results` branch and deploys the site. It runs daily and can be started by hand from the Actions tab.
 
 ## Disk and time
 

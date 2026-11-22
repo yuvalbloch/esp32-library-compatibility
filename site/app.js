@@ -1,4 +1,98 @@
 "use strict";
+// The page markup, built here so the same file serves this repository's page and the page on yuvalbloch.com.
+function renderShell() {
+  const root = document.getElementById("app");
+  const back = CFG.back ? `<div class="backbar"><div class="wrap">${CFG.back.map(([href, label]) => `<a href="${href}">${label}</a>`).join("<span>·</span>")}</div></div>` : "";
+  root.innerHTML = back + `<header class="top">
+  <div class="wrap">
+    <h1>ESP32 Library Compatibility</h1>
+    <p class="lede">Which Arduino libraries still compile on <b>Arduino-ESP32 core 4.0</b>, and which versions to pin.
+      Every cell comes from a real compile log — click it to see the log.</p>
+    <div id="stats" class="stats"></div>
+    <nav class="tabs" role="tablist">
+      <button data-tab="table" class="active">Table</button>
+      <button data-tab="regressions">Broken on 4.0</button>
+      <button data-tab="errors">Error groups</button>
+      <button data-tab="pin">Pin tool</button>
+      <button data-tab="about">How we test</button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <section id="tab-table" class="tab active">
+    <div class="controls">
+      <input id="q" type="search" placeholder="Search libraries…" aria-label="Search libraries">
+      <select id="cat" aria-label="Category"><option value="">All categories</option></select>
+      <select id="chipf" aria-label="Chip"><option value="">All chips</option></select>
+      <label><input type="checkbox" id="onlyreg"> Only broken on 4.0</label>
+      <label><input type="checkbox" id="allver"> All tested versions</label>
+    </div>
+    <div class="legend" id="legend"></div>
+    <div class="tablewrap"><table id="grid"></table></div>
+  </section>
+
+  <section id="tab-regressions" class="tab">
+    <p class="note">A library is listed here when its example compiled on core <span class="baseline"></span> and
+      fails on core <span class="target"></span> for the same chip and the same library version.</p>
+    <div id="reglist"></div>
+  </section>
+
+  <section id="tab-errors" class="tab">
+    <p class="note">Failures on core <span class="target"></span>, grouped by the first compiler error.
+      The group label is an explanation to help readers; the ❌ itself always comes from the compile log.</p>
+    <div id="errgroups"></div>
+  </section>
+
+  <section id="tab-pin" class="tab">
+    <p class="note">Pick your chip, your core and your libraries. The tool picks, for each library, the newest
+      version that compiled in our tests, and gives you a lockfile you can paste into your project.</p>
+    <div class="pin">
+      <div class="pin-in">
+        <label>Chip <select id="pchip"></select></label>
+        <label>Core <select id="pcore"></select></label>
+        <input id="pq" type="search" placeholder="Filter libraries…" aria-label="Filter libraries">
+        <div id="plibs" class="plibs"></div>
+      </div>
+      <div class="pin-out" id="pout"><p class="muted">Select one or more libraries.</p></div>
+    </div>
+  </section>
+
+  <section id="tab-about" class="tab prose">
+    <h2>How we test</h2>
+    <p>For each library we take the newest release and up to three previous releases, pick one or two of the
+      library's own example sketches, and compile them with <code>arduino-cli</code> against Arduino-ESP32 cores
+      <span id="corelist"></span> for the ESP32, ESP32-S3 and ESP32-C3 chips. Each core version is installed in its
+      own sealed environment, and each compile is given exactly the library versions listed in its log.</p>
+    <p><b>This is a build test, not a hardware test.</b> ✅ means the example compiled and linked. It does not prove
+      the library behaves correctly at runtime. ❌ is a strong signal: the code cannot be built with that setup.</p>
+    <h3>What the symbols mean</h3>
+    <div id="legend2" class="legend"></div>
+    <h3>Rules we follow</h3>
+    <ul>
+      <li>Every status comes from a real compile log. Nobody (human or AI) sets a ✅ or ❌ by hand.</li>
+      <li>Results never change. A library fix shows up as a new library version with its own row.</li>
+      <li>If an example needs a library its own library does not declare (for example a display driver needing a graphics library), we add the library that provides the missing header and record it in the log.</li>
+      <li>If a sketch is too big for the default flash layout, we also try the <code>huge_app</code> partition scheme and show the result with ⚙.</li>
+      <li>Compiler warnings use the Arduino IDE default (warnings off).</li>
+    </ul>
+    <h3>Which libraries</h3>
+    <p>The most popular ESP32-compatible libraries from the Arduino Library Manager, ranked by popularity and by
+      how likely the new core was to break them. Libraries marked <span class="tag">Espressif CI</span> are also
+      checked by Espressif's own test, which compiles about ten external libraries; we include them so you can
+      compare.</p>
+    <p class="muted" id="gen"></p>
+  </section>
+</main>
+
+<div id="modal" class="modal" hidden>
+  <div class="modal-box" role="dialog" aria-modal="true">
+    <button class="close" aria-label="Close">×</button>
+    <div id="modal-body"></div>
+  </div>
+</div>`;
+}
+
 // ESP32 Library Compatibility — static front end. Reads data/results.json (exported from the farm's results.db).
 // Statuses are displayed exactly as stored; this file only aggregates them for display.
 
@@ -20,8 +114,14 @@ const SYM = {
 const OK = s => s === "pass" || s === "pass_cfg";
 const BAD = s => s === "fail" || s === "dep_fail";
 
-fetch("data/results.json").then(r => r.json()).then(init).catch(e => {
-  $("#tab-table").innerHTML = `<p class="note">Could not load results: ${esc(e)}</p>`;
+// Where data and logs live. The page on yuvalbloch.com sets window.ESP32_COMPAT = {base: "https://…/"};
+// the copy in this repository uses relative paths.
+const CFG = window.ESP32_COMPAT || {};
+const BASE = CFG.base || "";
+renderShell();
+fetch(BASE + "data/results.json").then(r => { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); }).then(init).catch(e => {
+  $("#stats").innerHTML = "";
+  $("#tab-table").innerHTML = `<p class="note">No results published yet, or they could not be loaded (${esc(e.message || e)}). The first table is coming soon.</p>`;
 });
 
 function init(data) {
@@ -181,7 +281,7 @@ function exHtml(e) {
     <div class="ex">
       ${badge(r.status)} <b>${esc(r.example)}</b> ${r.options ? `<span class="tag">${esc(r.options)}</span>` : ""}
       ${r.first_error ? `<div class="err">${esc(r.first_error)}</div>` : ""}
-      <div class="meta">${r.root_cause ? esc(r.root_cause) + " · " : ""}<a href="logs/${esc(r.log)}" target="_blank" rel="noopener">compile log</a>
+      <div class="meta">${r.root_cause ? esc(r.root_cause) + " · " : ""}<a href="${BASE}logs/${esc(r.log)}" target="_blank" rel="noopener">compile log</a>
         · tested ${esc(r.date)}${Object.keys(r.deps || {}).length ? " · with " + Object.entries(r.deps).map(([n, v]) => esc(n) + " " + esc(v)).join(", ") : ""}</div>
     </div>`).join("");
 }
@@ -192,7 +292,7 @@ function showCell(li, v, core, chip) {
   const reg = core === D.target ? regressions(li, v, chip) : [];
   let h = `<h2>${esc(l.name)} ${esc(v)}</h2><p class="muted">core ${esc(core)} · ${CHIP_NAME[chip] || chip} · ${badge(cell(li, v, core, chip))} ${esc(SYM[cell(li, v, core, chip)][2])}</p>`;
   if (reg.length) h += `<p><span class="tag reg">broken on ${esc(D.target)}</span> These examples compiled on core ${esc(D.baseline)}: ` +
-    reg.map(r => `<a href="logs/${esc((r.before.base || r.before.big).log)}" target="_blank" rel="noopener">${esc(r.example)} on ${esc(D.baseline)}</a>`).join(", ") + `</p>`;
+    reg.map(r => `<a href="${BASE}logs/${esc((r.before.base || r.before.big).log)}" target="_blank" rel="noopener">${esc(r.example)} on ${esc(D.baseline)}</a>`).join(", ") + `</p>`;
   h += exs.map(exHtml).join("");
   if (l.risk_reasons?.length) h += `<p class="muted" style="margin-top:12px">Why we expected risk: ${esc(l.risk_reasons.join("; "))}.</p>`;
   openModal(h);
@@ -219,7 +319,7 @@ function renderRegressions() {
       <div class="err">${esc(o.first.first_error)}</div>
       <div class="meta muted" style="font-size:13px">Logs: ${o.per.map(([ch, rs]) => rs.map(r => {
         const b = r.before.base || r.before.big, a = r.base || r.big;
-        return `${CHIP_NAME[ch] || ch} ${esc(r.example)}: <a href="logs/${esc(b.log)}" target="_blank" rel="noopener">${esc(D.baseline)} ✓</a> → <a href="logs/${esc(a.log)}" target="_blank" rel="noopener">${esc(D.target)} ✗</a>`;
+        return `${CHIP_NAME[ch] || ch} ${esc(r.example)}: <a href="${BASE}logs/${esc(b.log)}" target="_blank" rel="noopener">${esc(D.baseline)} ✓</a> → <a href="${BASE}logs/${esc(a.log)}" target="_blank" rel="noopener">${esc(D.target)} ✗</a>`;
       }).join(" · ")).join(" · ")}</div>
     </div>`).join("") : `<p class="muted">No regressions found yet.</p>`;
 }
@@ -242,7 +342,7 @@ function renderErrors() {
       <summary class="group-h"><b>${esc(label)}</b><span class="count">${g.libs.size} libraries · ${g.n} compiles</span></summary>
       ${Object.entries(g.msgs).sort((a, b) => b[1].libs.size - a[1].libs.size).map(([msg, m]) => `
         <div class="ex"><div class="err">${esc(msg)}</div>
-        <div class="meta">${[...m.libs].map(([name, log]) => `<a href="logs/${esc(log)}" target="_blank" rel="noopener">${esc(name)}</a>`).join(", ")}</div></div>`).join("")}
+        <div class="meta">${[...m.libs].map(([name, log]) => `<a href="${BASE}logs/${esc(log)}" target="_blank" rel="noopener">${esc(name)}</a>`).join(", ")}</div></div>`).join("")}
     </details>`).join("") : `<p class="muted">No failures on ${esc(D.target)} yet.</p>`;
 }
 

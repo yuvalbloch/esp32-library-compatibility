@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-22T10:53:01",
+ "generated": "2026-11-22T12:45:44",
  "libs": [
   {
    "name": "LovyanGFX",
@@ -399,24 +399,21 @@
     {
      "version": "0.16.0",
      "examples": [
-      "examples/AutoConnect",
-      "examples/AutoConnectWithFSParameters"
+      "examples/AutoConnect"
      ],
      "deps": {}
     },
     {
      "version": "0.15.0",
      "examples": [
-      "examples/AutoConnect",
-      "examples/AutoConnectWithFSParameters"
+      "examples/AutoConnect"
      ],
      "deps": {}
     },
     {
      "version": "0.14.0",
      "examples": [
-      "examples/AutoConnect",
-      "examples/AutoConnectWithFSParameters"
+      "examples/AutoConnect"
      ],
      "deps": {}
     }
@@ -2722,7 +2719,7 @@
      "version": "1.0.41",
      "examples": [
       "examples/simple",
-      "examples/AUXTest_MQTT"
+      "examples/CarrierTest"
      ],
      "deps": {}
     },
@@ -2730,7 +2727,7 @@
      "version": "1.0.40",
      "examples": [
       "examples/simple",
-      "examples/AUXTest_MQTT"
+      "examples/CarrierTest"
      ],
      "deps": {}
     },
@@ -2738,7 +2735,7 @@
      "version": "1.0.39",
      "examples": [
       "examples/simple",
-      "examples/AUXTest_MQTT"
+      "examples/CarrierTest"
      ],
      "deps": {}
     },
@@ -2746,7 +2743,7 @@
      "version": "1.0.38",
      "examples": [
       "examples/simple",
-      "examples/AUXTest_MQTT"
+      "examples/CarrierTest"
      ],
      "deps": {}
     }
@@ -3599,6 +3596,5 @@
     }
    ]
   }
- ],
- "updated": "2026-11-22T11:15:41"
+ ]
 }

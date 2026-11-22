@@ -6,7 +6,13 @@ Arduino-ESP32 core **4.0.0** was released on 2026-11-19. It runs on ESP-IDF 6.x,
 
 This project compiles popular libraries against several core versions and chips, publishes the results as a table, and gives you a **pin tool** that writes a lockfile with library versions known to build.
 
-> **Status (2026-11-22):** the compile farm and the website are built and in a pilot run. The first public table is coming soon. Until then the site has no data.
+**The table: https://yuvalbloch.com/wild-west/esp32-table/**
+
+> **Status (2026-11-22):** first full run done: 62 libraries, about 5,800 compiles. The newest release of 25 libraries builds on core 4.0.0 for all three chips. 19 libraries compile on core 3.3.12 but fail on 4.0.0 for at least one chip, in their newest release. The table updates itself every night.
+
+## How this was made
+
+This is a side project by Yuval Bloch, built as an experiment in AI-driven development: an AI (Claude) planned and wrote all the code, and I reviewed and approved each step. I am not an embedded developer. That is why the project has one rule it never bends (below): no human or AI decides a result. If something looks wrong, please [open a "Wrong result" issue](../../issues/new?template=wrong-result.yml).
 
 ## The one rule
 

@@ -7,7 +7,8 @@ function renderShell() {
   <div class="wrap">
     <h1>ESP32 Library Compatibility</h1>
     <p class="lede">Which Arduino libraries still compile on <b>Arduino-ESP32 core <span class="target">4.0</span></b>, and which versions to pin.
-      Every cell comes from a real compile log — click it to see the log.</p>
+      Every cell comes from a real compile log — click it to see the log.
+      <span class="made">A side project, built with AI as an experiment. <a href="#about" data-goto="made">How this was made</a></span></p>
     <div id="stats" class="stats"></div>
     <nav class="tabs" role="tablist">
       <button data-tab="table" class="active">Table</button>
@@ -85,6 +86,15 @@ function renderShell() {
       how likely the new core was to break them. Libraries marked <span class="tag">Espressif CI</span> are also
       checked by Espressif's own test, which compiles about ten external libraries; we include them so you can
       compare.</p>
+    <h3 id="made">How this was made</h3>
+    <p>This is a side project by Yuval Bloch, built as an experiment in AI-driven development: an AI (Claude) planned
+      and wrote all the code, and I reviewed and approved each step. I am not an embedded developer. That is why the
+      project has one rule it never bends: no human or AI decides a result. Every ✅ and ❌ comes from a real
+      <code>arduino-cli</code> compile, and every cell links to its full log and the exact command, so you can
+      reproduce it. The code and the data are on
+      <a href="https://github.com/yuvalbloch/esp32-library-compatibility">GitHub</a>. If something looks wrong, please
+      <a href="https://github.com/yuvalbloch/esp32-library-compatibility/issues/new?template=wrong-result.yml">open a
+      “Wrong result” issue</a>.</p>
     <p class="muted" id="gen"></p>
   </section>
 </main>
@@ -150,6 +160,9 @@ function init(data) {
   setupPin();
   renderNews();
   document.querySelectorAll(".tabs button").forEach(b => b.onclick = () => showTab(b.dataset.tab));
+  document.querySelectorAll("[data-goto]").forEach(a => a.onclick = e => {
+    e.preventDefault(); showTab("about"); $("#" + a.dataset.goto).scrollIntoView({ behavior: "smooth" });
+  });
   const h = location.hash.slice(1);
   if (h) showTab(h);
   $("#modal").onclick = e => { if (e.target.id === "modal" || e.target.classList.contains("close")) closeModal(); };

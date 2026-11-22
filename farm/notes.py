@@ -21,7 +21,7 @@ PERIPHERALS = {
     "sdmmc": ("SD/MMC host", r"\bSD_MMC\b|\bsdmmc_"),
     "mcpwm": ("motor-control PWM (MCPWM)", r"\bmcpwm|MCPWM"),
     "dac": ("DAC", r"\bdac_|\bdacWrite\b|\bDAC_CHAN"),
-    "usb_otg": ("USB-OTG (needed for USB device mode)", r"Adafruit_USBD_|\btud_|\btusb_|USB-OTG"),
+    "usb_otg": ("USB-OTG (needed for USB device mode)", r"Adafruit_USBD_|TinyUSBDevice|\btud_|\bTUD_|\btusb_|USB-OTG"),
     "i2s_parallel": ("parallel I2S / LCD peripheral", r"I2s1X8|I2sParallel|i2s_parallel|Bus_Parallel"),
 }
 

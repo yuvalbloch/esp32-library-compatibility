@@ -3,7 +3,8 @@
  "M5Stack": "Board-support library for the original M5Stack Core (ESP32 only), replaced by M5Unified. Failures on S3 and C3 are expected; on cores 3.x and 4.0 it also fails on ESP32 because it includes headers that ESP-IDF 5 removed.",
  "M5Core2": "Board-support library for the M5Stack Core2 (ESP32 only), replaced by M5Unified. On cores 3.x and 4.0 it fails because it includes headers that ESP-IDF 5 removed.",
  "HeatpumpIR": "None of this library's examples are written for ESP32: they all use the Arduino-AVR IR sender (IRSenderPWM). The library has its own ESP32 sender (IRSenderESP32), which no example uses, so these results say little about the library itself on ESP32.",
- "Adafruit TinyUSB Library": "USB device library. Needs a chip with USB-OTG: of the chips tested here only the ESP32-S3 has it, with Tools > USB Mode set to \"USB-OTG (TinyUSB)\" (USBMode=default); the farm compiles that setting as a second try.",
+ "Adafruit TinyUSB Library": "USB device library. It needs a chip with USB-OTG: of the chips tested here only the ESP32-S3 has one, so failures on ESP32 and ESP32-C3 are expected. If an S3 build fails with default settings, the farm tries again with Tools > USB Mode = \"USB-OTG (TinyUSB)\".",
  "InkplateLibrary": "Board-support library for Inkplate e-paper boards. Its examples refuse to build unless the matching Inkplate board is selected, so the generic ESP32 boards tested here show ⚙.",
- "SimpleFOCDrivers": "Driver add-ons for Simple FOC. Some drivers target specific motor boards; the farm compiles two generic examples."
+ "SimpleFOCDrivers": "Driver add-ons for Simple FOC. The farm compiles two generic examples (a DRV8316 driver and an MT6816 encoder).",
+ "DFRobotDFPlayerMini": "The ESP32 branch of every example uses the pin names D2/D3, which only some boards (such as the Seeed XIAO ESP32 series) define, so the examples fail on the generic ESP32 boards tested here. These results say little about the library itself."
 }

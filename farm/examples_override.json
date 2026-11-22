@@ -124,7 +124,7 @@
  ],
  "SimpleFOCDrivers": [
   "examples/drivers/drv8316/drv8316_3pwm",
-  "examples/encoders/calibrated_sensor/calibrated"
+  "examples/encoders/mt6816/mt6816_spi"
  ],
  "Adafruit TinyUSB Library": [
   "examples/HID/hid_boot_keyboard",

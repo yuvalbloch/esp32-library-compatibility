@@ -1,0 +1,7 @@
+[
+ {
+  "date": "2026-11-22",
+  "kind": "core",
+  "text": "Arduino-ESP32 core 3.3.13 released: it replaces 3.3.12 in the table. Every library is being compiled against it."
+ }
+]

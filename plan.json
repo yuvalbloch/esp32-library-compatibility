@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-22T14:28:45",
+ "generated": "2026-11-22T14:48:13",
  "libs": [
   {
    "name": "LovyanGFX",
@@ -2663,7 +2663,7 @@
      "version": "1.0.9",
      "examples": [
       "examples/drivers/drv8316/drv8316_3pwm",
-      "examples/encoders/calibrated_sensor/calibrated"
+      "examples/encoders/mt6816/mt6816_spi"
      ],
      "deps": {
       "Simple FOC": "2.4.0"
@@ -2673,7 +2673,7 @@
      "version": "1.0.8",
      "examples": [
       "examples/drivers/drv8316/drv8316_3pwm",
-      "examples/drivers/simplefocnano/simplefocnano_torque_voltage"
+      "examples/encoders/mt6816/mt6816_spi"
      ],
      "deps": {
       "Simple FOC": "2.4.0"
@@ -2683,7 +2683,7 @@
      "version": "1.0.7",
      "examples": [
       "examples/drivers/drv8316/drv8316_3pwm",
-      "examples/drivers/simplefocnano/simplefocnano_torque_voltage"
+      "examples/encoders/mt6816/mt6816_spi"
      ],
      "deps": {
       "Simple FOC": "2.4.0"
@@ -2693,7 +2693,7 @@
      "version": "1.0.6",
      "examples": [
       "examples/drivers/drv8316/drv8316_3pwm",
-      "examples/encoders/calibrated"
+      "examples/encoders/mt6816/mt6816_spi"
      ],
      "deps": {
       "Simple FOC": "2.4.0"

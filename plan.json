@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-22T12:45:44",
+ "generated": "2026-11-22T14:28:45",
  "libs": [
   {
    "name": "LovyanGFX",
@@ -274,8 +274,8 @@
     {
      "version": "3.8.1",
      "examples": [
-      "examples/MassStorage/msc_esp32_file_browser",
-      "examples/CDC/cdc_multi"
+      "examples/HID/hid_boot_keyboard",
+      "examples/CDC/serial_echo"
      ],
      "deps": {
       "Adafruit SPIFlash": "5.1.3",
@@ -287,8 +287,8 @@
     {
      "version": "3.7.7",
      "examples": [
-      "examples/MassStorage/msc_esp32_file_browser",
-      "examples/CDC/cdc_multi"
+      "examples/HID/hid_boot_keyboard",
+      "examples/CDC/serial_echo"
      ],
      "deps": {
       "Adafruit SPIFlash": "5.1.3",
@@ -300,8 +300,8 @@
     {
      "version": "3.7.6",
      "examples": [
-      "examples/MassStorage/msc_esp32_file_browser",
-      "examples/CDC/cdc_multi"
+      "examples/HID/hid_boot_keyboard",
+      "examples/CDC/serial_echo"
      ],
      "deps": {
       "Adafruit SPIFlash": "5.1.3",
@@ -313,8 +313,8 @@
     {
      "version": "3.7.5",
      "examples": [
-      "examples/MassStorage/msc_esp32_file_browser",
-      "examples/CDC/cdc_multi"
+      "examples/HID/hid_boot_keyboard",
+      "examples/CDC/serial_echo"
      ],
      "deps": {
       "Adafruit SPIFlash": "5.1.3",
@@ -2662,8 +2662,8 @@
     {
      "version": "1.0.9",
      "examples": [
-      "examples/drivers/simplefocnano/simplefocnano_torque_voltage",
-      "examples/encoders/linearhall"
+      "examples/drivers/drv8316/drv8316_3pwm",
+      "examples/encoders/calibrated_sensor/calibrated"
      ],
      "deps": {
       "Simple FOC": "2.4.0"
@@ -2672,8 +2672,8 @@
     {
      "version": "1.0.8",
      "examples": [
-      "examples/drivers/simplefocnano/simplefocnano_torque_voltage",
-      "examples/encoders/linearhall"
+      "examples/drivers/drv8316/drv8316_3pwm",
+      "examples/drivers/simplefocnano/simplefocnano_torque_voltage"
      ],
      "deps": {
       "Simple FOC": "2.4.0"
@@ -2682,8 +2682,8 @@
     {
      "version": "1.0.7",
      "examples": [
-      "examples/drivers/simplefocnano/simplefocnano_torque_voltage",
-      "examples/encoders/linearhall"
+      "examples/drivers/drv8316/drv8316_3pwm",
+      "examples/drivers/simplefocnano/simplefocnano_torque_voltage"
      ],
      "deps": {
       "Simple FOC": "2.4.0"
@@ -2692,8 +2692,8 @@
     {
      "version": "1.0.6",
      "examples": [
-      "examples/encoders/calibrated",
-      "examples/encoders/smoothing"
+      "examples/drivers/drv8316/drv8316_3pwm",
+      "examples/encoders/calibrated"
      ],
      "deps": {
       "Simple FOC": "2.4.0"
@@ -2998,23 +2998,23 @@
     {
      "version": "1.0.6",
      "examples": [
-      "examples/AdvancedSetting",
-      "examples/FullFunction"
+      "examples/GetStarted",
+      "examples/ReadValues"
      ],
      "deps": {}
     },
     {
      "version": "1.0.5",
      "examples": [
-      "examples/FullFunction",
-      "examples/AdvancedSettingViaSerial1"
+      "examples/GetStarted",
+      "examples/ReadValues"
      ],
      "deps": {}
     },
     {
      "version": "1.0.3",
      "examples": [
-      "examples/FullFunction",
+      "examples/ReadValues",
       "examples/AdvancedSettingViaSerial1"
      ],
      "deps": {}

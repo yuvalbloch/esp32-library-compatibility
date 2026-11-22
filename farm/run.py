@@ -220,7 +220,10 @@ def run_job(job, build_dir):
         h = missing_header(res["first_error"]) if res["status"] in ("fail", "dep_fail") else None
         if h and attempt < MAX_HEADER_FIXES:
             prov = pick_provider(h, job["lib"], set(libs) | {job["lib"]})
-            if prov and prov not in libs and prov not in names:
+            # (a core library with the same *name* is no reason to refuse: e.g. the core's "Ethernet"
+            #  is ETH.h for the chip's own MAC and does not provide Ethernet.h; pick_provider already
+            #  refuses headers that any core library really provides)
+            if prov and prov not in libs:
                 pv = store.resolve_dep_version(prov)
                 try:
                     store.ensure(prov, pv)

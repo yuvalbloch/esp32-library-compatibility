@@ -6,13 +6,19 @@ This document describes exactly what the farm does. If the code and this documen
 
 | Dimension | Values |
 |---|---|
-| Core | `esp32:esp32` **2.0.17**, **3.0.7** (last 3.0.x), **3.3.12**, **4.0.0** |
+| Core | `esp32:esp32`: the newest stable release of each line **2.0**, **3.0**, **3.3** and **4.x** (at launch: 2.0.17, 3.0.7, 3.3.12, 4.0.0) |
 | Chip / FQBN | `esp32:esp32:esp32`, `esp32:esp32:esp32s3`, `esp32:esp32:esp32c3`, default board options |
 | Library versions | newest stable release + the 3 stable releases before it (pre-releases are skipped) |
 | Examples | 1–2 of the library's own example sketches (§3) |
 | Compiler | `arduino-cli` 1.6.0; warnings at the Arduino IDE default (`--warnings none`) |
 
-**Baseline and target.** A *regression* means: on core **3.3.12** an example compiles, and on core **4.0.0** the same example, same library version, same chip fails (`fail` or `dep_fail`). 3.3.12 was the newest 3.x release when the plan was made (3.3.13 came out later and is not yet a column).
+**Baseline and target.** A *regression* means: on the newest **3.3.x** core (the baseline) an example compiles, and on the newest **4.x** core (the target) the same example, same library version, same chip fails (`fail` or `dep_fail`).
+
+**Keeping up to date.** Every night the farm:
+- compiles new stable releases of the tracked libraries (pre-releases are skipped);
+- checks Espressif's core index. When a line gets a newer stable release (e.g. 3.3.13 or 4.0.1), that release replaces the older one as the line's column, and the whole plan is compiled against it in the same run. Results for the older release stay in the database.
+
+A "What's new" list on the page records new releases, new breakages and fixes. It is written by [`farm/report.py`](../farm/report.py) from the stored results.
 
 ## 2. Isolation
 

@@ -32,6 +32,8 @@ permissions:
   contents: write
   pages: write
   id-token: write
+  issues: write       # the "Farm status" issue
+  actions: write      # keep-alive: re-enable this workflow so GitHub never pauses the schedule
 
 concurrency:
   group: compile-farm
@@ -80,7 +82,9 @@ jobs:
           echo "matrix=$M" >> "$GITHUB_OUTPUT"
           echo "$M"
       - name: Pack plan state
-        run: tar -C "$ESP32FARM" -czf state.tgz plan.json results.db dl/library_index.json
+        run: |
+          python farm/ci.py ensure-state
+          tar -C "$ESP32FARM" -czf state.tgz plan.json results.db cores.json news.json dl/library_index.json
       - uses: actions/upload-artifact@v4
         with:
           name: state
@@ -155,9 +159,12 @@ jobs:
       - name: Merge results
         run: |
           tar -C "$ESP32FARM" -xzf artifacts/state/state.tgz
+          python farm/ci.py maxid > before.txt
           python farm/ci.py merge-results artifacts/res-*
       - name: Apply the current classification rules to stored logs
         run: python farm/reclassify.py
+      - name: Nightly report (What's new, regressions)
+        run: python farm/report.py --since "$(cat before.txt)" --run-url "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
       - name: Save results to the results branch
         run: python farm/ci.py save-state
       - name: Build site
@@ -167,3 +174,36 @@ jobs:
           path: site
       - id: deploy
         uses: actions/deploy-pages@v4
+      - name: Update the "Farm status" issue (comment = email only when something needs attention)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          NUM=$(gh issue list --state open --limit 50 --json number,title -q '.[] | select(.title=="Farm status") | .number' | head -1)
+          if [ -z "$NUM" ]; then
+            NUM=$(gh issue create --title "Farm status" --body-file "$ESP32FARM/report.md" | grep -oE '[0-9]+$')
+          else
+            gh issue edit "$NUM" --body-file "$ESP32FARM/report.md"
+          fi
+          if [ -f "$ESP32FARM/alert.md" ]; then
+            printf '@yuvalbloch ' | cat - "$ESP32FARM/alert.md" > alert.md
+            gh issue comment "$NUM" --body-file alert.md
+          fi
+      - name: Keep the nightly schedule alive (GitHub pauses schedules after 60 days without activity)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api -X PUT "repos/${{ github.repository }}/actions/workflows/farm.yml/enable"
+
+  notify-failure:
+    needs: [plan, compile, publish]
+    if: failure()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Report the failed run on the "Farm status" issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          NUM=$(gh issue list --state open --limit 50 --json number,title -q '.[] | select(.title=="Farm status") | .number' | head -1)
+          [ -z "$NUM" ] && NUM=$(gh issue create --title "Farm status" --body "Created by the compile farm." | grep -oE '[0-9]+$')
+          gh issue comment "$NUM" --body "@yuvalbloch Tonight's farm run had a problem: $URL (results already published stay as they are; Claude can look at the log)."

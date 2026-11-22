@@ -9,6 +9,7 @@ import gzip
 import json
 import shutil
 
+from news import load_news
 from notes import hardware_note, library_note
 
 from common import (SITE, LOGS, PLAN_PATH, CORES, CHIPS, BASELINE_CORE, TARGET_CORE, BIG_APP_OPTION,
@@ -55,7 +56,8 @@ def main():
     planned = {(l["name"], v["version"], ex) for l in plan["libs"] for v in l["versions"] for ex in v["examples"]}
     out_rows = []
     for r in rows:
-        if r["lib"] not in known or (r["lib"], r["lib_version"], r["example"]) not in planned:
+        if (r["lib"] not in known or r["core"] not in CORES
+                or (r["lib"], r["lib_version"], r["example"]) not in planned):
             continue
         out_rows.append([lib_idx[r["lib"]], r["lib_version"], r["core"], r["chip"],
                          r["example"].removeprefix("examples/"), r["options"], r["status"],
@@ -67,7 +69,7 @@ def main():
         "big_app_option": BIG_APP_OPTION, "cli_version": rows[0]["cli_version"] if rows else "",
         "row_fields": ["lib", "version", "core", "chip", "example", "options", "status", "first_error",
                        "root_cause", "log", "deps", "date", "note"],
-        "libs": libs, "rows": out_rows,
+        "libs": libs, "rows": out_rows, "news": load_news()[:30],
     }
     save_json(SITE / "data" / "results.json", data)
     n = export_logs(rows)

@@ -6,12 +6,12 @@ function renderShell() {
   root.innerHTML = back + `<header class="top">
   <div class="wrap">
     <h1>ESP32 Library Compatibility</h1>
-    <p class="lede">Which Arduino libraries still compile on <b>Arduino-ESP32 core 4.0</b>, and which versions to pin.
+    <p class="lede">Which Arduino libraries still compile on <b>Arduino-ESP32 core <span class="target">4.0</span></b>, and which versions to pin.
       Every cell comes from a real compile log — click it to see the log.</p>
     <div id="stats" class="stats"></div>
     <nav class="tabs" role="tablist">
       <button data-tab="table" class="active">Table</button>
-      <button data-tab="regressions">Broken on 4.0</button>
+      <button data-tab="regressions">Broken on <span class="target">4.0</span></button>
       <button data-tab="errors">Error groups</button>
       <button data-tab="pin">Pin tool</button>
       <button data-tab="about">How we test</button>
@@ -21,11 +21,12 @@ function renderShell() {
 
 <main class="wrap">
   <section id="tab-table" class="tab active">
+    <div id="news" class="news" hidden></div>
     <div class="controls">
       <input id="q" type="search" placeholder="Search libraries…" aria-label="Search libraries">
       <select id="cat" aria-label="Category"><option value="">All categories</option></select>
       <select id="chipf" aria-label="Chip"><option value="">All chips</option></select>
-      <label><input type="checkbox" id="onlyreg"> Only broken on 4.0</label>
+      <label><input type="checkbox" id="onlyreg"> Only broken on <span class="target">4.0</span></label>
       <label><input type="checkbox" id="allver"> All tested versions</label>
     </div>
     <div class="legend" id="legend"></div>
@@ -71,7 +72,10 @@ function renderShell() {
     <h3>Rules we follow</h3>
     <ul>
       <li>Every status comes from a real compile log. Nobody (human or AI) sets a ✅ or ❌ by hand.</li>
-      <li>Results never change. A library fix shows up as a new library version with its own row.</li>
+      <li>Compile logs are never edited. A library fix shows up as a new library version with its own row.</li>
+      <li>The table updates itself every night: new library releases are compiled as soon as they appear in the
+        Arduino Library Manager, and when Espressif releases a new core version it replaces the older release of
+        the same line and every library is compiled against it.</li>
       <li>If an example needs a library its own library does not declare (for example a display driver needing a graphics library), we add the library that provides the missing header and record it in the log.</li>
       <li>If a sketch is too big for the default flash layout, we also try the <code>huge_app</code> partition scheme and show the result with ⚙.</li>
       <li>Compiler warnings use the Arduino IDE default (warnings off).</li>
@@ -144,6 +148,7 @@ function init(data) {
   renderRegressions();
   renderErrors();
   setupPin();
+  renderNews();
   document.querySelectorAll(".tabs button").forEach(b => b.onclick = () => showTab(b.dataset.tab));
   const h = location.hash.slice(1);
   if (h) showTab(h);
@@ -310,6 +315,18 @@ function showCell(li, v, core, chip) {
 }
 function openModal(h) { $("#modal-body").innerHTML = h; $("#modal").hidden = false; $(".modal .close").focus(); }
 function closeModal() { $("#modal").hidden = true; }
+
+// ---------------- what's new (written by the farm's nightly report) ----------------
+const NEWS_ICON = { core: "🆕", release: "📦", broken: "⚠️", fixed: "✅" };
+function renderNews() {
+  const news = D.news || [];
+  if (!news.length) return;
+  const el = $("#news");
+  const item = n => `<li><span class="muted">${esc(n.date)}</span> ${NEWS_ICON[n.kind] || "•"} ${esc(n.text)}</li>`;
+  el.innerHTML = `<b>What's new</b><ul>${news.slice(0, 4).map(item).join("")}</ul>` +
+    (news.length > 4 ? `<details><summary>Older updates</summary><ul>${news.slice(4).map(item).join("")}</ul></details>` : "");
+  el.hidden = false;
+}
 
 // ---------------- regressions ----------------
 function renderRegressions() {

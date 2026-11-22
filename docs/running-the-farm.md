@@ -48,6 +48,19 @@ python3 farm/update.py            # new library releases -> plan -> compile -> r
 python3 farm/update.py --dry-run  # only list what is new
 ```
 
+In the cloud this runs every night at 03:17 UTC:
+1. **Plan.** New library releases are added, and core lines that moved forward are updated in `cores.json`.
+2. **Compile.** Only pending compiles run: the new releases, plus the full plan on a new core.
+3. **Publish.** It then:
+   - merges the results;
+   - re-applies the classification rules;
+   - runs `report.py`, which writes "What's new", tracks the regressions and writes the status text;
+   - saves everything to the `results` branch and deploys the site.
+
+Two more things happen on GitHub:
+- **Status issue.** The *Farm status* issue is rewritten every night. A comment, which emails the repository owner, is added only for a new breakage, a new core or a failed run.
+- **Keep-alive.** The workflow re-enables itself through the API, so GitHub never pauses the schedule for inactivity.
+
 ### After changing the farm
 
 ```bash

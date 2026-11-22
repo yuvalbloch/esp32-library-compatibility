@@ -3,6 +3,8 @@
 State between runs lives on the `results` branch of this repository:
     results.db   every result row (immutable facts)
     plan.json    the test plan
+    cores.json   which release of each core line is in the table
+    news.json    the "What's new" list; regressions.json: last night's regressions (for the report)
     logs/        every compile log (gzipped)
 
     python farm/ci.py load-state [--logs]   # results branch -> $ESP32FARM
@@ -10,6 +12,7 @@ State between runs lives on the `results` branch of this repository:
     python farm/ci.py pack-results OUT ID   # rows with id > ID + their logs -> OUT/
     python farm/ci.py merge-results DIR...  # merge chunk outputs into results.db + logs
     python farm/ci.py save-state            # $ESP32FARM -> results branch (commit + push)
+    python farm/ci.py ensure-state          # create cores.json / news.json if missing
 """
 import json
 import os
@@ -22,6 +25,7 @@ from common import FARM, LOGS, PLAN_PATH, DB_PATH, PROJECT, db
 
 STATE = PROJECT / "state"          # git worktree of the results branch
 BRANCH = "results"
+STATE_FILES = ("results.db", "plan.json", "cores.json", "news.json", "regressions.json")
 COLS = ["lib", "lib_version", "core", "chip", "example", "options", "status", "first_error", "error_file",
         "signature", "root_cause", "deps", "duration_s", "log_file", "cli_version", "created_at"]
 
@@ -42,7 +46,7 @@ def load_state(with_logs=False):
 
 
 def _copy_in(with_logs):
-    for name in ("results.db", "plan.json"):
+    for name in STATE_FILES:
         if (STATE / name).exists():
             shutil.copy2(STATE / name, FARM / name)
     if with_logs and (STATE / "logs").exists():
@@ -95,7 +99,7 @@ def merge_results(dirs):
 def save_state():
     if not STATE.exists():
         git("worktree", "add", "--orphan", "-b", BRANCH, str(STATE))
-    for name in ("results.db", "plan.json"):
+    for name in STATE_FILES:
         if (FARM / name).exists():
             shutil.copy2(FARM / name, STATE / name)
     if LOGS.exists():
@@ -114,9 +118,21 @@ def save_state():
     print(f"saved state: {n} results")
 
 
+def ensure_state():
+    """Make sure the small state files exist (a fresh plan or an old results branch may lack them)."""
+    from common import CORES_PATH, load_core_map, save_json
+    if not CORES_PATH.exists():
+        save_json(CORES_PATH, load_core_map())
+    news = FARM / "news.json"
+    if not news.exists():
+        save_json(news, [])
+
+
 if __name__ == "__main__":
     cmd, args = sys.argv[1], sys.argv[2:]
-    if cmd == "load-state":
+    if cmd == "ensure-state":
+        ensure_state()
+    elif cmd == "load-state":
         load_state("--logs" in args)
     elif cmd == "maxid":
         maxid()

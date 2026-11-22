@@ -28,9 +28,35 @@ SITE = PROJECT / "site"
 SELECTION = PROJECT / "selection-data" / "selection.json"
 
 # ---- test scope (from the charter) ----
-CORES = ["2.0.17", "3.0.7", "3.3.12", "4.0.0"]
-BASELINE_CORE = "3.3.12"     # regression = pass here -> fail on TARGET_CORE
-TARGET_CORE = "4.0.0"
+# One column per core *line*: the newest stable release of that line. farm/update.py moves a line to a
+# newer release when Espressif publishes one (cores.json in the farm dir, saved with the results).
+CORE_LINES = ["2.0", "3.0", "3.3", "4"]
+DEFAULT_CORES = {"2.0": "2.0.17", "3.0": "3.0.7", "3.3": "3.3.12", "4": "4.0.0"}
+BASELINE_LINE, TARGET_LINE = "3.3", "4"   # regression = pass on the baseline -> fail on the target
+CORES_PATH = FARM / "cores.json"
+
+
+def core_line(version):
+    """'3.3.13' -> '3.3', '4.1.0' -> '4'; None if the version belongs to no tracked line."""
+    for line in sorted(CORE_LINES, key=len, reverse=True):
+        if version == line or version.startswith(line + "."):
+            return line
+    return None
+
+
+def load_core_map():
+    try:
+        with open(CORES_PATH, encoding="utf-8") as f:
+            m = json.load(f)
+        return {l: m.get(l, DEFAULT_CORES[l]) for l in CORE_LINES}
+    except (OSError, ValueError):
+        return dict(DEFAULT_CORES)
+
+
+_core_map = load_core_map()
+CORES = [_core_map[l] for l in CORE_LINES]
+BASELINE_CORE = _core_map[BASELINE_LINE]
+TARGET_CORE = _core_map[TARGET_LINE]
 CHIPS = ["esp32", "esp32s3", "esp32c3"]
 VERSIONS_PER_LIB = 4         # latest + 3 previous releases
 EXAMPLES_PER_LIB = 2

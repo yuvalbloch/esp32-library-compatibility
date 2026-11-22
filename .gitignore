@@ -5,3 +5,4 @@ ESP32 compatibility table*.md
 __pycache__/
 *.pyc
 site/logs/
+private/

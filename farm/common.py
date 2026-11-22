@@ -13,8 +13,10 @@ import time
 from pathlib import Path
 
 PROJECT = Path(__file__).resolve().parent.parent
-FARM = Path(os.environ.get("ESP32FARM", r"C:\esp32farm"))
-CLI = FARM / "bin" / "arduino-cli.exe"
+FARM = Path(os.environ.get("ESP32FARM", r"C:\esp32farm" if os.name == "nt" else os.path.expanduser("~/esp32farm")))
+CLI = FARM / "bin" / ("arduino-cli.exe" if os.name == "nt" else "arduino-cli")
+CLI_VERSION = "1.6.0"
+CORE_INDEX_URL = "https://espressif.github.io/arduino-esp32/package_esp32_index.json"
 STORE = FARM / "L"          # extracted libraries: L/<id>/<LibFolder>/
 BUILDS = FARM / "b"         # per-worker build dirs
 CACHE = FARM / "cache"      # core build cache, per core version

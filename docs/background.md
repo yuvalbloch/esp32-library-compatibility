@@ -321,11 +321,11 @@ done
 # 4. read one failure log end to end
 ```
 
-After this you'll be able to recognize real breakage in the AI's reports.
+After this you'll be able to recognize real breakage in a compile log.
 
 ---
 
-## 14. Review checklist for the AI's plans
+## 14. Review checklist for a compatibility farm
 
 - Matrix definition: exact core versions, FQBNs + options, chips. How are `n/a` cells derived?
 - Isolation: one environment per core version? Are library installs isolated per job?

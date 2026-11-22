@@ -1,0 +1,22 @@
+name: Wrong result
+description: A cell in the table looks wrong
+title: "Wrong result: "
+labels: ["wrong-result"]
+body:
+  - type: markdown
+    attributes:
+      value: We never change a result by hand. If the farm did something wrong, we fix the farm and compile again, and the new log decides.
+  - type: input
+    id: log
+    attributes:
+      label: Link to the compile log
+      description: Click the cell in the table, then "compile log"
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect, and why?
+      description: e.g. "this example builds for me with arduino-cli 1.6.0 and core 4.0.0 for ESP32-S3"
+    validations:
+      required: true

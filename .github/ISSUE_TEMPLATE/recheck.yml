@@ -1,0 +1,26 @@
+name: Recheck after a fix
+description: A library or core release fixed something; ask for it to be compiled again
+title: "Recheck: "
+labels: ["recheck"]
+body:
+  - type: markdown
+    attributes:
+      value: New releases of tracked libraries are compiled automatically within a day. Use this form if you need it sooner or if the fix is somewhere else.
+  - type: input
+    id: name
+    attributes:
+      label: Library name
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version with the fix
+      placeholder: e.g. 3.10.11
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: What was fixed?
+      description: Link to the release, commit or issue if you have one

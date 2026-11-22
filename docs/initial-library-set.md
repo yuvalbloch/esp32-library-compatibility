@@ -1,10 +1,10 @@
 # Initial library set: wave 1
 
-_Generated 2026-11-21 by following [library-selection-plan.md](library-selection-plan.md). Data sources: Arduino Library Manager index, PlatformIO registry (stars and download rank), Espressif `lib.json` test config._
+_Generated 2026-11-21 by following [the library selection method](library-selection.md). Data sources: Arduino Library Manager index, PlatformIO registry (stars and download rank), Espressif `lib.json` test config._
 
 ## Summary
 
-- **50 libraries that Espressif does NOT check** (the new value of our table), plus
+- **50 libraries that Espressif does NOT check** (the new coverage this table adds), plus
 - **12 libraries Espressif already checks**: they also go in the table, marked, and serve as a calibration check.
 - **Total wave 1: 62 libraries.**
 
@@ -113,16 +113,18 @@ Adafruit TCS34725 (Sensors), UniversalTelegramBot (Networking/Web), ServoEasing 
 - **HaierProtocol**: G3: no example sketches
 - **EthernetENC**: G3: no example sketches
 
-## Things you should know (said honestly)
+## Notes and known limitations
 
-1. **Bluetooth has only 2 libraries, not the 3 the plan asks for.** No third Bluetooth library was among the ~260 we scanned. The next candidates are outside the popularity cut. Options: accept 2, or let me scan deeper to find a third.
-2. **M5Stack has 4 libraries** (M5Unified, M5GFX, M5Stack, M5Core2). They all scored high on their own (popular, and they touch the chip's internals heavily). The plan has no "max per company" rule, so I did not cap them. If you want more variety, a cap of 3 per company would replace M5Core2 with Adafruit TCS34725 (a color sensor).
-3. **ArduinoJson and PubSubClient got in through the must-include rule, not the score.** They are very popular but use only plain C++, so their risk is "None". They rank #64 and #88 by score. That passes the plan's check that famous names appear in the top 100. Users will still look them up, which is why the plan forces them in.
-4. **Where the numbers come from:** stars and "last release date" come from the PlatformIO registry, which copies GitHub's star counts. I could not call GitHub directly because it allows only 60 requests per hour without a login. Download popularity is PlatformIO's download rank, because Arduino does not publish download numbers.
-5. **Categories are assigned automatically** from each library's description. I checked and fixed the obvious mistakes (for example, a pressure sensor called "BMP3XX" was labeled Audio because its name contains "mp3"). A few borderline labels may remain. Board-support packages (M5Stack, Heltec) are filed under Utilities or Networking.
-6. **The risk column is a guess** that decides the order of testing, never the result. Every ✅/❌ in the table will come from a real compile log.
+1. **Bluetooth has 2 libraries, not 3.** The category-balance rule asks for 3, but no third Bluetooth library was among the ~260 libraries scanned. Wave 2 will look deeper.
+2. **M5Stack has 4 libraries** (M5Unified, M5GFX, M5Stack, M5Core2). Each scored high on its own (popular, and they use the chip's internals heavily). There is no "maximum per vendor" rule.
+3. **ArduinoJson and PubSubClient are in through the must-include rule, not the score.** They are very popular but use only plain C++, so their risk is "None" (score rank #64 and #88). Users look them up, so they are included.
+4. **Where the numbers come from:** stars and last-release dates come from the PlatformIO registry, which mirrors GitHub star counts. Download popularity is PlatformIO's download rank, because the Arduino Library Manager does not publish download counts.
+5. **Categories are assigned automatically** from each library's description, with obvious mistakes fixed by hand. A few borderline labels may remain. Board-support packages (M5Stack, Heltec) are filed under Utilities or Networking.
+6. **The risk column is an estimate** that decides the order of testing, never the result. Every ✅/❌ in the table comes from a real compile log.
+
+Want a library added? Open an [“Add a library” issue](../../../issues/new?template=add-library.yml).
 
 ## Files
 
-- [selection-data/selection.json](selection-data/selection.json): every number behind this list (all 6 scores per library, risk reasons, next-in-line, removed duplicates)
-- [selection-data/select_libs.py](selection-data/select_libs.py): the script that produced it (re-run it to refresh the list)
+- [selection-data/selection.json](../selection-data/selection.json): every number behind this list (all 6 scores per library, risk reasons, next-in-line, removed duplicates)
+- [selection-data/select_libs.py](../selection-data/select_libs.py): the script that produced it (re-run it to refresh the list)

@@ -1,0 +1,121 @@
+{
+ "Adafruit NeoPixel": [
+  "examples/strandtest"
+ ],
+ "ArduinoBLE": [
+  "examples/Central/Scan"
+ ],
+ "ESP32IMDB": [
+  "examples/TortureTest"
+ ],
+ "ESP32Servo": [
+  "examples/Multiple-Servo-Example-Arduino"
+ ],
+ "ESP Async WebServer": [
+  "examples/arduino/HTTPMethodsWithArduino",
+  "examples/arduino/StaticFile"
+ ],
+ "EthernetESP32": [
+  "examples/LegacyEthernetTest",
+  "examples/TwoEthernets"
+ ],
+ "FastLED": [
+  "examples/Blink"
+ ],
+ "IRremote": [
+  "examples/SendDemo"
+ ],
+ "MFRC522": [
+  "examples/ReadUidMultiReader"
+ ],
+ "WS2812FX": [
+  "examples/ws2812fx_spi"
+ ],
+ "ZACwire for TSic": [
+  "examples/ReadingTwoTSICs",
+  "examples/ReadSingleTSIC206"
+ ],
+ "M5Unified": [
+  "examples/Basic/HowToUse",
+  "examples/Test/build_test"
+ ],
+ "M5GFX": [
+  "examples/Basic/TFT_graphicstest_PDQ",
+  "examples/Test/build_test"
+ ],
+ "NimBLE-Arduino": [
+  "examples/NimBLE_Server",
+  "examples/NimBLE_Client"
+ ],
+ "RadioLib": [
+  "examples/SX127x/SX127x_Transmit_Blocking",
+  "examples/LoRaWAN/LoRaWAN_Starter"
+ ],
+ "TFT_eSPI": [
+  "examples/320 x 240/TFT_graphicstest_one_lib",
+  "examples/DMA test/Bouncy_Circles"
+ ],
+ "IRremoteESP8266": [
+  "examples/IRsendDemo",
+  "examples/IRrecvDemo"
+ ],
+ "bb_spi_lcd": [
+  "examples/spi_lcd_demo",
+  "examples/generic_display"
+ ],
+ "LibSSH-ESP32": [
+  "examples/exec",
+  "examples/keygen2"
+ ],
+ "Blynk": [
+  "examples/Boards_WiFi/ESP32_WiFi",
+  "examples/Blynk.Edgent/Edgent_ESP32"
+ ],
+ "ESP8266Audio": [
+  "examples/PlayWAVFromPROGMEM",
+  "examples/PlayAACFromPROGMEM"
+ ],
+ "SensorLib": [
+  "examples/power/axp2101_basic",
+  "examples/rtc/pcf8563_simple_time"
+ ],
+ "XPowersLib": [
+  "examples/AXP2101_Example",
+  "examples/XPowersLibInterface_Example"
+ ],
+ "wolfssl": [
+  "examples/wolfssl_version",
+  "examples/wolfssl_client"
+ ],
+ "NeoPixelBus by Makuna": [
+  "examples/NeoPixelTest",
+  "examples/ESP32/NeoPixel_ESP32_I2sParallel"
+ ],
+ "FastAccelStepper": [
+  "examples/UsageExample",
+  "examples/StepperDemo"
+ ],
+ "EspSoftwareSerial": [
+  "examples/swsertest",
+  "examples/loopback"
+ ],
+ "Simple FOC": [
+  "examples/motion_control/open_loop_motor_control/open_loop_velocity_example",
+  "examples/hardware_specific_examples/ESP32/magnetic_sensor/esp32_position_control"
+ ],
+ "Firebase Arduino Client Library for ESP8266 and ESP32": [
+  "examples/Authentications/SignInAsGuest/AnonymousSignin",
+  "examples/FirebaseJson/BasicUsage/Create_Edit_Parse"
+ ],
+ "ESP32-BLE-Gamepad": [
+  "examples/Generic/Gamepad",
+  "examples/Generic/SingleButton"
+ ],
+ "ArduinoJson": [
+  "examples/JsonParserExample",
+  "examples/JsonGeneratorExample"
+ ],
+ "InkplateLibrary": [
+  "examples/Inkplate10/Basic/Inkplate10_Hello_World"
+ ]
+}

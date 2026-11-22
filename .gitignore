@@ -1,0 +1,7 @@
+# private to the owner
+CLAUDE.md
+ESP32 compatibility table*.md
+# generated / large
+__pycache__/
+*.pyc
+site/logs/

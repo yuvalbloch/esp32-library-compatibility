@@ -8,6 +8,7 @@ Safe to re-run: finished installs are skipped.
 import io
 import os
 import platform
+import shutil
 import subprocess
 import sys
 import tarfile
@@ -56,6 +57,8 @@ def install(core):
     subprocess.run([str(CLI), *cfg, "core", "update-index"], check=True, env=child_env())
     print(f"core {core}: installing (large download)…", flush=True)
     subprocess.run([str(CLI), *cfg, "core", "install", f"esp32:esp32@{core}", "--no-color"], check=True, env=child_env())
+    if os.environ.get("CI"):   # cloud machines have little disk: drop the downloaded archives
+        shutil.rmtree(FARM / "staging", ignore_errors=True)
 
 
 def main():

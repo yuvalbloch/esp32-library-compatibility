@@ -118,6 +118,15 @@ def build_jobs(plan, cores, chips, latest_only=False, only=None):
     return jobs
 
 
+MAX_SHARDS_PER_CORE = 16
+
+
+def shard_of(job, n):
+    """Stable chunk number. All chips of one (library, version, example) land in the same chunk."""
+    k = f"{job['lib']}|{job['version']}|{job['example']}".encode()
+    return int(hashlib.sha1(k).hexdigest(), 16) % n
+
+
 def done_keys(retry_infra):
     q = "SELECT lib, lib_version, core, chip, example FROM results WHERE options=''"
     if retry_infra:
@@ -285,15 +294,39 @@ def main():
     ap.add_argument("--chips", nargs="*", default=CHIPS)
     ap.add_argument("--latest-only", action="store_true")
     ap.add_argument("--retry-infra", action="store_true")
+    ap.add_argument("--shard", help="I/N: run only chunk I of N (chunks keep each library version+example together)")
+    ap.add_argument("--list-pending", type=int, metavar="N",
+                    help="print a CI matrix of chunks with ~N pending compiles each, then exit")
     a = ap.parse_args()
 
+    only = [n.strip() for x in (a.only or []) for n in x.split(",") if n.strip()] or None
     plan = load_json(PLAN_PATH)
+    done = done_keys(a.retry_infra)
+    jobs = [j for j in build_jobs(plan, a.cores, a.chips, a.latest_only, only)
+            if (j["lib"], j["version"], j["core"], j["chip"], j["example"]) not in done]
+
+    if a.list_pending:
+        # CI: print a GitHub Actions matrix of (core, shard) chunks that have work, ~N compiles each
+        per = a.list_pending
+        out = []
+        for core in a.cores:
+            n_core = sum(1 for j in jobs if j["core"] == core)
+            if not n_core:
+                continue
+            nsh = min(MAX_SHARDS_PER_CORE, -(-n_core // per))
+            for i in range(nsh):
+                if any(j["core"] == core and shard_of(j, nsh) == i for j in jobs):
+                    out.append({"core": core, "shard": i, "nshards": nsh})
+        print(json.dumps(out))
+        print(f"{len(jobs)} pending compiles in {len(out)} chunks", file=sys.stderr)
+        return
+    if a.shard:
+        i, n = map(int, a.shard.split("/"))
+        jobs = [j for j in jobs if shard_of(j, n) == i]
+
     store.index()
     (FARM / "tmp").mkdir(parents=True, exist_ok=True)
     warm(a.cores, a.chips)
-    done = done_keys(a.retry_infra)
-    jobs = [j for j in build_jobs(plan, a.cores, a.chips, a.latest_only, a.only)
-            if (j["lib"], j["version"], j["core"], j["chip"], j["example"]) not in done]
     if a.limit:
         jobs = jobs[:a.limit]
     total = len(jobs)

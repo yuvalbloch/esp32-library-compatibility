@@ -32,6 +32,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--workers", type=int, default=6)
+    ap.add_argument("--plan-only", action="store_true", help="update plan.json and stop (CI runs the compiles)")
     a = ap.parse_args()
     refresh_index()
     store._index = None
@@ -67,6 +68,8 @@ def main():
     con.commit()
     plan["updated"] = now()
     save_json(PLAN_PATH, plan)
+    if a.plan_only:
+        return
     py = sys.executable
     if added:
         subprocess.run([py, str(PROJECT / "farm" / "run.py"), "--workers", str(a.workers),

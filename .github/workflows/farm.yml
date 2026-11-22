@@ -1,0 +1,158 @@
+name: Compile farm
+
+# Plan -> compile in parallel chunks (one core per machine) -> merge, save to the `results` branch, deploy the site.
+# Runs daily (new library releases only) and on demand.
+on:
+  schedule:
+    - cron: "17 3 * * *"
+  workflow_dispatch:
+    inputs:
+      only:
+        description: "Only these libraries (comma-separated names; empty = all)"
+        default: ""
+      cores:
+        description: "Only these cores (space-separated; empty = all)"
+        default: ""
+      latest_only:
+        description: "Only the newest version of each library"
+        type: boolean
+        default: false
+      chunk_size:
+        description: "Compiles per machine (smaller = more machines)"
+        default: "60"
+      replan:
+        description: "Rebuild the test plan from scratch (after changing example picks)"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: compile-farm
+  cancel-in-progress: false
+
+env:
+  ESP32FARM: /home/runner/esp32farm
+  PYTHONUNBUFFERED: "1"
+  ONLY: ${{ inputs.only }}
+  CORES: ${{ inputs.cores }}
+  LATEST_ONLY: ${{ inputs.latest_only && '--latest-only' || '' }}
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    outputs:
+      matrix: ${{ steps.matrix.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Load previous results
+        run: python farm/ci.py load-state
+      - name: Plan (new library releases, or a fresh plan)
+        run: |
+          if [ -f "$ESP32FARM/plan.json" ] && [ "${{ inputs.replan }}" != "true" ]; then
+            python farm/update.py --plan-only
+          else
+            python farm/prepare.py --refresh
+          fi
+      - name: Split pending compiles into chunks
+        id: matrix
+        run: |
+          ARGS="$LATEST_ONLY"
+          [ -n "$CORES" ] && ARGS="$ARGS --cores $CORES"
+          if [ -n "$ONLY" ]; then
+            M=$(python farm/run.py --retry-infra --list-pending "${{ inputs.chunk_size || '60' }}" $ARGS --only "$ONLY")
+          else
+            M=$(python farm/run.py --retry-infra --list-pending "${{ inputs.chunk_size || '60' }}" $ARGS)
+          fi
+          echo "matrix=$M" >> "$GITHUB_OUTPUT"
+          echo "$M"
+      - name: Pack plan state
+        run: tar -C "$ESP32FARM" -czf state.tgz plan.json results.db dl/library_index.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: state
+          path: state.tgz
+          retention-days: 7
+
+  compile:
+    needs: plan
+    if: needs.plan.outputs.matrix != '[]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 340
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix:
+        include: ${{ fromJSON(needs.plan.outputs.matrix) }}
+    name: compile ${{ matrix.core }} (${{ matrix.shard }}/${{ matrix.nshards }})
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/download-artifact@v4
+        with:
+          name: state
+      - name: Free disk space (cores need ~10 GB)
+        run: sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL && df -h /
+      - name: Unpack plan state
+        run: mkdir -p "$ESP32FARM" && tar -C "$ESP32FARM" -xzf state.tgz
+      - name: Install arduino-cli and core ${{ matrix.core }}
+        run: python farm/setup_cores.py ${{ matrix.core }}
+      - name: Compile
+        run: |
+          python farm/ci.py maxid > maxid.txt
+          ARGS="$LATEST_ONLY"
+          if [ -n "$ONLY" ]; then
+            python farm/run.py --retry-infra --workers 4 --cores ${{ matrix.core }} --shard ${{ matrix.shard }}/${{ matrix.nshards }} $ARGS --only "$ONLY"
+          else
+            python farm/run.py --retry-infra --workers 4 --cores ${{ matrix.core }} --shard ${{ matrix.shard }}/${{ matrix.nshards }} $ARGS
+          fi
+      - name: Pack results
+        if: always()
+        run: python farm/ci.py pack-results out "$(cat maxid.txt)"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: res-${{ matrix.core }}-${{ matrix.shard }}
+          path: out
+          retention-days: 7
+
+  publish:
+    needs: [plan, compile]
+    if: always() && needs.plan.result == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Load previous logs
+        run: python farm/ci.py load-state --logs
+      - uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+      - name: Merge results
+        run: |
+          tar -C "$ESP32FARM" -xzf artifacts/state/state.tgz
+          python farm/ci.py merge-results artifacts/res-*
+      - name: Save results to the results branch
+        run: python farm/ci.py save-state
+      - name: Build site
+        run: python farm/export.py
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - id: deploy
+        uses: actions/deploy-pages@v4

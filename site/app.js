@@ -102,7 +102,7 @@ const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": 
 const CHIP_NAME = { esp32: "ESP32", esp32s3: "S3", esp32c3: "C3", esp32s2: "S2", esp32c6: "C6", esp32h2: "H2", esp32p4: "P4", esp32c5: "C5" };
 const SYM = {
   pass: ["✓", "pass", "Compiles"],
-  pass_cfg: ["✓⚙", "pass", "Compiles with a bigger flash partition (huge_app)"],
+  pass_cfg: ["✓⚙", "pass", "Compiles with non-default board settings (see details)"],
   partial: ["◐", "partial", "Some examples compile, some fail"],
   fail: ["✗", "fail", "Fails to compile"],
   dep_fail: ["dep", "dep_fail", "A library it depends on fails to compile"],
@@ -168,7 +168,7 @@ function examples(li, v, core, chip) {
   return Object.entries(by).map(([ex, o]) => {
     const base = o.base || o.big;
     let s = base.status;
-    if (o.base && o.base.status === "config" && o.big && o.big.status === "pass") s = "pass_cfg";
+    if (o.base && !OK(o.base.status) && o.big && o.big.status === "pass") s = "pass_cfg";
     return { example: ex, status: s, base: o.base, big: o.big };
   });
 }
@@ -192,17 +192,23 @@ function regressions(li, v, chip) {
   return examples(li, v, D.target, chip).filter(e => BAD(e.status) && base[e.example] && OK(base[e.example].status))
     .map(e => ({ ...e, before: base[e.example] }));
 }
+// Hardware note: every failing example in the cell failed on a peripheral this chip does not have.
+function hwNote(li, v, core, chip) {
+  const bad = examples(li, v, core, chip).filter(e => BAD(e.status)).map(e => e.base || e.big);
+  return bad.length && bad.every(r => r.note) ? bad[0].note : "";
+}
 function hasRegression(li, v) { return D.chips.some(c => regressions(li, v, c).length); }
 
-function badge(s, extra = "", attrs = "") {
+function badge(s, extra = "", attrs = "", note = "") {
   const [sym, cls, title] = SYM[s] || SYM.none;
-  return `<span class="s ${cls} ${extra}" title="${esc(title)}" ${attrs}>${sym}</span>`;
+  return `<span class="s ${cls} ${extra}" title="${esc(note ? title + " — " + note : title)}" ${attrs}>${sym}</span>`;
 }
 
 function legend(el) {
   el.innerHTML = ["pass", "pass_cfg", "partial", "fail", "dep_fail", "n/a", "config", "infra_error", "none"]
     .map(s => `<span>${badge(s)} ${esc(SYM[s][2])}</span>`).join("") +
-    `<span>${badge("fail", "regr")} Broke on ${esc(D.target)} (compiled on ${esc(D.baseline)})</span>`;
+    `<span>${badge("fail", "regr")} Broke on ${esc(D.target)} (compiled on ${esc(D.baseline)})</span>` +
+    `<span>${badge("fail", "hw")} Expected: this chip lacks the hardware the example uses</span>`;
 }
 
 function tested(li) { return LIBS[li].versions.some(v => D.cores.some(c => D.chips.some(ch => CELL.has(key(li, v, c, ch))))); }
@@ -251,14 +257,17 @@ function renderTable() {
       const regChips = new Set(chips.filter(ch => regressions(li, v, ch).length));
       h += `<tr class="${vi ? "older" : ""}"><td class="lib">` +
         (vi ? "" : `<a href="${esc(l.repo)}" target="_blank" rel="noopener">${esc(l.name)}</a>` +
-          (l.espressif_tested ? `<span class="tag" title="Also compiled by Espressif's own CI">Espressif CI</span>` : "")) +
+          (l.espressif_tested ? `<span class="tag" title="Also compiled by Espressif's own CI">Espressif CI</span>` : "") +
+          (l.note ? `<span class="tag note" title="${esc(l.note)}">note</span>` : "")) +
         (regChips.size ? `<span class="tag reg">broken on ${esc(D.target)}</span>` : "") +
         `</td><td class="ver">${esc(v)}</td>`;
       cores.forEach(core => chips.forEach((ch, ci) => {
         const s = cell(li, v, core, ch);
         const regr = core === D.target && regChips.has(ch) ? "regr" : "";
-        const attrs = s === "none" ? "" : `tabindex="0" data-cell="${li}|${esc(v)}|${core}|${ch}"`;
-        h += `<td class="c ${ci === 0 ? "first" : ""}">${badge(s, regr, attrs)}</td>`;
+        const hw = BAD(s) || s === "partial" ? hwNote(li, v, core, ch) : "";
+        const attrs = (s === "none" ? "" : `tabindex="0" data-cell="${li}|${esc(v)}|${core}|${ch}"`) +
+          (hw ? ` data-hw="1"` : "");
+        h += `<td class="c ${ci === 0 ? "first" : ""}">${badge(s, regr + (hw ? " hw" : ""), attrs, hw)}</td>`;
       }));
       h += `</tr>`;
     });
@@ -281,6 +290,7 @@ function exHtml(e) {
     <div class="ex">
       ${badge(r.status)} <b>${esc(r.example)}</b> ${r.options ? `<span class="tag">${esc(r.options)}</span>` : ""}
       ${r.first_error ? `<div class="err">${esc(r.first_error)}</div>` : ""}
+      ${r.note ? `<div class="hwnote">${esc(r.note)}</div>` : ""}
       <div class="meta">${r.root_cause ? esc(r.root_cause) + " · " : ""}<a href="${BASE}logs/${esc(r.log)}" target="_blank" rel="noopener">compile log</a>
         · tested ${esc(r.date)}${Object.keys(r.deps || {}).length ? " · with " + Object.entries(r.deps).map(([n, v]) => esc(n) + " " + esc(v)).join(", ") : ""}</div>
     </div>`).join("");
@@ -293,6 +303,7 @@ function showCell(li, v, core, chip) {
   let h = `<h2>${esc(l.name)} ${esc(v)}</h2><p class="muted">core ${esc(core)} · ${CHIP_NAME[chip] || chip} · ${badge(cell(li, v, core, chip))} ${esc(SYM[cell(li, v, core, chip)][2])}</p>`;
   if (reg.length) h += `<p><span class="tag reg">broken on ${esc(D.target)}</span> These examples compiled on core ${esc(D.baseline)}: ` +
     reg.map(r => `<a href="${BASE}logs/${esc((r.before.base || r.before.big).log)}" target="_blank" rel="noopener">${esc(r.example)} on ${esc(D.baseline)}</a>`).join(", ") + `</p>`;
+  if (l.note) h += `<p class="libnote"><b>Note:</b> ${esc(l.note)}</p>`;
   h += exs.map(exHtml).join("");
   if (l.risk_reasons?.length) h += `<p class="muted" style="margin-top:12px">Why we expected risk: ${esc(l.risk_reasons.join("; "))}.</p>`;
   openModal(h);
@@ -364,14 +375,14 @@ function pickVersion(li, core, chip) {
   for (const v of LIBS[li].versions) {
     const s = cell(li, v, core, chip);
     if (OK(s)) {
-      const deps = {}; let big = false;
+      const deps = {}; const opts = new Set();
       for (const e of examples(li, v, core, chip)) {
         if (!OK(e.status)) continue;
         const r = e.status === "pass_cfg" ? e.big : e.base;
         Object.assign(deps, r.deps || {});
-        if (e.status === "pass_cfg") big = true;
+        if (e.status === "pass_cfg") r.options.split(",").forEach(o => opts.add(o));
       }
-      return { v, s, deps, big };
+      return { v, s, deps, opts: [...opts] };
     }
   }
   return null;
@@ -390,7 +401,7 @@ function renderPin() {
     const l = LIBS[li];
     if (p) {
       const newest = l.versions[0] === p.v;
-      h += `<tr><td>${esc(l.name)}</td><td><b>${esc(p.v)}</b></td><td>${badge(p.s)} ${newest ? "newest version compiles" : `newest tested version (${esc(l.versions[0])}) does not; ${esc(p.v)} does`}${p.big ? " · needs huge_app partition" : ""}</td></tr>`;
+      h += `<tr><td>${esc(l.name)}</td><td><b>${esc(p.v)}</b></td><td>${badge(p.s)} ${newest ? "newest version compiles" : `newest tested version (${esc(l.versions[0])}) does not; ${esc(p.v)} does`}${p.opts.length ? " · needs board options " + esc(p.opts.join(",")) : ""}</td></tr>`;
     } else {
       h += `<tr><td>${esc(l.name)}</td><td>—</td><td>${badge(cell(li, l.versions[0], core, chip))} no tested version compiles on this core and chip</td></tr>`;
     }
@@ -405,13 +416,15 @@ function renderPin() {
     const all = {};
     for (const { li, p } of ok) Object.assign(all, p.deps);
     for (const { li, p } of ok) all[LIBS[li].name] = p.v;
-    const big = ok.some(x => x.p.big);
-    const fqbn = `esp32:esp32:${chip}${big ? ":" + D.big_app_option : ""}`;
+    const opts = [...new Set(ok.flatMap(x => x.p.opts))];
+    const big = opts.includes(D.big_app_option);
+    const fqbn = `esp32:esp32:${chip}${opts.length ? ":" + opts.join(",") : ""}`;
     const libsSorted = Object.entries(all).sort((a, b) => a[0].localeCompare(b[0]));
     const yaml = `profiles:\n  ${chip}:\n    fqbn: ${fqbn}\n    platforms:\n      - platform: esp32:esp32 (${core})\n        platform_index_url: https://espressif.github.io/arduino-esp32/package_esp32_index.json\n    libraries:\n` +
       libsSorted.map(([n, v]) => `      - ${n} (${v})`).join("\n") + `\n`;
     const pio = `; PlatformIO: use a platform that ships Arduino-ESP32 core ${core}\n; (for core 3.x and 4.x that is the community "pioarduino" platform)\n[env:${chip}]\nframework = arduino\n` +
-      (big ? `board_build.partitions = huge_app.csv\n` : "") + `lib_deps =\n` + libsSorted.map(([n, v]) => `    ${n} @ ${v}`).join("\n") + `\n`;
+      (big ? `board_build.partitions = huge_app.csv\n` : "") +
+      (opts.includes("USBMode=default") ? `build_flags = -DARDUINO_USB_MODE=0   ; USB-OTG (TinyUSB)\n` : "") + `lib_deps =\n` + libsSorted.map(([n, v]) => `    ${n} @ ${v}`).join("\n") + `\n`;
     h += `<h3>sketch.yaml <span><button class="copy" data-t="y">Copy</button></span></h3><pre id="py">${esc(yaml)}</pre>
       <p class="muted">Save next to your .ino file and build with <code>arduino-cli compile --profile ${esc(chip)}</code>. It also pins the helper libraries our test used.</p>
       <h3>platformio.ini <span><button class="copy" data-t="p">Copy</button></span></h3><pre id="pp">${esc(pio)}</pre>`;

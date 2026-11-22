@@ -9,6 +9,8 @@ import gzip
 import json
 import shutil
 
+from notes import hardware_note, library_note
+
 from common import (SITE, LOGS, PLAN_PATH, CORES, CHIPS, BASELINE_CORE, TARGET_CORE, BIG_APP_OPTION,
                     load_json, save_json, db, now)
 
@@ -44,6 +46,7 @@ def main():
             "espressif_tested": l["espressif_tested"], "risk": l["risk_raw"], "risk_reasons": l["risk_reasons"],
             "versions": [v["version"] for v in l["versions"]],
             "examples": {v["version"]: v["examples"] for v in l["versions"]},
+            "note": library_note(l["name"]),
         })
     known = {l["name"] for l in libs}
     lib_idx = {l["name"]: i for i, l in enumerate(libs)}
@@ -57,12 +60,13 @@ def main():
         out_rows.append([lib_idx[r["lib"]], r["lib_version"], r["core"], r["chip"],
                          r["example"].removeprefix("examples/"), r["options"], r["status"],
                          r["first_error"] or "", r["root_cause"] or "", r["log_file"].replace(".log.gz", ".txt"),
-                         json.loads(r["deps"] or "{}"), r["created_at"][:10]])
+                         json.loads(r["deps"] or "{}"), r["created_at"][:10],
+                         hardware_note(r["chip"], r["status"], r["first_error"])])
     data = {
         "generated": now(), "cores": CORES, "chips": CHIPS, "baseline": BASELINE_CORE, "target": TARGET_CORE,
         "big_app_option": BIG_APP_OPTION, "cli_version": rows[0]["cli_version"] if rows else "",
         "row_fields": ["lib", "version", "core", "chip", "example", "options", "status", "first_error",
-                       "root_cause", "log", "deps", "date"],
+                       "root_cause", "log", "deps", "date", "note"],
         "libs": libs, "rows": out_rows,
     }
     save_json(SITE / "data" / "results.json", data)

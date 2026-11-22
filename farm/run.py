@@ -222,6 +222,19 @@ def save_row(job, options, res, libs, seconds, log):
         c.commit()
 
 
+_board_options = None
+
+
+def lib_board_option(lib, chip):
+    """Board options the library documents as required on this chip (farm/board_options.json), or None."""
+    global _board_options
+    if _board_options is None:
+        p = Path(__file__).with_name("board_options.json")
+        _board_options = json.loads(p.read_text(encoding="utf-8")) if p.exists() else {}
+    o = _board_options.get(lib)
+    return o.get(chip) if isinstance(o, dict) else None
+
+
 def run_job(job, build_dir):
     names, _ = bundled(job["core"])
     libs = {n: v for n, v in job["deps"].items() if n not in names}
@@ -258,11 +271,16 @@ def run_job(job, build_dir):
         set_extras(job["lib"], job["version"], job["example"], new_extras)
     save_row(job, "", res, libs, secs, log)
     results = [res["status"]]
+    retry = None
     if res["status"] == "config" and "too big" in (res["signature"] or ""):
-        rc, log2, to2, secs2, dep_roots = compile_once(job, libs, BIG_APP_OPTION, build_dir)
+        retry = BIG_APP_OPTION
+    elif res["status"] not in ("pass", "infra_error") and lib_board_option(job["lib"], job["chip"]):
+        retry = lib_board_option(job["lib"], job["chip"])
+    if retry:
+        rc, log2, to2, secs2, dep_roots = compile_once(job, libs, retry, build_dir)
         res2 = classify(rc, log2, to2, dep_roots)
-        save_row(job, BIG_APP_OPTION, res2, libs, secs2, log2)
-        results.append(res2["status"] + " (huge_app)")
+        save_row(job, retry, res2, libs, secs2, log2)
+        results.append(f"{res2['status']} ({retry})")
     shutil.rmtree(build_dir, ignore_errors=True)
     return res, results, secs
 

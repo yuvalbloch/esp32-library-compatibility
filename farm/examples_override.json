@@ -117,5 +117,17 @@
  ],
  "InkplateLibrary": [
   "examples/Inkplate10/Basic/Inkplate10_Hello_World"
+ ],
+ "DFRobotDFPlayerMini": [
+  "examples/GetStarted",
+  "examples/ReadValues"
+ ],
+ "SimpleFOCDrivers": [
+  "examples/drivers/drv8316/drv8316_3pwm",
+  "examples/encoders/calibrated_sensor/calibrated"
+ ],
+ "Adafruit TinyUSB Library": [
+  "examples/HID/hid_boot_keyboard",
+  "examples/CDC/serial_echo"
  ]
 }

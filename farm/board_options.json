@@ -1,0 +1,6 @@
+{
+ "_about": "Board options a library documents as required. If the default-options build does not pass, the same sketch is compiled again with these options; both results are stored and shown (as ✓⚙ when the second one passes).",
+ "Adafruit TinyUSB Library": {
+  "esp32s3": "USBMode=default"
+ }
+}

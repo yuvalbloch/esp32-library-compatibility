@@ -57,6 +57,12 @@ The status is derived mechanically from the compiler's exit code and the log, by
 
 **Too big for the default partition.** When a build is `config` because it is too big, the farm compiles it again with `PartitionScheme=huge_app`. Both rows are stored. The table shows ✓⚙ when the second one passes.
 
+**Board options a library requires.** A few libraries document a board setting they cannot work without (for example Adafruit TinyUSB on the ESP32-S3 needs *USB Mode: USB-OTG (TinyUSB)*). These are listed in [`farm/board_options.json`](../farm/board_options.json). When the default-options build of such a library does not pass, the same sketch is compiled again with that option, and both rows are stored. The table shows ✓⚙ when the second one passes. The pin tool puts the option in the FQBN.
+
+**Notes (never a status).**
+- *Hardware notes:* when a build fails and its first error is about a peripheral the chip does not have (per Espressif's datasheets: the ESP32-C3 has no touch sensor, PCNT, SD/MMC host, MCPWM, DAC, USB-OTG or parallel I2S/LCD peripheral; the ESP32 has no USB-OTG; the ESP32-S3 has no DAC), the cell keeps its ✗ but is drawn dashed with an explanation. Rules: [`farm/notes.py`](../farm/notes.py).
+- *Library notes:* short hand-written context for board-support libraries and libraries whose examples target other boards ([`farm/library_notes.json`](../farm/library_notes.json)), shown as a "note" tag.
+
 **Root-cause labels.** Failures are also given a human-readable label ("Legacy ESP-IDF driver header removed", "Old LEDC (PWM) API", "Crypto (mbedTLS / PSA) API change", …) by matching the first error against a list of patterns. Labels group errors in the *Error groups* view. They are explanations only and never change a status.
 
 ## 6. Results are immutable

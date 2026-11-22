@@ -1,0 +1,3603 @@
+{
+ "generated": "2026-11-22T10:53:01",
+ "libs": [
+  {
+   "name": "LovyanGFX",
+   "category": "Displays",
+   "repo": "https://github.com/lovyan03/LovyanGFX.git",
+   "espressif_tested": false,
+   "score": 95.5,
+   "risk_raw": 10,
+   "risk_reasons": [
+    "uses ESP-IDF headers removed/renamed in IDF 5-6",
+    "includes legacy ESP-IDF driver header",
+    "drives timer/PWM/RMT/I2S/DMA hardware APIs",
+    "includes other ESP-IDF internals",
+    "has core-version guards (ESP_ARDUINO_VERSION / ESP_IDF_VERSION)"
+   ],
+   "stars": 1799,
+   "versions": [
+    {
+     "version": "1.3.0",
+     "examples": [
+      "examples/HowToUse/1_simple_use",
+      "examples/Advanced/ESP32DeepSleepDisplay"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "1.2.36",
+     "examples": [
+      "examples/HowToUse/1_simple_use",
+      "examples/Advanced/ESP32DeepSleepDisplay"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "1.2.35",
+     "examples": [
+      "examples/HowToUse/1_simple_use",
+      "examples/Advanced/ESP32DeepSleepDisplay"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "1.2.34",
+     "examples": [
+      "examples/HowToUse/1_simple_use",
+      "examples/Advanced/ESP32DeepSleepDisplay"
+     ],
+     "deps": {}
+    }
+   ]
+  },
+  {
+   "name": "M5Unified",
+   "category": "Displays",
+   "repo": "https://github.com/m5stack/M5Unified.git",
+   "espressif_tested": false,
+   "score": 94.3,
+   "risk_raw": 10,
+   "risk_reasons": [
+    "uses ESP-IDF headers removed/renamed in IDF 5-6",
+    "includes legacy ESP-IDF driver header",
+    "drives timer/PWM/RMT/I2S/DMA hardware APIs",
+    "includes other ESP-IDF internals",
+    "has core-version guards (ESP_ARDUINO_VERSION / ESP_IDF_VERSION)"
+   ],
+   "stars": 724,
+   "versions": [
+    {
+     "version": "0.3.0",
+     "examples": [
+      "examples/Basic/HowToUse",
+      "examples/Test/build_test"
+     ],
+     "deps": {
+      "M5GFX": "0.3.0"
+     }
+    },
+    {
+     "version": "0.2.29",
+     "examples": [
+      "examples/Basic/HowToUse",
+      "examples/Test/build_test"
+     ],
+     "deps": {
+      "M5GFX": "0.3.0"
+     }
+    },
+    {
+     "version": "0.2.28",
+     "examples": [
+      "examples/Basic/HowToUse",
+      "examples/Test/build_test"
+     ],
+     "deps": {
+      "M5GFX": "0.3.0"
+     }
+    },
+    {
+     "version": "0.2.27",
+     "examples": [
+      "examples/Basic/HowToUse",
+      "examples/Test/build_test"
+     ],
+     "deps": {
+      "M5GFX": "0.3.0"
+     }
+    }
+   ]
+  },
+  {
+   "name": "NimBLE-Arduino",
+   "category": "Bluetooth",
+   "repo": "https://github.com/h2zero/NimBLE-Arduino.git",
+   "espressif_tested": false,
+   "score": 92.2,
+   "risk_raw": 4,
+   "risk_reasons": [
+    "calls mbedTLS crypto directly",
+    "includes other ESP-IDF internals",
+    "has core-version guards (ESP_ARDUINO_VERSION / ESP_IDF_VERSION)"
+   ],
+   "stars": 1134,
+   "versions": [
+    {
+     "version": "2.5.2",
+     "examples": [
+      "examples/NimBLE_Server",
+      "examples/NimBLE_Client"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "2.5.1",
+     "examples": [
+      "examples/NimBLE_Server",
+      "examples/NimBLE_Client"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "2.5.0",
+     "examples": [
+      "examples/NimBLE_Server",
+      "examples/NimBLE_Client"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "2.4.0",
+     "examples": [
+      "examples/NimBLE_Server",
+      "examples/NimBLE_Client"
+     ],
+     "deps": {}
+    }
+   ]
+  },
+  {
+   "name": "ESP8266Audio",
+   "category": "Audio",
+   "repo": "https://github.com/earlephilhower/ESP8266Audio.git",
+   "espressif_tested": false,
+   "score": 91.7,
+   "risk_raw": 10,
+   "risk_reasons": [
+    "uses ESP-IDF headers removed/renamed in IDF 5-6",
+    "includes legacy ESP-IDF driver header",
+    "drives timer/PWM/RMT/I2S/DMA hardware APIs",
+    "includes other ESP-IDF internals",
+    "has core-version guards (ESP_ARDUINO_VERSION / ESP_IDF_VERSION)"
+   ],
+   "stars": 2417,
+   "versions": [
+    {
+     "version": "2.4.3",
+     "examples": [
+      "examples/PlayWAVFromPROGMEM",
+      "examples/PlayAACFromPROGMEM"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "2.4.1",
+     "examples": [
+      "examples/PlayWAVFromPROGMEM",
+      "examples/PlayAACFromPROGMEM"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "2.4.0",
+     "examples": [
+      "examples/PlayWAVFromPROGMEM",
+      "examples/PlayAACFromPROGMEM"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "2.3.0",
+     "examples": [
+      "examples/PlayWAVFromPROGMEM",
+      "examples/PlayAACFromPROGMEM"
+     ],
+     "deps": {}
+    }
+   ]
+  },
+  {
+   "name": "RadioLib",
+   "category": "Networking/Web",
+   "repo": "https://github.com/jgromes/RadioLib.git",
+   "espressif_tested": false,
+   "score": 89.2,
+   "risk_raw": 7,
+   "risk_reasons": [
+    "includes legacy ESP-IDF driver header",
+    "drives timer/PWM/RMT/I2S/DMA hardware APIs",
+    "includes other ESP-IDF internals",
+    "has core-version guards (ESP_ARDUINO_VERSION / ESP_IDF_VERSION)"
+   ],
+   "stars": 2648,
+   "versions": [
+    {
+     "version": "8.0.0",
+     "examples": [
+      "examples/SX127x/SX127x_Transmit_Blocking",
+      "examples/LoRaWAN/LoRaWAN_Starter"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "7.8.1",
+     "examples": [
+      "examples/SX127x/SX127x_Transmit_Blocking",
+      "examples/LoRaWAN/LoRaWAN_Starter"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "7.8.0",
+     "examples": [
+      "examples/SX127x/SX127x_Transmit_Blocking",
+      "examples/LoRaWAN/LoRaWAN_Starter"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "7.7.1",
+     "examples": [
+      "examples/SX127x/SX127x_Transmit_Blocking",
+      "examples/LoRaWAN/LoRaWAN_Starter"
+     ],
+     "deps": {}
+    }
+   ]
+  },
+  {
+   "name": "Adafruit TinyUSB Library",
+   "category": "Utilities",
+   "repo": "https://github.com/adafruit/Adafruit_TinyUSB_Arduino.git",
+   "espressif_tested": false,
+   "score": 89.0,
+   "risk_raw": 8,
+   "risk_reasons": [
+    "uses ESP-IDF headers removed/renamed in IDF 5-6",
+    "includes legacy ESP-IDF driver header",
+    "includes other ESP-IDF internals",
+    "has core-version guards (ESP_ARDUINO_VERSION / ESP_IDF_VERSION)"
+   ],
+   "stars": 654,
+   "versions": [
+    {
+     "version": "3.8.1",
+     "examples": [
+      "examples/MassStorage/msc_esp32_file_browser",
+      "examples/CDC/cdc_multi"
+     ],
+     "deps": {
+      "Adafruit SPIFlash": "5.1.3",
+      "MIDI Library": "5.0.2",
+      "SdFat - Adafruit Fork": "2.3.103",
+      "Adafruit NeoPixel": "1.15.5"
+     }
+    },
+    {
+     "version": "3.7.7",
+     "examples": [
+      "examples/MassStorage/msc_esp32_file_browser",
+      "examples/CDC/cdc_multi"
+     ],
+     "deps": {
+      "Adafruit SPIFlash": "5.1.3",
+      "MIDI Library": "5.0.2",
+      "SdFat - Adafruit Fork": "2.3.103",
+      "Adafruit NeoPixel": "1.15.5"
+     }
+    },
+    {
+     "version": "3.7.6",
+     "examples": [
+      "examples/MassStorage/msc_esp32_file_browser",
+      "examples/CDC/cdc_multi"
+     ],
+     "deps": {
+      "Adafruit SPIFlash": "5.1.3",
+      "MIDI Library": "5.0.2",
+      "SdFat - Adafruit Fork": "2.3.103",
+      "Adafruit NeoPixel": "1.15.5"
+     }
+    },
+    {
+     "version": "3.7.5",
+     "examples": [
+      "examples/MassStorage/msc_esp32_file_browser",
+      "examples/CDC/cdc_multi"
+     ],
+     "deps": {
+      "Adafruit SPIFlash": "5.1.3",
+      "MIDI Library": "5.0.2",
+      "SdFat - Adafruit Fork": "2.3.103",
+      "Adafruit NeoPixel": "1.15.5"
+     }
+    }
+   ]
+  },
+  {
+   "name": "M5GFX",
+   "category": "Displays",
+   "repo": "https://github.com/m5stack/M5GFX.git",
+   "espressif_tested": false,
+   "score": 88.6,
+   "risk_raw": 8,
+   "risk_reasons": [
+    "uses ESP-IDF headers removed/renamed in IDF 5-6",
+    "includes legacy ESP-IDF driver header",
+    "includes other ESP-IDF internals",
+    "has core-version guards (ESP_ARDUINO_VERSION / ESP_IDF_VERSION)"
+   ],
+   "stars": 389,
+   "versions": [
+    {
+     "version": "0.3.0",
+     "examples": [
+      "examples/Basic/TFT_graphicstest_PDQ",
+      "examples/Test/build_test"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "0.2.36",
+     "examples": [
+      "examples/Basic/TFT_graphicstest_PDQ",
+      "examples/Test/build_test"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "0.2.35",
+     "examples": [
+      "examples/Basic/TFT_graphicstest_PDQ",
+      "examples/Test/build_test"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "0.2.34",
+     "examples": [
+      "examples/Basic/TFT_graphicstest_PDQ",
+      "examples/Test/build_test"
+     ],
+     "deps": {}
+    }
+   ]
+  },
+  {
+   "name": "WiFiManager",
+   "category": "Networking/Web",
+   "repo": "https://github.com/tzapu/WiFiManager.git",
+   "espressif_tested": false,
+   "score": 87.6,
+   "risk_raw": 5,
+   "risk_reasons": [
+    "uses ESP-IDF headers removed/renamed in IDF 5-6",
+    "includes other ESP-IDF internals",
+    "has core-version guards (ESP_ARDUINO_VERSION / ESP_IDF_VERSION)"
+   ],
+   "stars": 6510,
+   "versions": [
+    {
+     "version": "2.0.17",
+     "examples": [
+      "examples/Basic",
+      "examples/Advanced"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "0.16.0",
+     "examples": [
+      "examples/AutoConnect",
+      "examples/AutoConnectWithFSParameters"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "0.15.0",
+     "examples": [
+      "examples/AutoConnect",
+      "examples/AutoConnectWithFSParameters"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "0.14.0",
+     "examples": [
+      "examples/AutoConnect",
+      "examples/AutoConnectWithFSParameters"
+     ],
+     "deps": {}
+    }
+   ]
+  },
+  {
+   "name": "Simple FOC",
+   "category": "Motors/Servos",
+   "repo": "https://github.com/askuric/Arduino-FOC.git",
+   "espressif_tested": false,
+   "score": 87.5,
+   "risk_raw": 10,
+   "risk_reasons": [
+    "uses ESP-IDF headers removed/renamed in IDF 5-6",
+    "includes legacy ESP-IDF driver header",
+    "drives timer/PWM/RMT/I2S/DMA hardware APIs",
+    "includes other ESP-IDF internals",
+    "has core-version guards (ESP_ARDUINO_VERSION / ESP_IDF_VERSION)"
+   ],
+   "stars": 2679,
+   "versions": [
+    {
+     "version": "2.4.0",
+     "examples": [
+      "examples/motion_control/open_loop_motor_control/open_loop_velocity_example",
+      "examples/hardware_specific_examples/ESP32/magnetic_sensor/esp32_position_control"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "2.3.5",
+     "examples": [
+      "examples/motion_control/open_loop_motor_control/open_loop_velocity_example",
+      "examples/hardware_specific_examples/ESP32/magnetic_sensor/esp32_position_control"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "2.3.4",
+     "examples": [
+      "examples/motion_control/open_loop_motor_control/open_loop_velocity_example",
+      "examples/hardware_specific_examples/ESP32/magnetic_sensor/esp32_position_control"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "2.3.3",
+     "examples": [
+      "examples/motion_control/open_loop_motor_control/open_loop_velocity_example",
+      "examples/hardware_specific_examples/ESP32/magnetic_sensor/esp32_position_control"
+     ],
+     "deps": {}
+    }
+   ]
+  },
+  {
+   "name": "TFT_eSPI",
+   "category": "Displays",
+   "repo": "https://github.com/Bodmer/TFT_eSPI.git",
+   "espressif_tested": false,
+   "score": 87.5,
+   "risk_raw": 6,
+   "risk_reasons": [
+    "uses ESP-IDF headers removed/renamed in IDF 5-6",
+    "drives timer/PWM/RMT/I2S/DMA hardware APIs",
+    "includes other ESP-IDF internals"
+   ],
+   "stars": 3087,
+   "versions": [
+    {
+     "version": "2.5.43",
+     "examples": [
+      "examples/320 x 240/TFT_graphicstest_one_lib",
+      "examples/DMA test/Bouncy_Circles"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "2.5.34",
+     "examples": [
+      "examples/320 x 240/TFT_graphicstest_one_lib",
+      "examples/DMA test/Bouncy_Circles"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "2.5.33",
+     "examples": [
+      "examples/320 x 240/TFT_graphicstest_one_lib",
+      "examples/DMA test/Bouncy_Circles"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "2.5.31",
+     "examples": [
+      "examples/320 x 240/TFT_graphicstest_one_lib",
+      "examples/DMA test/Bouncy_Circles"
+     ],
+     "deps": {}
+    }
+   ]
+  },
+  {
+   "name": "OneWire",
+   "category": "Sensors",
+   "repo": "https://github.com/PaulStoffregen/OneWire.git",
+   "espressif_tested": false,
+   "score": 87.2,
+   "risk_raw": 8,
+   "risk_reasons": [
+    "uses ESP-IDF headers removed/renamed in IDF 5-6",
+    "includes legacy ESP-IDF driver header",
+    "includes other ESP-IDF internals",
+    "has core-version guards (ESP_ARDUINO_VERSION / ESP_IDF_VERSION)"
+   ],
+   "stars": 633,
+   "versions": [
+    {
+     "version": "2.3.8",
+     "examples": [
+      "examples/DS18x20_Temperature",
+      "examples/DS2408_Switch"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "2.3.7",
+     "examples": [
+      "examples/DS18x20_Temperature",
+      "examples/DS2408_Switch"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "2.3.6",
+     "examples": [],
+     "deps": {}
+    },
+    {
+     "version": "2.3.5",
+     "examples": [],
+     "deps": {}
+    }
+   ]
+  },
+  {
+   "name": "ESP32Encoder",
+   "category": "Utilities",
+   "repo": "https://github.com/madhephaestus/ESP32Encoder.git",
+   "espressif_tested": false,
+   "score": 87.1,
+   "risk_raw": 10,
+   "risk_reasons": [
+    "uses ESP-IDF headers removed/renamed in IDF 5-6",
+    "includes legacy ESP-IDF driver header",
+    "drives timer/PWM/RMT/I2S/DMA hardware APIs",
+    "includes other ESP-IDF internals",
+    "has core-version guards (ESP_ARDUINO_VERSION / ESP_IDF_VERSION)"
+   ],
+   "stars": 374,
+   "versions": [
+    {
+     "version": "5.0.0",
+     "examples": [
+      "examples/SimpleEncoderDemo",
+      "examples/Encoder"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "0.12.0",
+     "examples": [
+      "examples/SimpleEncoderDemo",
+      "examples/Encoder"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "0.11.8",
+     "examples": [
+      "examples/SimpleEncoderDemo",
+      "examples/Encoder"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "0.11.7",
+     "examples": [
+      "examples/SimpleEncoderDemo",
+      "examples/Encoder"
+     ],
+     "deps": {}
+    }
+   ]
+  },
+  {
+   "name": "Blynk",
+   "category": "Networking/Web",
+   "repo": "https://github.com/Blynk-Technologies/blynk-library.git",
+   "espressif_tested": false,
+   "score": 86.6,
+   "risk_raw": 2,
+   "risk_reasons": [
+    "includes other ESP-IDF internals",
+    "has core-version guards (ESP_ARDUINO_VERSION / ESP_IDF_VERSION)"
+   ],
+   "stars": 3991,
+   "versions": [
+    {
+     "version": "1.4.0",
+     "examples": [
+      "examples/Boards_WiFi/ESP32_WiFi",
+      "examples/Blynk.Edgent/Edgent_ESP32"
+     ],
+     "deps": {
+      "BlynkNcpDriver": "0.7.0"
+     }
+    },
+    {
+     "version": "1.3.5",
+     "examples": [
+      "examples/Boards_WiFi/ESP32_WiFi",
+      "examples/Blynk.Edgent/Edgent_ESP32"
+     ],
+     "deps": {
+      "BlynkNcpDriver": "0.7.0"
+     }
+    },
+    {
+     "version": "1.3.2",
+     "examples": [
+      "examples/Boards_WiFi/ESP32_WiFi",
+      "examples/Blynk.Edgent/Edgent_ESP32"
+     ],
+     "deps": {
+      "BlynkNcpDriver": "0.7.0"
+     }
+    },
+    {
+     "version": "1.3.0",
+     "examples": [
+      "examples/Boards_WiFi/ESP32_WiFi",
+      "examples/Blynk.Edgent/Edgent_ESP32"
+     ],
+     "deps": {
+      "BlynkNcpDriver": "0.7.0"
+     }
+    }
+   ]
+  },
+  {
+   "name": "ESP32 HUB75 LED MATRIX PANEL DMA Display",
+   "category": "LEDs",
+   "repo": "https://github.com/mrcodetastic/ESP32-HUB75-MatrixPanel-DMA.git",
+   "espressif_tested": false,
+   "score": 86.2,
+   "risk_raw": 10,
+   "risk_reasons": [
+    "uses ESP-IDF headers removed/renamed in IDF 5-6",
+    "includes legacy ESP-IDF driver header",
+    "drives timer/PWM/RMT/I2S/DMA hardware APIs",
+    "includes other ESP-IDF internals",
+    "has core-version guards (ESP_ARDUINO_VERSION / ESP_IDF_VERSION)"
+   ],
+   "stars": 1615,
+   "versions": [
+    {
+     "version": "3.1.0",
+     "examples": [
+      "examples/1_SimpleTestShapes",
+      "examples/2_PatternPlasma"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "3.0.14",
+     "examples": [
+      "examples/1_SimpleTestShapes",
+      "examples/2_PatternPlasma"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "3.0.13",
+     "examples": [
+      "examples/1_SimpleTestShapes",
+      "examples/2_PatternPlasma"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "3.0.12",
+     "examples": [
+      "examples/1_SimpleTestShapes",
+      "examples/2_PatternPlasma"
+     ],
+     "deps": {}
+    }
+   ]
+  },
+  {
+   "name": "WebSockets",
+   "category": "Networking/Web",
+   "repo": "https://github.com/Links2004/arduinoWebSockets.git",
+   "espressif_tested": false,
+   "score": 85.6,
+   "risk_raw": 5,
+   "risk_reasons": [
+    "uses ESP-IDF headers removed/renamed in IDF 5-6",
+    "includes other ESP-IDF internals",
+    "has core-version guards (ESP_ARDUINO_VERSION / ESP_IDF_VERSION)"
+   ],
+   "stars": 2017,
+   "versions": [
+    {
+     "version": "2.7.2",
+     "examples": [
+      "examples/esp32/WebSocketClient",
+      "examples/esp32/WebSocketClientSSL"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "2.7.1",
+     "examples": [
+      "examples/esp32/WebSocketClient",
+      "examples/esp32/WebSocketClientSSL"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "2.7.0",
+     "examples": [
+      "examples/esp32/WebSocketClient",
+      "examples/esp32/WebSocketClientSSL"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "2.6.1",
+     "examples": [
+      "examples/esp32/WebSocketClient",
+      "examples/esp32/WebSocketClientSSL"
+     ],
+     "deps": {}
+    }
+   ]
+  },
+  {
+   "name": "FastAccelStepper",
+   "category": "Motors/Servos",
+   "repo": "https://github.com/gin66/FastAccelStepper.git",
+   "espressif_tested": false,
+   "score": 85.2,
+   "risk_raw": 10,
+   "risk_reasons": [
+    "uses ESP-IDF headers removed/renamed in IDF 5-6",
+    "includes legacy ESP-IDF driver header",
+    "drives timer/PWM/RMT/I2S/DMA hardware APIs",
+    "includes other ESP-IDF internals",
+    "has core-version guards (ESP_ARDUINO_VERSION / ESP_IDF_VERSION)"
+   ],
+   "stars": 524,
+   "versions": [
+    {
+     "version": "2.0.1",
+     "examples": [
+      "examples/UsageExample",
+      "examples/StepperDemo"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "2.0.0",
+     "examples": [
+      "examples/UsageExample",
+      "examples/StepperDemo"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "1.4.0",
+     "examples": [
+      "examples/UsageExample",
+      "examples/StepperDemo"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "1.3.4",
+     "examples": [
+      "examples/UsageExample",
+      "examples/StepperDemo"
+     ],
+     "deps": {}
+    }
+   ]
+  },
+  {
+   "name": "NeoPixelBus by Makuna",
+   "category": "LEDs",
+   "repo": "https://github.com/Makuna/NeoPixelBus.git",
+   "espressif_tested": false,
+   "score": 83.8,
+   "risk_raw": 10,
+   "risk_reasons": [
+    "uses ESP-IDF headers removed/renamed in IDF 5-6",
+    "includes legacy ESP-IDF driver header",
+    "drives timer/PWM/RMT/I2S/DMA hardware APIs",
+    "includes other ESP-IDF internals",
+    "has core-version guards (ESP_ARDUINO_VERSION / ESP_IDF_VERSION)"
+   ],
+   "stars": 1206,
+   "versions": [
+    {
+     "version": "2.8.4",
+     "examples": [
+      "examples/NeoPixelTest",
+      "examples/ESP32/NeoPixel_ESP32_I2sParallel"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "2.8.3",
+     "examples": [
+      "examples/NeoPixelTest",
+      "examples/ESP32/NeoPixel_ESP32_I2sParallel"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "2.8.2",
+     "examples": [
+      "examples/NeoPixelTest",
+      "examples/ESP32/NeoPixel_ESP32_I2sParallel"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "2.8.1",
+     "examples": [
+      "examples/NeoPixelTest",
+      "examples/ESP32/NeoPixel_ESP32_I2sParallel"
+     ],
+     "deps": {}
+    }
+   ]
+  },
+  {
+   "name": "TaskScheduler",
+   "category": "Utilities",
+   "repo": "https://github.com/arkhipenko/TaskScheduler.git",
+   "espressif_tested": false,
+   "score": 83.1,
+   "risk_raw": 4,
+   "risk_reasons": [
+    "drives timer/PWM/RMT/I2S/DMA hardware APIs",
+    "includes other ESP-IDF internals",
+    "has core-version guards (ESP_ARDUINO_VERSION / ESP_IDF_VERSION)"
+   ],
+   "stars": 1658,
+   "versions": [
+    {
+     "version": "4.1.1",
+     "examples": [
+      "examples/Scheduler_example00_Blink",
+      "examples/Scheduler_example00_Blink_Namespace"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "4.1.0",
+     "examples": [
+      "examples/Scheduler_example00_Blink",
+      "examples/Scheduler_example00_Blink_Namespace"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "4.0.8",
+     "examples": [
+      "examples/Scheduler_example00_Blink",
+      "examples/Scheduler_example00_Blink_Namespace"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "4.0.7",
+     "examples": [
+      "examples/Scheduler_example00_Blink",
+      "examples/Scheduler_example00_Blink_Namespace"
+     ],
+     "deps": {}
+    }
+   ]
+  },
+  {
+   "name": "SensorLib",
+   "category": "Sensors",
+   "repo": "https://github.com/lewisxhe/SensorLib.git",
+   "espressif_tested": false,
+   "score": 82.1,
+   "risk_raw": 7,
+   "risk_reasons": [
+    "uses ESP-IDF headers removed/renamed in IDF 5-6",
+    "drives timer/PWM/RMT/I2S/DMA hardware APIs",
+    "includes other ESP-IDF internals",
+    "has core-version guards (ESP_ARDUINO_VERSION / ESP_IDF_VERSION)"
+   ],
+   "stars": 257,
+   "versions": [
+    {
+     "version": "0.5.2",
+     "examples": [
+      "examples/power/axp2101_basic",
+      "examples/rtc/pcf8563_simple_time"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "0.5.1",
+     "examples": [
+      "examples/power/axp2101_basic",
+      "examples/rtc/pcf8563_simple_time"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "0.5.0",
+     "examples": [
+      "examples/power/axp2101_basic",
+      "examples/rtc/pcf8563_simple_time"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "0.4.1",
+     "examples": [
+      "examples/PCF85063_SimpleTime",
+      "examples/PCF8563_SimpleTime"
+     ],
+     "deps": {}
+    }
+   ]
+  },
+  {
+   "name": "lvgl",
+   "category": "Displays",
+   "repo": "https://github.com/lvgl/lvgl.git",
+   "espressif_tested": false,
+   "score": 81.9,
+   "risk_raw": 1,
+   "risk_reasons": [
+    "includes other ESP-IDF internals"
+   ],
+   "stars": 24704,
+   "versions": [
+    {
+     "version": "9.6.0",
+     "examples": [
+      "examples/arduino/LVGL_Arduino"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "9.5.0",
+     "examples": [
+      "examples/arduino/LVGL_Arduino"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "9.4.0",
+     "examples": [
+      "examples/arduino/LVGL_Arduino"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "9.3.0",
+     "examples": [
+      "examples/arduino/LVGL_Arduino"
+     ],
+     "deps": {}
+    }
+   ]
+  },
+  {
+   "name": "IRremoteESP8266",
+   "category": "Sensors",
+   "repo": "https://github.com/markszabo/IRremoteESP8266.git",
+   "espressif_tested": false,
+   "score": 79.8,
+   "risk_raw": 3,
+   "risk_reasons": [
+    "drives timer/PWM/RMT/I2S/DMA hardware APIs",
+    "has core-version guards (ESP_ARDUINO_VERSION / ESP_IDF_VERSION)"
+   ],
+   "stars": 3332,
+   "versions": [
+    {
+     "version": "2.9.0",
+     "examples": [
+      "examples/IRsendDemo",
+      "examples/IRrecvDemo"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "2.8.6",
+     "examples": [
+      "examples/IRsendDemo",
+      "examples/IRrecvDemo"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "2.8.5",
+     "examples": [
+      "examples/IRsendDemo",
+      "examples/IRrecvDemo"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "2.8.4",
+     "examples": [
+      "examples/IRsendDemo",
+      "examples/IRrecvDemo"
+     ],
+     "deps": {}
+    }
+   ]
+  },
+  {
+   "name": "EspSoftwareSerial",
+   "category": "Utilities",
+   "repo": "https://github.com/plerup/espsoftwareserial.git",
+   "espressif_tested": false,
+   "score": 77.3,
+   "risk_raw": 1,
+   "risk_reasons": [
+    "includes other ESP-IDF internals"
+   ],
+   "stars": 702,
+   "versions": [
+    {
+     "version": "8.1.0",
+     "examples": [
+      "examples/swsertest",
+      "examples/loopback"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "8.0.3",
+     "examples": [
+      "examples/swsertest",
+      "examples/loopback"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "8.0.2",
+     "examples": [
+      "examples/swsertest",
+      "examples/loopback"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "8.0.1",
+     "examples": [
+      "examples/swsertest",
+      "examples/loopback"
+     ],
+     "deps": {}
+    }
+   ]
+  },
+  {
+   "name": "M5Stack",
+   "category": "Utilities",
+   "repo": "https://github.com/m5stack/M5Stack.git",
+   "espressif_tested": false,
+   "score": 77.2,
+   "risk_raw": 10,
+   "risk_reasons": [
+    "uses ESP-IDF headers removed/renamed in IDF 5-6",
+    "includes legacy ESP-IDF driver header",
+    "drives timer/PWM/RMT/I2S/DMA hardware APIs",
+    "includes other ESP-IDF internals",
+    "has core-version guards (ESP_ARDUINO_VERSION / ESP_IDF_VERSION)"
+   ],
+   "stars": 1071,
+   "versions": [
+    {
+     "version": "0.4.6",
+     "examples": [
+      "examples/Basics/HelloWorld",
+      "examples/Advanced/WIFI/BasicHttpClient"
+     ],
+     "deps": {
+      "M5Family": "0.1.3",
+      "M5Module-4Relay": "0.0.3",
+      "Module_GRBL_13.2": "0.0.3",
+      "M5_BMM150": "0.0.2",
+      "M5Unit-EXTIO2": "1.0.3",
+      "M5Unit-Sonic": "0.0.2",
+      "M5Unit-RELAY": "0.0.2",
+      "M5Unit-ENV": "1.7.4",
+      "M5Unit-ACSSR": "0.0.3",
+      "M5Unit-KMeter": "0.1.1",
+      "M5Unit-Encoder": "0.0.2",
+      "M5Unit-MQTT": "0.0.1",
+      "M5Unit-DDS": "0.2.0",
+      "M5Unit-UHF-RFID": "0.0.4",
+      "M5Unit-PoESP32": "0.0.2",
+      "M5Unit-RTC": "0.2.0",
+      "M5-DLight": "0.0.5",
+      "M5-RoverC": "0.0.1",
+      "M5-ADS1115": "1.0.0",
+      "M5-ADS1100": "0.0.1",
+      "M5-FPC1020A": "1.0.0",
+      "M5GFX": "0.3.0",
+      "ADXL345": "0.2.0",
+      "FastLED": "3.10.10",
+      "M5_EzData": "0.0.2",
+      "Adafruit MCP4725": "2.0.2",
+      "Adafruit TCS34725": "1.4.4",
+      "Adafruit NeoPixel": "1.15.5",
+      "MAX30100lib": "1.2.1",
+      "MFRC522_I2C": "1.0.0",
+      "HX711 Arduino Library": "0.7.5",
+      "PCA9554": "0.0.1",
+      "TinyGPSPlus-ESP32": "0.0.2",
+      "Adafruit SGP30 Sensor": "2.0.3",
+      "TFTTerminal": "0.0.1",
+      "ClosedCube TCA9548A": "2019.3.23",
+      "PubSubClient": "2.8.0",
+      "M5Unified": "0.3.0",
+      "arduinoFFT": "2.0.4",
+      "ArduinoJson": "7.4.3",
+      "Blynk": "1.4.0",
+      "ESP8266Audio": "2.4.3",
+      "U8g2": "2.36.19",
+      "LoRa": "0.8.0",
+      "DFRobot_PAJ7620U2": "1.0.1",
+      "M5-Ethernet": "4.0.0",
+      "VL53L0X": "1.3.1",
+      "SparkFun MAX3010x Pulse and Proximity Sensor Library": "1.1.2",
+      "TinyGPSPlus": "1.0.3",
+      "USB Host Shield Library 2.0": "1.7.0",
+      "mcp_can": "1.5.1",
+      "ArduinoECCX08": "1.4.1",
+      "TinyGSM": "0.12.0",
+      "UNIT_GLASS": "0.0.1",
+      "DFRobot_GP8XXX": "1.1.0",
+      "IRremote": "4.7.1",
+      "ArduinoHttpClient": "0.6.2",
+      "BlynkNcpDriver": "0.7.0",
+      "Adafruit BusIO": "1.17.4",
+      "M5UnitUnified": "0.6.5",
+      "M5Utility": "0.3.1",
+      "M5HAL": "0.1.4",
+      "BME68x Sensor library": "1.3.40408"
+     }
+    },
+    {
+     "version": "0.4.5",
+     "examples": [
+      "examples/Basics/HelloWorld",
+      "examples/Advanced/WIFI/BasicHttpClient"
+     ],
+     "deps": {
+      "M5Family": "0.1.3",
+      "M5Module-4Relay": "0.0.3",
+      "M5_BMM150": "0.0.2",
+      "M5Unit-EXTIO2": "1.0.3",
+      "M5Unit-Sonic": "0.0.2",
+      "M5Unit-RELAY": "0.0.2",
+      "M5Unit-ENV": "1.7.4",
+      "M5Unit-ACSSR": "0.0.3",
+      "M5Unit-KMeter": "0.1.1",
+      "M5Unit-Encoder": "0.0.2",
+      "M5Unit-MQTT": "0.0.1",
+      "M5Unit-DDS": "0.2.0",
+      "M5Unit-UHF-RFID": "0.0.4",
+      "M5Unit-PoESP32": "0.0.2",
+      "M5Unit-RTC": "0.2.0",
+      "M5-DLight": "0.0.5",
+      "M5-RoverC": "0.0.1",
+      "M5-ADS1115": "1.0.0",
+      "M5-ADS1100": "0.0.1",
+      "M5-FPC1020A": "1.0.0",
+      "M5GFX": "0.3.0",
+      "ADXL345": "0.2.0",
+      "FastLED": "3.10.10",
+      "M5_EzData": "0.0.2",
+      "Adafruit MCP4725": "2.0.2",
+      "Adafruit TCS34725": "1.4.4",
+      "Adafruit NeoPixel": "1.15.5",
+      "MAX30100lib": "1.2.1",
+      "MFRC522_I2C": "1.0.0",
+      "HX711 Arduino Library": "0.7.5",
+      "PCA9554": "0.0.1",
+      "TinyGPSPlus-ESP32": "0.0.2",
+      "Adafruit SGP30 Sensor": "2.0.3",
+      "TFTTerminal": "0.0.1",
+      "ClosedCube TCA9548A": "2019.3.23",
+      "PubSubClient": "2.8.0",
+      "M5Unified": "0.3.0",
+      "arduinoFFT": "2.0.4",
+      "ArduinoJson": "7.4.3",
+      "Blynk": "1.4.0",
+      "ESP8266Audio": "2.4.3",
+      "U8g2": "2.36.19",
+      "LoRa": "0.8.0",
+      "DFRobot_PAJ7620U2": "1.0.1",
+      "M5-Ethernet": "4.0.0",
+      "VL53L0X": "1.3.1",
+      "SparkFun MAX3010x Pulse and Proximity Sensor Library": "1.1.2",
+      "TinyGPSPlus": "1.0.3",
+      "USB Host Shield Library 2.0": "1.7.0",
+      "mcp_can": "1.5.1",
+      "ArduinoECCX08": "1.4.1",
+      "TinyGSM": "0.12.0",
+      "UNIT_GLASS": "0.0.1",
+      "DFRobot_GP8XXX": "1.1.0",
+      "IRremote": "4.7.1",
+      "ArduinoHttpClient": "0.6.2",
+      "BlynkNcpDriver": "0.7.0",
+      "Adafruit BusIO": "1.17.4",
+      "M5UnitUnified": "0.6.5",
+      "M5Utility": "0.3.1",
+      "M5HAL": "0.1.4",
+      "BME68x Sensor library": "1.3.40408"
+     }
+    },
+    {
+     "version": "0.4.4",
+     "examples": [
+      "examples/Basics/HelloWorld",
+      "examples/Advanced/WIFI/BasicHttpClient"
+     ],
+     "deps": {
+      "M5Family": "0.1.3",
+      "M5Module-4Relay": "0.0.3",
+      "Ethernet2": "1.0.4",
+      "M5Unit-EXTIO2": "1.0.3",
+      "M5Unit-Sonic": "0.0.2",
+      "M5Unit-RELAY": "0.0.2",
+      "M5Unit-ENV": "1.7.4",
+      "M5Unit-ACSSR": "0.0.3",
+      "M5Unit-KMeter": "0.1.1",
+      "M5Unit-Encoder": "0.0.2",
+      "M5Unit-MQTT": "0.0.1",
+      "M5Unit-DDS": "0.2.0",
+      "M5Unit-UHF-RFID": "0.0.4",
+      "M5Unit-PoESP32": "0.0.2",
+      "M5Unit-RTC": "0.2.0",
+      "M5-DLight": "0.0.5",
+      "M5-RoverC": "0.0.1",
+      "M5-ADS1115": "1.0.0",
+      "M5-ADS1100": "0.0.1",
+      "M5-FPC1020A": "1.0.0",
+      "M5GFX": "0.3.0",
+      "ADXL345": "0.2.0",
+      "FastLED": "3.10.10",
+      "M5_EzData": "0.0.2",
+      "Adafruit MCP4725": "2.0.2",
+      "Adafruit TCS34725": "1.4.4",
+      "Adafruit NeoPixel": "1.15.5",
+      "MAX30100lib": "1.2.1",
+      "MFRC522_I2C": "1.0.0",
+      "HX711 Arduino Library": "0.7.5",
+      "PCA9554": "0.0.1",
+      "TinyGPSPlus-ESP32": "0.0.2",
+      "Adafruit SGP30 Sensor": "2.0.3",
+      "TFTTerminal": "0.0.1",
+      "ClosedCube TCA9548A": "2019.3.23",
+      "PubSubClient": "2.8.0",
+      "M5Unified": "0.3.0",
+      "arduinoFFT": "2.0.4",
+      "ArduinoJson": "7.4.3",
+      "Blynk": "1.4.0",
+      "ESP8266Audio": "2.4.3",
+      "U8g2": "2.36.19",
+      "LoRa": "0.8.0",
+      "DFRobot_PAJ7620U2": "1.0.1",
+      "M5-Ethernet": "4.0.0",
+      "VL53L0X": "1.3.1",
+      "SparkFun MAX3010x Pulse and Proximity Sensor Library": "1.1.2",
+      "TinyGPSPlus": "1.0.3",
+      "USB Host Shield Library 2.0": "1.7.0",
+      "mcp_can": "1.5.1",
+      "ArduinoECCX08": "1.4.1",
+      "TinyGSM": "0.12.0",
+      "UNIT_GLASS": "0.0.1",
+      "DFRobot_GP8XXX": "1.1.0",
+      "IRremote": "4.7.1",
+      "ArduinoHttpClient": "0.6.2",
+      "BlynkNcpDriver": "0.7.0",
+      "Adafruit BusIO": "1.17.4",
+      "M5UnitUnified": "0.6.5",
+      "M5Utility": "0.3.1",
+      "M5HAL": "0.1.4",
+      "BME68x Sensor library": "1.3.40408"
+     }
+    },
+    {
+     "version": "0.4.3",
+     "examples": [
+      "examples/Basics/HelloWorld",
+      "examples/Advanced/WIFI/BasicHttpClient"
+     ],
+     "deps": {
+      "M5Family": "0.1.3",
+      "M5Module-4Relay": "0.0.3",
+      "Ethernet2": "1.0.4",
+      "M5Unit-EXTIO2": "1.0.3",
+      "M5Unit-Sonic": "0.0.2",
+      "M5Unit-RELAY": "0.0.2",
+      "M5Unit-ENV": "1.7.4",
+      "M5Unit-ACSSR": "0.0.3",
+      "M5Unit-KMeter": "0.1.1",
+      "M5Unit-Encoder": "0.0.2",
+      "M5Unit-MQTT": "0.0.1",
+      "M5Unit-DDS": "0.2.0",
+      "M5Unit-UHF-RFID": "0.0.4",
+      "M5Unit-PoESP32": "0.0.2",
+      "M5Unit-RTC": "0.2.0",
+      "M5-DLight": "0.0.5",
+      "M5-RoverC": "0.0.1",
+      "M5-ADS1115": "1.0.0",
+      "M5-ADS1100": "0.0.1",
+      "M5-FPC1020A": "1.0.0",
+      "M5GFX": "0.3.0",
+      "ADXL345": "0.2.0",
+      "FastLED": "3.10.10",
+      "M5_EzData": "0.0.2",
+      "Adafruit MCP4725": "2.0.2",
+      "Adafruit TCS34725": "1.4.4",
+      "Adafruit NeoPixel": "1.15.5",
+      "MAX30100lib": "1.2.1",
+      "MFRC522_I2C": "1.0.0",
+      "HX711 Arduino Library": "0.7.5",
+      "PCA9554": "0.0.1",
+      "TinyGPSPlus-ESP32": "0.0.2",
+      "Adafruit SGP30 Sensor": "2.0.3",
+      "TFTTerminal": "0.0.1",
+      "ClosedCube TCA9548A": "2019.3.23",
+      "PubSubClient": "2.8.0",
+      "M5Unified": "0.3.0",
+      "arduinoFFT": "2.0.4",
+      "ArduinoJson": "7.4.3",
+      "Blynk": "1.4.0",
+      "ESP8266Audio": "2.4.3",
+      "U8g2": "2.36.19",
+      "LoRa": "0.8.0",
+      "DFRobot_PAJ7620U2": "1.0.1",
+      "M5-Ethernet": "4.0.0",
+      "VL53L0X": "1.3.1",
+      "SparkFun MAX3010x Pulse and Proximity Sensor Library": "1.1.2",
+      "TinyGPSPlus": "1.0.3",
+      "USB Host Shield Library 2.0": "1.7.0",
+      "mcp_can": "1.5.1",
+      "ArduinoECCX08": "1.4.1",
+      "TinyGSM": "0.12.0",
+      "UNIT_GLASS": "0.0.1",
+      "DFRobot_GP8XXX": "1.1.0",
+      "IRremote": "4.7.1",
+      "ArduinoHttpClient": "0.6.2",
+      "BlynkNcpDriver": "0.7.0",
+      "Adafruit BusIO": "1.17.4",
+      "M5UnitUnified": "0.6.5",
+      "M5Utility": "0.3.1",
+      "M5HAL": "0.1.4",
+      "BME68x Sensor library": "1.3.40408"
+     }
+    }
+   ]
+  },
+  {
+   "name": "Button2",
+   "category": "Utilities",
+   "repo": "https://github.com/LennartHennigs/Button2.git",
+   "espressif_tested": false,
+   "score": 76.4,
+   "risk_raw": 2,
+   "risk_reasons": [
+    "drives timer/PWM/RMT/I2S/DMA hardware APIs"
+   ],
+   "stars": 560,
+   "versions": [
+    {
+     "version": "2.7.0",
+     "examples": [
+      "examples/SingleButtonSimple",
+      "examples/ESP32CapacitiveTouch"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "2.6.1",
+     "examples": [
+      "examples/SingleButtonSimple",
+      "examples/ESP32CapacitiveTouch"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "2.6.0",
+     "examples": [
+      "examples/SingleButtonSimple",
+      "examples/ESP32CapacitiveTouch"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "2.5.0",
+     "examples": [
+      "examples/SingleButtonSimple",
+      "examples/ESP32CapacitiveTouch"
+     ],
+     "deps": {}
+    }
+   ]
+  },
+  {
+   "name": "LibSSH-ESP32",
+   "category": "Networking/Web",
+   "repo": "https://github.com/ewpa/LibSSH-ESP32.git",
+   "espressif_tested": false,
+   "score": 76.3,
+   "risk_raw": 4,
+   "risk_reasons": [
+    "calls mbedTLS crypto directly",
+    "includes other ESP-IDF internals",
+    "has core-version guards (ESP_ARDUINO_VERSION / ESP_IDF_VERSION)"
+   ],
+   "stars": 378,
+   "versions": [
+    {
+     "version": "5.10.0",
+     "examples": [
+      "examples/exec",
+      "examples/keygen2"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "5.9.0",
+     "examples": [
+      "examples/exec",
+      "examples/keygen2"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "5.8.0",
+     "examples": [
+      "examples/exec",
+      "examples/keygen2"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "5.7.0",
+     "examples": [
+      "examples/exec",
+      "examples/keygen2"
+     ],
+     "deps": {}
+    }
+   ]
+  },
+  {
+   "name": "Adafruit SPIFlash",
+   "category": "Storage/Files",
+   "repo": "https://github.com/adafruit/Adafruit_SPIFlash.git",
+   "espressif_tested": false,
+   "score": 75.9,
+   "risk_raw": 2,
+   "risk_reasons": [
+    "includes other ESP-IDF internals",
+    "has core-version guards (ESP_ARDUINO_VERSION / ESP_IDF_VERSION)"
+   ],
+   "stars": 198,
+   "versions": [
+    {
+     "version": "5.1.3",
+     "examples": [
+      "examples/SdFat_OpenNext",
+      "examples/SdFat_ReadWrite"
+     ],
+     "deps": {
+      "Adafruit NeoPixel": "1.15.5",
+      "SdFat - Adafruit Fork": "2.3.103"
+     }
+    },
+    {
+     "version": "5.1.1",
+     "examples": [
+      "examples/SdFat_OpenNext",
+      "examples/SdFat_ReadWrite"
+     ],
+     "deps": {
+      "Adafruit NeoPixel": "1.15.5",
+      "SdFat - Adafruit Fork": "2.3.103"
+     }
+    },
+    {
+     "version": "5.1.0",
+     "examples": [
+      "examples/SdFat_OpenNext",
+      "examples/SdFat_ReadWrite"
+     ],
+     "deps": {
+      "Adafruit NeoPixel": "1.15.5",
+      "SdFat - Adafruit Fork": "2.3.103"
+     }
+    },
+    {
+     "version": "5.0.1",
+     "examples": [
+      "examples/SdFat_OpenNext",
+      "examples/SdFat_ReadWrite"
+     ],
+     "deps": {
+      "Adafruit NeoPixel": "1.15.5",
+      "SdFat - Adafruit Fork": "2.3.103"
+     }
+    }
+   ]
+  },
+  {
+   "name": "HomeSpan",
+   "category": "Networking/Web",
+   "repo": "https://github.com/HomeSpan/HomeSpan.git",
+   "espressif_tested": false,
+   "score": 75.9,
+   "risk_raw": 10,
+   "risk_reasons": [
+    "uses ESP-IDF headers removed/renamed in IDF 5-6",
+    "includes legacy ESP-IDF driver header",
+    "drives timer/PWM/RMT/I2S/DMA hardware APIs",
+    "calls mbedTLS crypto directly",
+    "includes other ESP-IDF internals",
+    "has core-version guards (ESP_ARDUINO_VERSION / ESP_IDF_VERSION)"
+   ],
+   "stars": 2085,
+   "versions": [
+    {
+     "version": "2.1.8",
+     "examples": [
+      "examples/01-SimpleLightBulb",
+      "examples/02-TwoSimpleLightBulbs"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "2.1.7",
+     "examples": [
+      "examples/01-SimpleLightBulb",
+      "examples/02-TwoSimpleLightBulbs"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "2.1.6",
+     "examples": [
+      "examples/01-SimpleLightBulb",
+      "examples/02-TwoSimpleLightBulbs"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "2.1.5",
+     "examples": [
+      "examples/01-SimpleLightBulb",
+      "examples/02-TwoSimpleLightBulbs"
+     ],
+     "deps": {}
+    }
+   ]
+  },
+  {
+   "name": "ElegantOTA",
+   "category": "Networking/Web",
+   "repo": "https://github.com/ayushsharma82/ElegantOTA.git",
+   "espressif_tested": false,
+   "score": 75.6,
+   "risk_raw": 1,
+   "risk_reasons": [
+    "includes other ESP-IDF internals"
+   ],
+   "stars": 1004,
+   "versions": [
+    {
+     "version": "4.0.0",
+     "examples": [
+      "examples/Demo",
+      "examples/AsyncDemo"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "3.1.7",
+     "examples": [
+      "examples/Demo",
+      "examples/AsyncDemo"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "3.1.6",
+     "examples": [
+      "examples/Demo",
+      "examples/AsyncDemo"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "3.1.5",
+     "examples": [
+      "examples/Demo",
+      "examples/AsyncDemo"
+     ],
+     "deps": {}
+    }
+   ]
+  },
+  {
+   "name": "XPowersLib",
+   "category": "Utilities",
+   "repo": "https://github.com/lewisxhe/XPowersLib.git",
+   "espressif_tested": false,
+   "score": 74.9,
+   "risk_raw": 2,
+   "risk_reasons": [
+    "includes other ESP-IDF internals",
+    "has core-version guards (ESP_ARDUINO_VERSION / ESP_IDF_VERSION)"
+   ],
+   "stars": 125,
+   "versions": [
+    {
+     "version": "0.3.3",
+     "examples": [
+      "examples/AXP2101_Example",
+      "examples/XPowersLibInterface_Example"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "0.3.2",
+     "examples": [
+      "examples/AXP2101_Example",
+      "examples/XPowersLibInterface_Example"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "0.3.1",
+     "examples": [
+      "examples/AXP2101_Example",
+      "examples/XPowersLibInterface_Example"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "0.3.0",
+     "examples": [
+      "examples/AXP2101_Example",
+      "examples/XPowersLibInterface_Example"
+     ],
+     "deps": {}
+    }
+   ]
+  },
+  {
+   "name": "wolfssl",
+   "category": "Networking/Web",
+   "repo": "https://github.com/wolfSSL/Arduino-wolfSSL.git",
+   "espressif_tested": false,
+   "score": 74.0,
+   "risk_raw": 8,
+   "risk_reasons": [
+    "uses ESP-IDF headers removed/renamed in IDF 5-6",
+    "includes legacy ESP-IDF driver header",
+    "includes other ESP-IDF internals",
+    "has core-version guards (ESP_ARDUINO_VERSION / ESP_IDF_VERSION)"
+   ],
+   "stars": 2242,
+   "versions": [
+    {
+     "version": "5.8.4",
+     "examples": [
+      "examples/wolfssl_version",
+      "examples/wolfssl_client"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "5.8.2",
+     "examples": [
+      "examples/wolfssl_version",
+      "examples/wolfssl_client"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "5.8.0",
+     "examples": [
+      "examples/wolfssl_version",
+      "examples/wolfssl_client"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "5.7.6",
+     "examples": [
+      "examples/wolfssl_version",
+      "examples/wolfssl_client"
+     ],
+     "deps": {}
+    }
+   ]
+  },
+  {
+   "name": "bb_spi_lcd",
+   "category": "Displays",
+   "repo": "https://github.com/bitbank2/bb_spi_lcd.git",
+   "espressif_tested": false,
+   "score": 73.6,
+   "risk_raw": 7,
+   "risk_reasons": [
+    "uses ESP-IDF headers removed/renamed in IDF 5-6",
+    "drives timer/PWM/RMT/I2S/DMA hardware APIs",
+    "includes other ESP-IDF internals",
+    "has core-version guards (ESP_ARDUINO_VERSION / ESP_IDF_VERSION)"
+   ],
+   "stars": 238,
+   "versions": [
+    {
+     "version": "2.9.10",
+     "examples": [
+      "examples/spi_lcd_demo",
+      "examples/generic_display"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "2.9.7",
+     "examples": [
+      "examples/spi_lcd_demo",
+      "examples/generic_display"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "2.9.6",
+     "examples": [
+      "examples/spi_lcd_demo",
+      "examples/generic_display"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "2.9.5",
+     "examples": [
+      "examples/spi_lcd_demo",
+      "examples/generic_display"
+     ],
+     "deps": {}
+    }
+   ]
+  },
+  {
+   "name": "FirebaseClient",
+   "category": "Networking/Web",
+   "repo": "https://github.com/mobizt/FirebaseClient.git",
+   "espressif_tested": false,
+   "score": 73.6,
+   "risk_raw": 3,
+   "risk_reasons": [
+    "calls mbedTLS crypto directly",
+    "has core-version guards (ESP_ARDUINO_VERSION / ESP_IDF_VERSION)"
+   ],
+   "stars": 276,
+   "versions": [
+    {
+     "version": "2.2.13",
+     "examples": [
+      "examples/BareMinimum/AllServices",
+      "examples/BareMinimum/RealtimeDatabase"
+     ],
+     "deps": {
+      "ESP_SSLClient": "3.1.3"
+     }
+    },
+    {
+     "version": "2.2.12",
+     "examples": [
+      "examples/BareMinimum/AllServices",
+      "examples/BareMinimum/RealtimeDatabase"
+     ],
+     "deps": {
+      "ESP_SSLClient": "3.1.3"
+     }
+    },
+    {
+     "version": "2.2.11",
+     "examples": [
+      "examples/BareMinimum/AllServices",
+      "examples/BareMinimum/RealtimeDatabase"
+     ],
+     "deps": {
+      "ESP_SSLClient": "3.1.3"
+     }
+    },
+    {
+     "version": "2.2.10",
+     "examples": [
+      "examples/BareMinimum/AllServices",
+      "examples/BareMinimum/RealtimeDatabase"
+     ],
+     "deps": {
+      "ESP_SSLClient": "3.1.3"
+     }
+    }
+   ]
+  },
+  {
+   "name": "MobaTools",
+   "category": "LEDs",
+   "repo": "https://github.com/MicroBahner/MobaTools.git",
+   "espressif_tested": false,
+   "score": 72.2,
+   "risk_raw": 10,
+   "risk_reasons": [
+    "uses ESP-IDF headers removed/renamed in IDF 5-6",
+    "includes legacy ESP-IDF driver header",
+    "drives timer/PWM/RMT/I2S/DMA hardware APIs",
+    "includes other ESP-IDF internals",
+    "has core-version guards (ESP_ARDUINO_VERSION / ESP_IDF_VERSION)"
+   ],
+   "stars": 147,
+   "versions": [
+    {
+     "version": "3.1.3",
+     "examples": [
+      "examples/_SoftLed/SoftBlink",
+      "examples/_Stepper/ESP32-Web"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "3.1.2",
+     "examples": [
+      "examples/_SoftLed/SoftBlink",
+      "examples/_Stepper/ESP32-Web"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "3.1.1",
+     "examples": [
+      "examples/_SoftLed/SoftBlink",
+      "examples/_Stepper/ESP32-Web"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "3.1.0",
+     "examples": [
+      "examples/_SoftLed/SoftBlink",
+      "examples/_Stepper/ESP32-Web"
+     ],
+     "deps": {}
+    }
+   ]
+  },
+  {
+   "name": "StreamUtils",
+   "category": "Utilities",
+   "repo": "https://github.com/bblanchon/ArduinoStreamUtils.git",
+   "espressif_tested": false,
+   "score": 71.9,
+   "risk_raw": 1,
+   "risk_reasons": [
+    "has core-version guards (ESP_ARDUINO_VERSION / ESP_IDF_VERSION)"
+   ],
+   "stars": 282,
+   "versions": [
+    {
+     "version": "1.9.2",
+     "examples": [
+      "examples/ChunkDecoding",
+      "examples/EepromRead"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "1.9.1",
+     "examples": [
+      "examples/ChunkDecoding",
+      "examples/EepromRead"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "1.9.0",
+     "examples": [
+      "examples/ChunkDecoding",
+      "examples/EepromRead"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "1.8.0",
+     "examples": [
+      "examples/EepromRead",
+      "examples/EepromWrite"
+     ],
+     "deps": {}
+    }
+   ]
+  },
+  {
+   "name": "OneWireNg",
+   "category": "Sensors",
+   "repo": "https://github.com/pstolarz/OneWireNg.git",
+   "espressif_tested": false,
+   "score": 71.1,
+   "risk_raw": 2,
+   "risk_reasons": [
+    "includes other ESP-IDF internals",
+    "has core-version guards (ESP_ARDUINO_VERSION / ESP_IDF_VERSION)"
+   ],
+   "stars": 100,
+   "versions": [
+    {
+     "version": "0.14.1",
+     "examples": [
+      "examples/arduino/DS2431",
+      "examples/arduino/DallasTemperature"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "0.14.0",
+     "examples": [
+      "examples/arduino/DS2431",
+      "examples/arduino/DallasTemperature"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "0.13.3",
+     "examples": [
+      "examples/arduino/DS2431",
+      "examples/arduino/DallasTemperature"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "0.13.2",
+     "examples": [
+      "examples/arduino/DS2431",
+      "examples/arduino/DallasTemperature"
+     ],
+     "deps": {}
+    }
+   ]
+  },
+  {
+   "name": "Adafruit SleepyDog Library",
+   "category": "Utilities",
+   "repo": "https://github.com/adafruit/Adafruit_SleepyDog.git",
+   "espressif_tested": false,
+   "score": 71.0,
+   "risk_raw": 2,
+   "risk_reasons": [
+    "includes other ESP-IDF internals",
+    "has core-version guards (ESP_ARDUINO_VERSION / ESP_IDF_VERSION)"
+   ],
+   "stars": 244,
+   "versions": [
+    {
+     "version": "1.8.4",
+     "examples": [
+      "examples/BasicUsage",
+      "examples/Sleep"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "1.8.3",
+     "examples": [
+      "examples/BasicUsage",
+      "examples/Sleep"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "1.8.2",
+     "examples": [
+      "examples/BasicUsage",
+      "examples/Sleep"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "1.8.1",
+     "examples": [
+      "examples/BasicUsage",
+      "examples/Sleep"
+     ],
+     "deps": {}
+    }
+   ]
+  },
+  {
+   "name": "Heltec ESP32 Dev-Boards",
+   "category": "Networking/Web",
+   "repo": "https://github.com/HelTecAutomation/Heltec_ESP32.git",
+   "espressif_tested": false,
+   "score": 69.9,
+   "risk_raw": 9,
+   "risk_reasons": [
+    "uses ESP-IDF headers removed/renamed in IDF 5-6",
+    "includes legacy ESP-IDF driver header",
+    "drives timer/PWM/RMT/I2S/DMA hardware APIs",
+    "includes other ESP-IDF internals"
+   ],
+   "stars": 863,
+   "versions": [
+    {
+     "version": "2.1.6",
+     "examples": [
+      "examples/OLED/SimpleDemo",
+      "examples/ESP32/ADC_Read_Voltage/ADC_Read_Simple"
+     ],
+     "deps": {
+      "Adafruit GFX Library": "1.13.0",
+      "Adafruit BusIO": "1.17.4",
+      "heltec-eink-modules": "4.6.0"
+     }
+    },
+    {
+     "version": "2.1.5",
+     "examples": [
+      "examples/OLED/SimpleDemo",
+      "examples/ESP32/ADC_Read_Voltage/ADC_Read_Simple"
+     ],
+     "deps": {
+      "Adafruit GFX Library": "1.13.0",
+      "Adafruit BusIO": "1.17.4"
+     }
+    },
+    {
+     "version": "2.1.4",
+     "examples": [
+      "examples/OLED/SimpleDemo",
+      "examples/ESP32/ADC_Read_Voltage/ADC_Read_Simple"
+     ],
+     "deps": {
+      "Adafruit GFX Library": "1.13.0",
+      "Adafruit BusIO": "1.17.4"
+     }
+    },
+    {
+     "version": "2.1.2",
+     "examples": [
+      "examples/OLED/SimpleDemo",
+      "examples/ESP32/ADC_Read_Voltage/ADC_Read_Simple"
+     ],
+     "deps": {}
+    }
+   ]
+  },
+  {
+   "name": "Adafruit Protomatter",
+   "category": "LEDs",
+   "repo": "https://github.com/adafruit/Adafruit_Protomatter.git",
+   "espressif_tested": false,
+   "score": 68.9,
+   "risk_raw": 10,
+   "risk_reasons": [
+    "uses ESP-IDF headers removed/renamed in IDF 5-6",
+    "includes legacy ESP-IDF driver header",
+    "drives timer/PWM/RMT/I2S/DMA hardware APIs",
+    "includes other ESP-IDF internals",
+    "has core-version guards (ESP_ARDUINO_VERSION / ESP_IDF_VERSION)"
+   ],
+   "stars": 84,
+   "versions": [
+    {
+     "version": "1.7.1",
+     "examples": [
+      "examples/simple",
+      "examples/animated_gif"
+     ],
+     "deps": {
+      "Adafruit GFX Library": "1.13.0",
+      "Adafruit LIS3DH": "1.3.0",
+      "Adafruit PixelDust": "1.1.3",
+      "AnimatedGIF": "2.2.0",
+      "Adafruit SPIFlash": "5.1.3",
+      "Adafruit TinyUSB Library": "3.8.1",
+      "MIDI Library": "5.0.2",
+      "SdFat - Adafruit Fork": "2.3.103",
+      "Adafruit NeoPixel": "1.15.5",
+      "Adafruit Unified Sensor": "1.1.15",
+      "Adafruit BusIO": "1.17.4"
+     }
+    },
+    {
+     "version": "1.7.0",
+     "examples": [
+      "examples/simple",
+      "examples/animated_gif"
+     ],
+     "deps": {
+      "Adafruit GFX Library": "1.13.0",
+      "Adafruit LIS3DH": "1.3.0",
+      "Adafruit PixelDust": "1.1.3",
+      "AnimatedGIF": "2.2.0",
+      "Adafruit SPIFlash": "5.1.3",
+      "Adafruit TinyUSB Library": "3.8.1",
+      "MIDI Library": "5.0.2",
+      "SdFat - Adafruit Fork": "2.3.103",
+      "Adafruit NeoPixel": "1.15.5",
+      "Adafruit Unified Sensor": "1.1.15",
+      "Adafruit BusIO": "1.17.4"
+     }
+    },
+    {
+     "version": "1.6.1",
+     "examples": [
+      "examples/simple",
+      "examples/animated_gif"
+     ],
+     "deps": {
+      "Adafruit GFX Library": "1.13.0",
+      "Adafruit LIS3DH": "1.3.0",
+      "Adafruit PixelDust": "1.1.3",
+      "AnimatedGIF": "2.2.0",
+      "Adafruit SPIFlash": "5.1.3",
+      "Adafruit TinyUSB Library": "3.8.1",
+      "MIDI Library": "5.0.2",
+      "SdFat - Adafruit Fork": "2.3.103",
+      "Adafruit NeoPixel": "1.15.5",
+      "Adafruit Unified Sensor": "1.1.15",
+      "Adafruit BusIO": "1.17.4"
+     }
+    },
+    {
+     "version": "1.6.0",
+     "examples": [
+      "examples/simple",
+      "examples/animated_gif"
+     ],
+     "deps": {
+      "Adafruit GFX Library": "1.13.0",
+      "Adafruit LIS3DH": "1.3.0",
+      "Adafruit PixelDust": "1.1.3",
+      "AnimatedGIF": "2.2.0",
+      "Adafruit SPIFlash": "5.1.3",
+      "Adafruit TinyUSB Library": "3.8.1",
+      "MIDI Library": "5.0.2",
+      "SdFat - Adafruit Fork": "2.3.103",
+      "Adafruit NeoPixel": "1.15.5",
+      "Adafruit Unified Sensor": "1.1.15",
+      "Adafruit BusIO": "1.17.4"
+     }
+    }
+   ]
+  },
+  {
+   "name": "InkplateLibrary",
+   "category": "Displays",
+   "repo": "https://github.com/e-radionicacom/Inkplate-6-Arduino-library.git",
+   "espressif_tested": false,
+   "score": 68.7,
+   "risk_raw": 9,
+   "risk_reasons": [
+    "uses ESP-IDF headers removed/renamed in IDF 5-6",
+    "includes legacy ESP-IDF driver header",
+    "calls mbedTLS crypto directly",
+    "includes other ESP-IDF internals"
+   ],
+   "stars": 308,
+   "versions": [
+    {
+     "version": "11.2.1",
+     "examples": [
+      "examples/Inkplate10/Basic/Inkplate10_Hello_World",
+      "examples/Inkplate13SPECTRA/Basic/Inkplate13SPECTRA_Hello_World"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "11.2.0",
+     "examples": [
+      "examples/Inkplate10/Basic/Inkplate10_Hello_World",
+      "examples/Inkplate13SPECTRA/Basic/Inkplate13SPECTRA_Hello_World"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "11.1.5",
+     "examples": [
+      "examples/Inkplate10/Basic/Inkplate10_Hello_World",
+      "examples/Inkplate13SPECTRA/Basic/Inkplate13SPECTRA_Hello_World"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "11.1.4",
+     "examples": [
+      "examples/Inkplate10/Basic/Inkplate10_Hello_World",
+      "examples/Inkplate13SPECTRA/Basic/Inkplate13SPECTRA_Hello_World"
+     ],
+     "deps": {}
+    }
+   ]
+  },
+  {
+   "name": "Sqlite3Esp32",
+   "category": "Storage/Files",
+   "repo": "https://github.com/siara-cc/esp32_arduino_sqlite3_lib.git",
+   "espressif_tested": false,
+   "score": 68.6,
+   "risk_raw": 4,
+   "risk_reasons": [
+    "uses ESP-IDF headers removed/renamed in IDF 5-6",
+    "includes other ESP-IDF internals"
+   ],
+   "stars": 345,
+   "versions": [
+    {
+     "version": "2.5.0",
+     "examples": [
+      "examples/sqlite3_bulk_data_insert",
+      "examples/sqlite3_console"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "2.4.0",
+     "examples": [
+      "examples/sqlite3_bulk_data_insert",
+      "examples/sqlite3_console"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "2.3.0",
+     "examples": [
+      "examples/sqlite3_bulk_data_insert",
+      "examples/sqlite3_console"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "2.1.0",
+     "examples": [
+      "examples/sqlite3_bulk_data_insert",
+      "examples/sqlite3_console"
+     ],
+     "deps": {}
+    }
+   ]
+  },
+  {
+   "name": "M5Core2",
+   "category": "Utilities",
+   "repo": "https://github.com/m5stack/M5Core2.git",
+   "espressif_tested": false,
+   "score": 67.7,
+   "risk_raw": 10,
+   "risk_reasons": [
+    "uses ESP-IDF headers removed/renamed in IDF 5-6",
+    "includes legacy ESP-IDF driver header",
+    "drives timer/PWM/RMT/I2S/DMA hardware APIs",
+    "includes other ESP-IDF internals",
+    "has core-version guards (ESP_ARDUINO_VERSION / ESP_IDF_VERSION)"
+   ],
+   "stars": 266,
+   "versions": [
+    {
+     "version": "0.2.0",
+     "examples": [
+      "examples/Basics/helloworld",
+      "examples/Advanced/WIFI/BasicHttpClient"
+     ],
+     "deps": {
+      "M5Family": "0.1.3",
+      "M5Module-4Relay": "0.0.3",
+      "Module_GRBL_13.2": "0.0.3",
+      "Ethernet2": "1.0.4",
+      "M5Unit-EXTIO2": "1.0.3",
+      "M5Unit-Sonic": "0.0.2",
+      "M5Unit-RELAY": "0.0.2",
+      "M5Unit-ENV": "1.7.4",
+      "M5Unit-ACSSR": "0.0.3",
+      "M5Unit-KMeter": "0.1.1",
+      "M5Unit-Encoder": "0.0.2",
+      "M5Unit-MQTT": "0.0.1",
+      "M5Unit-DDS": "0.2.0",
+      "M5Unit-UHF-RFID": "0.0.4",
+      "M5Unit-PoESP32": "0.0.2",
+      "M5Unit-RTC": "0.2.0",
+      "M5-DLight": "0.0.5",
+      "M5-RoverC": "0.0.1",
+      "M5-ADS1115": "1.0.0",
+      "M5-ADS1100": "0.0.1",
+      "M5-FPC1020A": "1.0.0",
+      "M5GFX": "0.3.0",
+      "ADXL345": "0.2.0",
+      "FastLED": "3.10.10",
+      "M5_EzData": "0.0.2",
+      "Adafruit MCP4725": "2.0.2",
+      "Adafruit TCS34725": "1.4.4",
+      "Adafruit NeoPixel": "1.15.5",
+      "MAX30100lib": "1.2.1",
+      "MFRC522_I2C": "1.0.0",
+      "HX711 Arduino Library": "0.7.5",
+      "PCA9554": "0.0.1",
+      "TinyGPSPlus-ESP32": "0.0.2",
+      "Adafruit SGP30 Sensor": "2.0.3",
+      "TFTTerminal": "0.0.1",
+      "ClosedCube TCA9548A": "2019.3.23",
+      "PubSubClient": "2.8.0",
+      "M5Unified": "0.3.0",
+      "arduinoFFT": "2.0.4",
+      "ArduinoJson": "7.4.3",
+      "Blynk": "1.4.0",
+      "ESP8266Audio": "2.4.3",
+      "U8g2": "2.36.19",
+      "LoRa": "0.8.0",
+      "DFRobot_PAJ7620U2": "1.0.1",
+      "M5-Ethernet": "4.0.0",
+      "VL53L0X": "1.3.1",
+      "SparkFun MAX3010x Pulse and Proximity Sensor Library": "1.1.2",
+      "TinyGPSPlus": "1.0.3",
+      "USB Host Shield Library 2.0": "1.7.0",
+      "mcp_can": "1.5.1",
+      "ArduinoECCX08": "1.4.1",
+      "TinyGSM": "0.12.0",
+      "UNIT_GLASS": "0.0.1",
+      "DFRobot_GP8XXX": "1.1.0",
+      "IRremote": "4.7.1",
+      "ArduinoHttpClient": "0.6.2",
+      "BlynkNcpDriver": "0.7.0",
+      "Adafruit BusIO": "1.17.4",
+      "M5UnitUnified": "0.6.5",
+      "M5Utility": "0.3.1",
+      "M5HAL": "0.1.4",
+      "BME68x Sensor library": "1.3.40408"
+     }
+    },
+    {
+     "version": "0.1.9",
+     "examples": [
+      "examples/Basics/helloworld",
+      "examples/Advanced/WIFI/BasicHttpClient"
+     ],
+     "deps": {
+      "M5Family": "0.1.3",
+      "M5Module-4Relay": "0.0.3",
+      "Module_GRBL_13.2": "0.0.3",
+      "Ethernet2": "1.0.4",
+      "M5Unit-EXTIO2": "1.0.3",
+      "M5Unit-Sonic": "0.0.2",
+      "M5Unit-RELAY": "0.0.2",
+      "M5Unit-ENV": "1.7.4",
+      "M5Unit-ACSSR": "0.0.3",
+      "M5Unit-KMeter": "0.1.1",
+      "M5Unit-Encoder": "0.0.2",
+      "M5Unit-MQTT": "0.0.1",
+      "M5Unit-DDS": "0.2.0",
+      "M5Unit-UHF-RFID": "0.0.4",
+      "M5Unit-PoESP32": "0.0.2",
+      "M5Unit-RTC": "0.2.0",
+      "M5-DLight": "0.0.5",
+      "M5-RoverC": "0.0.1",
+      "M5-ADS1115": "1.0.0",
+      "M5-ADS1100": "0.0.1",
+      "M5-FPC1020A": "1.0.0",
+      "M5GFX": "0.3.0",
+      "ADXL345": "0.2.0",
+      "FastLED": "3.10.10",
+      "M5_EzData": "0.0.2",
+      "Adafruit MCP4725": "2.0.2",
+      "Adafruit TCS34725": "1.4.4",
+      "Adafruit NeoPixel": "1.15.5",
+      "MAX30100lib": "1.2.1",
+      "MFRC522_I2C": "1.0.0",
+      "HX711 Arduino Library": "0.7.5",
+      "PCA9554": "0.0.1",
+      "TinyGPSPlus-ESP32": "0.0.2",
+      "Adafruit SGP30 Sensor": "2.0.3",
+      "TFTTerminal": "0.0.1",
+      "ClosedCube TCA9548A": "2019.3.23",
+      "PubSubClient": "2.8.0",
+      "M5Unified": "0.3.0",
+      "arduinoFFT": "2.0.4",
+      "ArduinoJson": "7.4.3",
+      "Blynk": "1.4.0",
+      "ESP8266Audio": "2.4.3",
+      "U8g2": "2.36.19",
+      "LoRa": "0.8.0",
+      "DFRobot_PAJ7620U2": "1.0.1",
+      "M5-Ethernet": "4.0.0",
+      "VL53L0X": "1.3.1",
+      "SparkFun MAX3010x Pulse and Proximity Sensor Library": "1.1.2",
+      "TinyGPSPlus": "1.0.3",
+      "USB Host Shield Library 2.0": "1.7.0",
+      "mcp_can": "1.5.1",
+      "ArduinoECCX08": "1.4.1",
+      "TinyGSM": "0.12.0",
+      "UNIT_GLASS": "0.0.1",
+      "DFRobot_GP8XXX": "1.1.0",
+      "IRremote": "4.7.1",
+      "ArduinoHttpClient": "0.6.2",
+      "BlynkNcpDriver": "0.7.0",
+      "Adafruit BusIO": "1.17.4",
+      "M5UnitUnified": "0.6.5",
+      "M5Utility": "0.3.1",
+      "M5HAL": "0.1.4",
+      "BME68x Sensor library": "1.3.40408"
+     }
+    },
+    {
+     "version": "0.1.8",
+     "examples": [
+      "examples/Basics/helloworld",
+      "examples/Advanced/WIFI/BasicHttpClient"
+     ],
+     "deps": {
+      "M5Family": "0.1.3",
+      "M5Module-4Relay": "0.0.3",
+      "Module_GRBL_13.2": "0.0.3",
+      "Ethernet2": "1.0.4",
+      "M5Unit-EXTIO2": "1.0.3",
+      "M5Unit-Sonic": "0.0.2",
+      "M5Unit-RELAY": "0.0.2",
+      "M5Unit-ENV": "1.7.4",
+      "M5Unit-ACSSR": "0.0.3",
+      "M5Unit-KMeter": "0.1.1",
+      "M5Unit-Encoder": "0.0.2",
+      "M5Unit-MQTT": "0.0.1",
+      "M5Unit-DDS": "0.2.0",
+      "M5Unit-UHF-RFID": "0.0.4",
+      "M5Unit-PoESP32": "0.0.2",
+      "M5Unit-RTC": "0.2.0",
+      "M5-DLight": "0.0.5",
+      "M5-RoverC": "0.0.1",
+      "M5-ADS1115": "1.0.0",
+      "M5-ADS1100": "0.0.1",
+      "M5-FPC1020A": "1.0.0",
+      "M5GFX": "0.3.0",
+      "ADXL345": "0.2.0",
+      "FastLED": "3.10.10",
+      "M5_EzData": "0.0.2",
+      "Adafruit MCP4725": "2.0.2",
+      "Adafruit TCS34725": "1.4.4",
+      "Adafruit NeoPixel": "1.15.5",
+      "MAX30100lib": "1.2.1",
+      "MFRC522_I2C": "1.0.0",
+      "HX711 Arduino Library": "0.7.5",
+      "PCA9554": "0.0.1",
+      "TinyGPSPlus-ESP32": "0.0.2",
+      "Adafruit SGP30 Sensor": "2.0.3",
+      "TFTTerminal": "0.0.1",
+      "ClosedCube TCA9548A": "2019.3.23",
+      "PubSubClient": "2.8.0",
+      "M5Unified": "0.3.0",
+      "arduinoFFT": "2.0.4",
+      "ArduinoJson": "7.4.3",
+      "Blynk": "1.4.0",
+      "ESP8266Audio": "2.4.3",
+      "U8g2": "2.36.19",
+      "LoRa": "0.8.0",
+      "DFRobot_PAJ7620U2": "1.0.1",
+      "M5-Ethernet": "4.0.0",
+      "VL53L0X": "1.3.1",
+      "SparkFun MAX3010x Pulse and Proximity Sensor Library": "1.1.2",
+      "TinyGPSPlus": "1.0.3",
+      "USB Host Shield Library 2.0": "1.7.0",
+      "mcp_can": "1.5.1",
+      "ArduinoECCX08": "1.4.1",
+      "TinyGSM": "0.12.0",
+      "UNIT_GLASS": "0.0.1",
+      "DFRobot_GP8XXX": "1.1.0",
+      "IRremote": "4.7.1",
+      "ArduinoHttpClient": "0.6.2",
+      "BlynkNcpDriver": "0.7.0",
+      "Adafruit BusIO": "1.17.4",
+      "M5UnitUnified": "0.6.5",
+      "M5Utility": "0.3.1",
+      "M5HAL": "0.1.4",
+      "BME68x Sensor library": "1.3.40408"
+     }
+    },
+    {
+     "version": "0.1.7",
+     "examples": [
+      "examples/Basics/helloworld",
+      "examples/Advanced/WIFI/BasicHttpClient"
+     ],
+     "deps": {
+      "M5Family": "0.1.3",
+      "M5Module-4Relay": "0.0.3",
+      "Module_GRBL_13.2": "0.0.3",
+      "Ethernet2": "1.0.4",
+      "M5Unit-EXTIO2": "1.0.3",
+      "M5Unit-Sonic": "0.0.2",
+      "M5Unit-RELAY": "0.0.2",
+      "M5Unit-ENV": "1.7.4",
+      "M5Unit-ACSSR": "0.0.3",
+      "M5Unit-KMeter": "0.1.1",
+      "M5Unit-Encoder": "0.0.2",
+      "M5Unit-MQTT": "0.0.1",
+      "M5Unit-DDS": "0.2.0",
+      "M5Unit-UHF-RFID": "0.0.4",
+      "M5Unit-PoESP32": "0.0.2",
+      "M5Unit-RTC": "0.2.0",
+      "M5-DLight": "0.0.5",
+      "M5-RoverC": "0.0.1",
+      "M5-ADS1115": "1.0.0",
+      "M5-ADS1100": "0.0.1",
+      "M5-FPC1020A": "1.0.0",
+      "M5GFX": "0.3.0",
+      "ADXL345": "0.2.0",
+      "FastLED": "3.10.10",
+      "M5_EzData": "0.0.2",
+      "Adafruit MCP4725": "2.0.2",
+      "Adafruit TCS34725": "1.4.4",
+      "Adafruit NeoPixel": "1.15.5",
+      "MAX30100lib": "1.2.1",
+      "MFRC522_I2C": "1.0.0",
+      "HX711 Arduino Library": "0.7.5",
+      "PCA9554": "0.0.1",
+      "TinyGPSPlus-ESP32": "0.0.2",
+      "Adafruit SGP30 Sensor": "2.0.3",
+      "TFTTerminal": "0.0.1",
+      "ClosedCube TCA9548A": "2019.3.23",
+      "PubSubClient": "2.8.0",
+      "M5Unified": "0.3.0",
+      "arduinoFFT": "2.0.4",
+      "ArduinoJson": "7.4.3",
+      "Blynk": "1.4.0",
+      "ESP8266Audio": "2.4.3",
+      "U8g2": "2.36.19",
+      "LoRa": "0.8.0",
+      "DFRobot_PAJ7620U2": "1.0.1",
+      "M5-Ethernet": "4.0.0",
+      "VL53L0X": "1.3.1",
+      "SparkFun MAX3010x Pulse and Proximity Sensor Library": "1.1.2",
+      "TinyGPSPlus": "1.0.3",
+      "USB Host Shield Library 2.0": "1.7.0",
+      "mcp_can": "1.5.1",
+      "ArduinoECCX08": "1.4.1",
+      "TinyGSM": "0.12.0",
+      "UNIT_GLASS": "0.0.1",
+      "DFRobot_GP8XXX": "1.1.0",
+      "IRremote": "4.7.1",
+      "ArduinoHttpClient": "0.6.2",
+      "BlynkNcpDriver": "0.7.0",
+      "Adafruit BusIO": "1.17.4",
+      "M5UnitUnified": "0.6.5",
+      "M5Utility": "0.3.1",
+      "M5HAL": "0.1.4",
+      "BME68x Sensor library": "1.3.40408"
+     }
+    }
+   ]
+  },
+  {
+   "name": "Firebase Arduino Client Library for ESP8266 and ESP32",
+   "category": "Networking/Web",
+   "repo": "https://github.com/mobizt/Firebase-ESP-Client.git",
+   "espressif_tested": false,
+   "score": 67.6,
+   "risk_raw": 2,
+   "risk_reasons": [
+    "includes other ESP-IDF internals",
+    "has core-version guards (ESP_ARDUINO_VERSION / ESP_IDF_VERSION)"
+   ],
+   "stars": 472,
+   "versions": [
+    {
+     "version": "4.4.17",
+     "examples": [
+      "examples/Authentications/SignInAsGuest/AnonymousSignin",
+      "examples/FirebaseJson/BasicUsage/Create_Edit_Parse"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "4.4.16",
+     "examples": [
+      "examples/Authentications/SignInAsGuest/AnonymousSignin",
+      "examples/FirebaseJson/BasicUsage/Create_Edit_Parse"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "4.4.15",
+     "examples": [
+      "examples/Authentications/SignInAsGuest/AnonymousSignin",
+      "examples/FirebaseJson/BasicUsage/Create_Edit_Parse"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "4.4.14",
+     "examples": [
+      "examples/Authentications/SignInAsGuest/AnonymousSignin",
+      "examples/FirebaseJson/BasicUsage/Create_Edit_Parse"
+     ],
+     "deps": {}
+    }
+   ]
+  },
+  {
+   "name": "SimpleFOCDrivers",
+   "category": "Motors/Servos",
+   "repo": "https://github.com/simplefoc/Arduino-FOC-drivers.git",
+   "espressif_tested": false,
+   "score": 67.5,
+   "risk_raw": 9,
+   "risk_reasons": [
+    "uses ESP-IDF headers removed/renamed in IDF 5-6",
+    "includes legacy ESP-IDF driver header",
+    "drives timer/PWM/RMT/I2S/DMA hardware APIs",
+    "includes other ESP-IDF internals"
+   ],
+   "stars": 188,
+   "versions": [
+    {
+     "version": "1.0.9",
+     "examples": [
+      "examples/drivers/simplefocnano/simplefocnano_torque_voltage",
+      "examples/encoders/linearhall"
+     ],
+     "deps": {
+      "Simple FOC": "2.4.0"
+     }
+    },
+    {
+     "version": "1.0.8",
+     "examples": [
+      "examples/drivers/simplefocnano/simplefocnano_torque_voltage",
+      "examples/encoders/linearhall"
+     ],
+     "deps": {
+      "Simple FOC": "2.4.0"
+     }
+    },
+    {
+     "version": "1.0.7",
+     "examples": [
+      "examples/drivers/simplefocnano/simplefocnano_torque_voltage",
+      "examples/encoders/linearhall"
+     ],
+     "deps": {
+      "Simple FOC": "2.4.0"
+     }
+    },
+    {
+     "version": "1.0.6",
+     "examples": [
+      "examples/encoders/calibrated",
+      "examples/encoders/smoothing"
+     ],
+     "deps": {
+      "Simple FOC": "2.4.0"
+     }
+    }
+   ]
+  },
+  {
+   "name": "HeatpumpIR",
+   "category": "Sensors",
+   "repo": "https://github.com/ToniA/arduino-heatpumpir.git",
+   "espressif_tested": false,
+   "score": 66.9,
+   "risk_raw": 4,
+   "risk_reasons": [
+    "drives timer/PWM/RMT/I2S/DMA hardware APIs",
+    "includes other ESP-IDF internals",
+    "has core-version guards (ESP_ARDUINO_VERSION / ESP_IDF_VERSION)"
+   ],
+   "stars": 431,
+   "versions": [
+    {
+     "version": "1.0.41",
+     "examples": [
+      "examples/simple",
+      "examples/AUXTest_MQTT"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "1.0.40",
+     "examples": [
+      "examples/simple",
+      "examples/AUXTest_MQTT"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "1.0.39",
+     "examples": [
+      "examples/simple",
+      "examples/AUXTest_MQTT"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "1.0.38",
+     "examples": [
+      "examples/simple",
+      "examples/AUXTest_MQTT"
+     ],
+     "deps": {}
+    }
+   ]
+  },
+  {
+   "name": "ESP32-BLE-Gamepad",
+   "category": "Bluetooth",
+   "repo": "https://github.com/lemmingDev/ESP32-BLE-Gamepad.git",
+   "espressif_tested": false,
+   "score": 64.8,
+   "risk_raw": 1,
+   "risk_reasons": [
+    "includes other ESP-IDF internals"
+   ],
+   "stars": 1585,
+   "versions": [
+    {
+     "version": "0.8.0",
+     "examples": [
+      "examples/Generic/Gamepad",
+      "examples/Generic/SingleButton"
+     ],
+     "deps": {
+      "NimBLE-Arduino": "2.5.2"
+     }
+    },
+    {
+     "version": "0.7.5",
+     "examples": [
+      "examples/CharacteristicsConfiguration",
+      "examples/Diagnostics"
+     ],
+     "deps": {
+      "NimBLE-Arduino": "2.5.2"
+     }
+    },
+    {
+     "version": "0.7.3",
+     "examples": [
+      "examples/CharacteristicsConfiguration",
+      "examples/DrivingControllerTest"
+     ],
+     "deps": {
+      "NimBLE-Arduino": "2.5.2"
+     }
+    },
+    {
+     "version": "0.7.2",
+     "examples": [
+      "examples/CharacteristicsConfiguration",
+      "examples/DrivingControllerTest"
+     ],
+     "deps": {
+      "NimBLE-Arduino": "2.5.2"
+     }
+    }
+   ]
+  },
+  {
+   "name": "NonBlockingRTTTL",
+   "category": "Audio",
+   "repo": "https://github.com/end2endzone/NonBlockingRTTTL.git",
+   "espressif_tested": false,
+   "score": 59.6,
+   "risk_raw": 3,
+   "risk_reasons": [
+    "drives timer/PWM/RMT/I2S/DMA hardware APIs",
+    "has core-version guards (ESP_ARDUINO_VERSION / ESP_IDF_VERSION)"
+   ],
+   "stars": 19,
+   "versions": [
+    {
+     "version": "1.4.0",
+     "examples": [
+      "examples/rtttl_blocking",
+      "examples/rtttl_demo"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "1.3.0",
+     "examples": [
+      "examples/rtttl_blocking",
+      "examples/rtttl_demo"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "1.2.2",
+     "examples": [
+      "examples/rtttl_blocking",
+      "examples/rtttl_demo"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "1.2.1",
+     "examples": [
+      "examples/rtttl_blocking",
+      "examples/rtttl_demo"
+     ],
+     "deps": {}
+    }
+   ]
+  },
+  {
+   "name": "ArduinoJson",
+   "category": "Utilities",
+   "repo": "https://github.com/bblanchon/ArduinoJson.git",
+   "espressif_tested": false,
+   "score": 57.1,
+   "risk_raw": 0,
+   "risk_reasons": [],
+   "stars": 7124,
+   "versions": [
+    {
+     "version": "7.4.3",
+     "examples": [
+      "examples/JsonParserExample",
+      "examples/JsonGeneratorExample"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "7.4.2",
+     "examples": [
+      "examples/JsonParserExample",
+      "examples/JsonGeneratorExample"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "7.4.1",
+     "examples": [
+      "examples/JsonParserExample",
+      "examples/JsonGeneratorExample"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "7.4.0",
+     "examples": [
+      "examples/JsonParserExample",
+      "examples/JsonGeneratorExample"
+     ],
+     "deps": {}
+    }
+   ]
+  },
+  {
+   "name": "ESP8266 Influxdb",
+   "category": "Storage/Files",
+   "repo": "https://github.com/tobiasschuerg/InfluxDB-Client-for-Arduino.git",
+   "espressif_tested": false,
+   "score": 55.6,
+   "risk_raw": 2,
+   "risk_reasons": [
+    "includes other ESP-IDF internals",
+    "has core-version guards (ESP_ARDUINO_VERSION / ESP_IDF_VERSION)"
+   ],
+   "stars": 365,
+   "versions": [
+    {
+     "version": "3.13.2",
+     "examples": [
+      "examples/BasicWrite",
+      "examples/Buckets"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "3.13.1",
+     "examples": [
+      "examples/BasicWrite",
+      "examples/Buckets"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "3.13.0",
+     "examples": [
+      "examples/BasicWrite",
+      "examples/Buckets"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "3.12.2",
+     "examples": [
+      "examples/BasicWrite",
+      "examples/Buckets"
+     ],
+     "deps": {}
+    }
+   ]
+  },
+  {
+   "name": "PubSubClient",
+   "category": "Networking/Web",
+   "repo": "https://github.com/knolleary/pubsubclient.git",
+   "espressif_tested": false,
+   "score": 50.3,
+   "risk_raw": 0,
+   "risk_reasons": [],
+   "stars": 3760,
+   "versions": [
+    {
+     "version": "2.8.0",
+     "examples": [
+      "examples/mqtt_basic",
+      "examples/mqtt_auth"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "2.7.0",
+     "examples": [
+      "examples/mqtt_basic",
+      "examples/mqtt_auth"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "2.6.0",
+     "examples": [
+      "examples/mqtt_basic",
+      "examples/mqtt_auth"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "2.5.0",
+     "examples": [
+      "examples/mqtt_basic",
+      "examples/mqtt_auth"
+     ],
+     "deps": {}
+    }
+   ]
+  },
+  {
+   "name": "DFRobotDFPlayerMini",
+   "category": "Audio",
+   "repo": "https://github.com/DFRobot/DFRobotDFPlayerMini.git",
+   "espressif_tested": false,
+   "score": 41.3,
+   "risk_raw": 0,
+   "risk_reasons": [],
+   "stars": 241,
+   "versions": [
+    {
+     "version": "1.0.6",
+     "examples": [
+      "examples/AdvancedSetting",
+      "examples/FullFunction"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "1.0.5",
+     "examples": [
+      "examples/FullFunction",
+      "examples/AdvancedSettingViaSerial1"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "1.0.3",
+     "examples": [
+      "examples/FullFunction",
+      "examples/AdvancedSettingViaSerial1"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "1.0.2",
+     "examples": [
+      "examples/FullFunction"
+     ],
+     "deps": {}
+    }
+   ]
+  },
+  {
+   "name": "FastLED",
+   "category": "LEDs",
+   "repo": "https://github.com/FastLED/FastLED.git",
+   "espressif_tested": true,
+   "score": 97.3,
+   "risk_raw": 10,
+   "risk_reasons": [
+    "uses ESP-IDF headers removed/renamed in IDF 5-6",
+    "includes legacy ESP-IDF driver header",
+    "drives timer/PWM/RMT/I2S/DMA hardware APIs",
+    "calls mbedTLS crypto directly",
+    "includes other ESP-IDF internals",
+    "has core-version guards (ESP_ARDUINO_VERSION / ESP_IDF_VERSION)"
+   ],
+   "stars": 7535,
+   "versions": [
+    {
+     "version": "3.10.10",
+     "examples": [
+      "examples/Blink",
+      "examples/MultipleEsp32SpiBuses"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "3.10.9",
+     "examples": [
+      "examples/Blink",
+      "examples/MultipleEsp32SpiBuses"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "3.10.8",
+     "examples": [
+      "examples/Blink",
+      "examples/MultipleEsp32SpiBuses"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "3.10.7",
+     "examples": [
+      "examples/Blink",
+      "examples/MultipleEsp32SpiBuses"
+     ],
+     "deps": {}
+    }
+   ]
+  },
+  {
+   "name": "IRremote",
+   "category": "Sensors",
+   "repo": "https://github.com/z3t0/Arduino-IRremote.git",
+   "espressif_tested": true,
+   "score": 91.3,
+   "risk_raw": 3,
+   "risk_reasons": [
+    "drives timer/PWM/RMT/I2S/DMA hardware APIs",
+    "has core-version guards (ESP_ARDUINO_VERSION / ESP_IDF_VERSION)"
+   ],
+   "stars": 5074,
+   "versions": [
+    {
+     "version": "4.7.1",
+     "examples": [
+      "examples/SendDemo",
+      "examples/SimpleReceiver"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "4.7.0",
+     "examples": [
+      "examples/SendDemo",
+      "examples/SimpleReceiver"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "4.6.1",
+     "examples": [
+      "examples/SendDemo",
+      "examples/SimpleReceiver"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "4.6.0",
+     "examples": [
+      "examples/SendDemo",
+      "examples/SimpleReceiver"
+     ],
+     "deps": {}
+    }
+   ]
+  },
+  {
+   "name": "Adafruit NeoPixel",
+   "category": "LEDs",
+   "repo": "https://github.com/adafruit/Adafruit_NeoPixel.git",
+   "espressif_tested": true,
+   "score": 87.9,
+   "risk_raw": 6,
+   "risk_reasons": [
+    "includes legacy ESP-IDF driver header",
+    "drives timer/PWM/RMT/I2S/DMA hardware APIs",
+    "has core-version guards (ESP_ARDUINO_VERSION / ESP_IDF_VERSION)"
+   ],
+   "stars": 3438,
+   "versions": [
+    {
+     "version": "1.15.5",
+     "examples": [
+      "examples/strandtest",
+      "examples/simple"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "1.15.4",
+     "examples": [
+      "examples/strandtest",
+      "examples/simple"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "1.15.3",
+     "examples": [
+      "examples/strandtest",
+      "examples/simple"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "1.15.2",
+     "examples": [
+      "examples/strandtest",
+      "examples/simple"
+     ],
+     "deps": {}
+    }
+   ]
+  },
+  {
+   "name": "ESP Async WebServer",
+   "category": "Networking/Web",
+   "repo": "https://github.com/ESP32Async/ESPAsyncWebServer.git",
+   "espressif_tested": true,
+   "score": 87.7,
+   "risk_raw": 7,
+   "risk_reasons": [
+    "uses ESP-IDF headers removed/renamed in IDF 5-6",
+    "calls mbedTLS crypto directly",
+    "includes other ESP-IDF internals",
+    "has core-version guards (ESP_ARDUINO_VERSION / ESP_IDF_VERSION)"
+   ],
+   "stars": 651,
+   "versions": [
+    {
+     "version": "3.12.1",
+     "examples": [
+      "examples/arduino/HTTPMethodsWithArduino",
+      "examples/arduino/StaticFile"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "3.12.0",
+     "examples": [
+      "examples/arduino/HTTPMethodsWithArduino",
+      "examples/arduino/StaticFile"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "3.11.2",
+     "examples": [
+      "examples/arduino/HTTPMethodsWithArduino",
+      "examples/arduino/StaticFile"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "3.11.1",
+     "examples": [
+      "examples/arduino/HTTPMethodsWithArduino",
+      "examples/arduino/StaticFile"
+     ],
+     "deps": {}
+    }
+   ]
+  },
+  {
+   "name": "ESP32Servo",
+   "category": "Motors/Servos",
+   "repo": "https://github.com/madhephaestus/ESP32Servo.git",
+   "espressif_tested": true,
+   "score": 86.6,
+   "risk_raw": 6,
+   "risk_reasons": [
+    "includes legacy ESP-IDF driver header",
+    "drives timer/PWM/RMT/I2S/DMA hardware APIs",
+    "has core-version guards (ESP_ARDUINO_VERSION / ESP_IDF_VERSION)"
+   ],
+   "stars": 202,
+   "versions": [
+    {
+     "version": "3.2.1",
+     "examples": [
+      "examples/Multiple-Servo-Example-Arduino",
+      "examples/AllOutputsSimultaneous"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "3.2.0",
+     "examples": [
+      "examples/Multiple-Servo-Example-Arduino",
+      "examples/AllOutputsSimultaneous"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "3.1.3",
+     "examples": [
+      "examples/Multiple-Servo-Example-Arduino",
+      "examples/AllOutputsSimultaneous"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "3.1.2",
+     "examples": [
+      "examples/Multiple-Servo-Example-Arduino",
+      "examples/AllOutputsSimultaneous"
+     ],
+     "deps": {}
+    }
+   ]
+  },
+  {
+   "name": "ArduinoBLE",
+   "category": "Bluetooth",
+   "repo": "https://github.com/arduino-libraries/ArduinoBLE.git",
+   "espressif_tested": true,
+   "score": 82.2,
+   "risk_raw": 1,
+   "risk_reasons": [
+    "includes other ESP-IDF internals"
+   ],
+   "stars": 364,
+   "versions": [
+    {
+     "version": "2.1.1",
+     "examples": [
+      "examples/Central/Scan",
+      "examples/Central/LedControl"
+     ],
+     "deps": {
+      "Arduino_SpiNINA": "0.0.2"
+     }
+    },
+    {
+     "version": "2.1.0",
+     "examples": [
+      "examples/Central/Scan",
+      "examples/Central/LedControl"
+     ],
+     "deps": {
+      "Arduino_SpiNINA": "0.0.2"
+     }
+    },
+    {
+     "version": "2.0.2",
+     "examples": [
+      "examples/Central/Scan",
+      "examples/Central/LedControl"
+     ],
+     "deps": {
+      "Arduino_SpiNINA": "0.0.2"
+     }
+    },
+    {
+     "version": "2.0.1",
+     "examples": [
+      "examples/Central/Scan",
+      "examples/Central/LedControl"
+     ],
+     "deps": {
+      "Arduino_SpiNINA": "0.0.2"
+     }
+    }
+   ]
+  },
+  {
+   "name": "Async TCP",
+   "category": "Networking/Web",
+   "repo": "https://github.com/ESP32Async/AsyncTCP.git",
+   "espressif_tested": true,
+   "score": 79.8,
+   "risk_raw": 2,
+   "risk_reasons": [
+    "includes other ESP-IDF internals",
+    "has core-version guards (ESP_ARDUINO_VERSION / ESP_IDF_VERSION)"
+   ],
+   "stars": 174,
+   "versions": [
+    {
+     "version": "3.6.1",
+     "examples": [
+      "examples/AsyncSend",
+      "examples/ChargenServer"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "3.6.0",
+     "examples": [
+      "examples/AsyncSend",
+      "examples/ChargenServer"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "3.5.0",
+     "examples": [
+      "examples/AsyncSend",
+      "examples/ChargenServer"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "3.4.10",
+     "examples": [
+      "examples/AsyncSend",
+      "examples/ChargenServer"
+     ],
+     "deps": {}
+    }
+   ]
+  },
+  {
+   "name": "MFRC522",
+   "category": "Sensors",
+   "repo": "https://github.com/miguelbalboa/rfid.git",
+   "espressif_tested": true,
+   "score": 52.1,
+   "risk_raw": 0,
+   "risk_reasons": [],
+   "stars": 2839,
+   "versions": [
+    {
+     "version": "1.4.12",
+     "examples": [
+      "examples/ReadUidMultiReader",
+      "examples/MinimalInterrupt"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "1.4.11",
+     "examples": [
+      "examples/ReadUidMultiReader",
+      "examples/MinimalInterrupt"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "1.4.10",
+     "examples": [
+      "examples/ReadUidMultiReader",
+      "examples/MinimalInterrupt"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "1.4.9",
+     "examples": [
+      "examples/ReadUidMultiReader",
+      "examples/MinimalInterrupt"
+     ],
+     "deps": {}
+    }
+   ]
+  },
+  {
+   "name": "ESP32IMDB",
+   "category": "Storage/Files",
+   "repo": "https://github.com/Xorlent/ESP32IMDB.git",
+   "espressif_tested": true,
+   "score": 47.2,
+   "risk_raw": 1,
+   "risk_reasons": [
+    "includes other ESP-IDF internals"
+   ],
+   "stars": null,
+   "versions": [
+    {
+     "version": "1.2.0",
+     "examples": [
+      "examples/TortureTest",
+      "examples/BasicUsage"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "1.1.3",
+     "examples": [
+      "examples/TortureTest",
+      "examples/BasicUsage"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "1.1.2",
+     "examples": [
+      "examples/TortureTest",
+      "examples/BasicUsage"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "1.1.1",
+     "examples": [
+      "examples/TortureTest",
+      "examples/BasicUsage"
+     ],
+     "deps": {}
+    }
+   ]
+  },
+  {
+   "name": "EthernetESP32",
+   "category": "Networking/Web",
+   "repo": "https://github.com/Networking-for-Arduino/EthernetESP32.git",
+   "espressif_tested": true,
+   "score": 37.4,
+   "risk_raw": 3,
+   "risk_reasons": [
+    "drives timer/PWM/RMT/I2S/DMA hardware APIs",
+    "includes other ESP-IDF internals"
+   ],
+   "stars": 1,
+   "versions": [
+    {
+     "version": "1.0.2",
+     "examples": [
+      "examples/LegacyEthernetTest",
+      "examples/TwoEthernets"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "1.0.1",
+     "examples": [
+      "examples/LegacyEthernetTest",
+      "examples/TwoEthernets"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "1.0.0",
+     "examples": [
+      "examples/LegacyEthernetTest",
+      "examples/TwoEthernets"
+     ],
+     "deps": {}
+    }
+   ]
+  },
+  {
+   "name": "WS2812FX",
+   "category": "LEDs",
+   "repo": "https://github.com/kitesurfer1404/WS2812FX.git",
+   "espressif_tested": true,
+   "score": 34.6,
+   "risk_raw": 0,
+   "risk_reasons": [],
+   "stars": 1718,
+   "versions": [
+    {
+     "version": "1.4.7",
+     "examples": [
+      "examples/ws2812fx_spi",
+      "examples/auto_mode_cycle"
+     ],
+     "deps": {
+      "Adafruit NeoPixel": "1.15.5"
+     }
+    },
+    {
+     "version": "1.4.6",
+     "examples": [
+      "examples/ws2812fx_spi",
+      "examples/auto_mode_cycle"
+     ],
+     "deps": {
+      "Adafruit NeoPixel": "1.15.5"
+     }
+    },
+    {
+     "version": "1.4.5",
+     "examples": [
+      "examples/ws2812fx_spi",
+      "examples/auto_mode_cycle"
+     ],
+     "deps": {
+      "Adafruit NeoPixel": "1.15.5"
+     }
+    },
+    {
+     "version": "1.4.4",
+     "examples": [
+      "examples/ws2812fx_spi",
+      "examples/auto_mode_cycle"
+     ],
+     "deps": {
+      "Adafruit NeoPixel": "1.15.5"
+     }
+    }
+   ]
+  },
+  {
+   "name": "ZACwire for TSic",
+   "category": "Sensors",
+   "repo": "https://github.com/lebuni/ZACwire-Library.git",
+   "espressif_tested": true,
+   "score": 22.5,
+   "risk_raw": 0,
+   "risk_reasons": [],
+   "stars": null,
+   "versions": [
+    {
+     "version": "2.0.0",
+     "examples": [
+      "examples/ReadingTwoTSICs",
+      "examples/ReadSingleTSIC206"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "1.3.3",
+     "examples": [
+      "examples/ReadingTwoTSICs",
+      "examples/ReadSingleTSIC206"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "1.3.2",
+     "examples": [
+      "examples/ReadingTwoTSICs",
+      "examples/ReadSingleTSIC206"
+     ],
+     "deps": {}
+    },
+    {
+     "version": "1.1.3",
+     "examples": [
+      "examples/ReadingTwoTSICs"
+     ],
+     "deps": {}
+    }
+   ]
+  }
+ ]
+}

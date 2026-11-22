@@ -168,7 +168,27 @@ def list_examples(root):
     return sorted(set(out))
 
 
-def example_score(rel):
+# Read the sketch itself, not only its folder name: examples written for another board fail
+# on any ESP32 for reasons that have nothing to do with the library.
+# Each rule is narrow on purpose: it must only demote sketches that cannot build on a plain ESP32 board.
+SRC_ESP8266_ONLY = re.compile(r"#\s*include\s*[<\"]ESP8266(?:WiFi|WebServer|HTTPClient|mDNS|httpUpdate)\w*\.h[>\"]")
+SRC_ESP32_NET = re.compile(r"#\s*include\s*[<\"](?:WiFi|WebServer|HTTPClient|ESPmDNS|HTTPUpdate)\.h[>\"]")
+SRC_ESP32 = re.compile(r"ESP32|ARDUINO_ARCH_ESP32", re.I)
+
+
+def sketch_source(root, rel):
+    d = root / rel
+    text = []
+    for f in sorted(d.iterdir()) if d.is_dir() else []:
+        if f.suffix.lower() in (".ino", ".h", ".cpp", ".c") and f.is_file():
+            try:
+                text.append(f.read_text(encoding="utf-8", errors="replace"))
+            except OSError:
+                pass
+    return "\n".join(text)
+
+
+def example_score(rel, root=None):
     leaf = rel.rsplit("/", 1)[-1]
     s = 0
     if OTHER_PLATFORMS.search(rel):
@@ -184,6 +204,11 @@ def example_score(rel):
     elif BASIC.search(leaf):
         s += 3
     s -= rel.count("/") * 0.5
+    if root is not None:
+        src = sketch_source(root, rel)
+        esp_aware = bool(SRC_ESP32.search(src))
+        if SRC_ESP8266_ONLY.search(src) and not esp_aware and not SRC_ESP32_NET.search(src):
+            s -= 10
     return s
 
 
@@ -204,17 +229,18 @@ def pick_examples(root, n, prefer=(), name=None):
     Reuse `prefer` (the picks from the newest version) when they still exist, so the same
     sketches are compared across library versions."""
     exs = list_examples(root)
-    wanted = list(overrides().get(name, [])) + list(prefer)
+    forced = list(overrides().get(name, []))
     chosen = []
-    for e in wanted:
+    for e in forced + list(prefer):
         if e in exs and e not in chosen and len(chosen) < n:
             chosen.append(e)
-    ranked = sorted(exs, key=lambda e: (-example_score(e), e))
+    score = {e: example_score(e, root) for e in exs}
+    ranked = sorted(exs, key=lambda e: (-score[e], e))
     if not chosen and ranked:
         chosen.append(ranked[0])
     if len(chosen) < n:
-        esp = [e for e in ranked if e not in chosen and ESP32_GENERIC.search(e) and example_score(e) > -3]
-        rest = [e for e in ranked if e not in chosen and example_score(e) > -5]
+        esp = [e for e in ranked if e not in chosen and ESP32_GENERIC.search(e) and score[e] > -3]
+        rest = [e for e in ranked if e not in chosen and score[e] > -5]
         for e in esp[:1] + rest:
             if len(chosen) >= n:
                 break
@@ -232,3 +258,45 @@ def header_providers():
         for h in vs[latest].get("providesIncludes") or []:
             out.setdefault(h, []).append(name)
     return out
+
+
+# Well-known headers whose library does not declare providesIncludes and whose name differs from the header.
+HEADER_HINTS = {
+    "Adafruit_GFX.h": "Adafruit GFX Library", "Adafruit_Sensor.h": "Adafruit Unified Sensor",
+    "Adafruit_I2CDevice.h": "Adafruit BusIO", "Adafruit_BusIO_Register.h": "Adafruit BusIO",
+    "SoftwareSerial.h": "EspSoftwareSerial", "Adafruit_NeoPixel.h": "Adafruit NeoPixel",
+    "PubSubClient.h": "PubSubClient", "ArduinoJson.h": "ArduinoJson", "U8g2lib.h": "U8g2",
+    "Adafruit_SSD1306.h": "Adafruit SSD1306", "DallasTemperature.h": "DallasTemperature",
+    "FastLED.h": "FastLED", "TFT_eSPI.h": "TFT_eSPI", "LiquidCrystal_I2C.h": "LiquidCrystal I2C",
+    "AsyncTCP.h": "Async TCP", "ESPAsyncWebServer.h": "ESP Async WebServer", "SdFat.h": "SdFat",
+    "TinyGPS++.h": "TinyGPSPlus", "RTClib.h": "RTClib", "DHT.h": "DHT sensor library",
+}
+
+
+def _norm(s):
+    return re.sub(r"[^a-z0-9]", "", s.lower())
+
+
+def header_candidates(header, providers):
+    """Ranked library names that may provide `header`: a known hint, a library named like the header,
+    then libraries that declare it in providesIncludes. The caller must check the header really is in it."""
+    idx = index()
+    out = []
+    if header in HEADER_HINTS and HEADER_HINTS[header] in idx:
+        out.append(HEADER_HINTS[header])
+    stem = _norm(header.rsplit(".", 1)[0])
+    byname = {_norm(n): n for n in idx}
+    for k in (stem, stem + "library", stem + "arduino", "arduino" + stem, stem + "lib"):
+        if k in byname:
+            out.append(byname[k])
+    out += sorted(providers.get(header, []), key=lambda c: (-len(versions(c)), c))
+    seen = []
+    for c in out:
+        if c not in seen:
+            seen.append(c)
+    return seen
+
+
+def has_header(root, header):
+    """True if the library folder really contains `header` (where the compiler would find it)."""
+    return (root / header).is_file() or (root / "src" / header).is_file()

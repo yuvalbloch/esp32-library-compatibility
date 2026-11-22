@@ -35,6 +35,12 @@ NEEDS_CONFIG = re.compile(
     r"(?:select|choose|wrong|incorrect|correct|unsupported|unknown).{0,30}board|board.{0,30}(?:select|not (?:defined|selected))|"
     r"enable PSRAM|PSRAM.{0,30}(?:must|need|enable|required)|partition scheme|USB CDC On Boot|USB Mode|"
     r"TinyUSB.{0,30}(?:select|enable)|USB stack", re.I)
+# #error text that asks the user to edit the sketch or a config file before it can build -> config
+NEEDS_USER_EDIT = re.compile(
+    r"please (?:go and )?(?:specify|define|set|uncomment|configure|edit|enter|fill|change)|\buncomment\b|"
+    r"(?:must|need to) (?:be )?(?:defined|configured|set|specified)|\b[A-Z][A-Z0-9_]{3,} is required\b", re.I)
+# a missing header that is a user-written configuration file (e.g. LVGL's lv_conf.h) -> config
+USER_CONFIG_HDR = re.compile(r"(?:^|/)(?:lv_conf|lv_drv_conf|user_settings|my_private_config|User_Setup)\.h$")
 
 # Explanation labels for the triage report (first match wins). Labels only; never a verdict.
 ROOT_CAUSES = [
@@ -55,7 +61,7 @@ ROOT_CAUSES = [
      "Direct register / GPIO-matrix access changed"),
     (r"\[-Werror|-Werror=", "Compiler warning treated as error"),
     (r"esp_wifi|WiFiClass|WiFiGeneric|WiFiSTA|wifi_|tcpip_adapter|esp_netif|ETH\.|eth_", "Wi-Fi / network API change"),
-    (r"BLE|esp_gap|esp_gatt|esp_bt|NimBLE|nimble", "Bluetooth API change"),
+    (r"\bBLE|esp_gap|esp_gatt|esp_bt|NimBLE|nimble", "Bluetooth API change"),
     (r"FreeRTOS|xTask|portMUX|portENTER|xQueue|xSemaphore|vTask|configTICK", "FreeRTOS API change"),
     (r"esp_sleep|esp_deep_sleep|gpio_wakeup|rtc_gpio", "Sleep / wake-up API change"),
     (r"std::string|String", "String type change (std::string vs Arduino String)"),
@@ -132,11 +138,18 @@ def classify(returncode, log, timed_out=False, dep_roots=()):
         p = norm_path(efile)
         if any(p.startswith(norm_path(str(r)) + "/") for r in dep_roots):
             status = "dep_fail"
+    hdr = missing_header(msg)
     if msg.startswith("#error"):
         if NA_FEATURE.search(msg) and not CORE_VERSION.search(msg):
             status = "n/a"
         elif NEEDS_CONFIG.search(msg):
             status = "config"
+        elif NEEDS_USER_EDIT.search(msg) and not CORE_VERSION.search(msg):
+            status = "config"
+            out["root_cause"] = "Example must be edited or configured by the user first"
+    elif hdr and USER_CONFIG_HDR.search(hdr):
+        status = "config"
+        out["root_cause"] = "Library needs a user configuration file"
     elif NA_FEATURE.search(msg) and re.search(r"Bluetooth is not enabled|Serial Bluetooth not available", msg):
         status = "n/a"
     out["status"] = status

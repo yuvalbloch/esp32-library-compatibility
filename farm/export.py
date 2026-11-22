@@ -47,9 +47,12 @@ def main():
         })
     known = {l["name"] for l in libs}
     lib_idx = {l["name"]: i for i, l in enumerate(libs)}
+    # Show only the (version, example) pairs in the current plan. Rows for sketches the plan no longer
+    # uses (e.g. an example later found to be written for another board) stay in results.db.
+    planned = {(l["name"], v["version"], ex) for l in plan["libs"] for v in l["versions"] for ex in v["examples"]}
     out_rows = []
     for r in rows:
-        if r["lib"] not in known:
+        if r["lib"] not in known or (r["lib"], r["lib_version"], r["example"]) not in planned:
             continue
         out_rows.append([lib_idx[r["lib"]], r["lib_version"], r["core"], r["chip"],
                          r["example"].removeprefix("examples/"), r["options"], r["status"],

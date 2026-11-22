@@ -48,6 +48,16 @@ python3 farm/update.py            # new library releases -> plan -> compile -> r
 python3 farm/update.py --dry-run  # only list what is new
 ```
 
+### After changing the farm
+
+```bash
+python3 farm/reclassify.py --dry-run                      # what a classify.py rule change would change
+python3 farm/reclassify.py                                # apply it to stored logs (never touches a pass)
+python3 farm/invalidate.py --missing-header Foo.h         # farm-bug correction: recompile those failures
+```
+
+The cloud workflow runs `reclassify.py` on every publish, and takes `invalidate_headers` as a manual input. Record every correction in [methodology.md](methodology.md#corrections).
+
 `update.py` also reports new Arduino-ESP32 core releases. Adding a core column is a scope decision: add the version to `CORES` in [`farm/common.py`](../farm/common.py), run `setup_cores.py`, then `run.py`.
 
 ## Where things are

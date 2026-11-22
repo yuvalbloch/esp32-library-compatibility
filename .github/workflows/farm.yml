@@ -24,6 +24,9 @@ on:
         description: "Rebuild the test plan from scratch (after changing example picks)"
         type: boolean
         default: false
+      invalidate_headers:
+        description: "Farm-bug correction: recompile failures caused by these missing headers (space-separated; see methodology)"
+        default: ""
 
 permissions:
   contents: write
@@ -54,6 +57,9 @@ jobs:
           python-version: "3.12"
       - name: Load previous results
         run: python farm/ci.py load-state
+      - name: Farm-bug correction
+        if: inputs.invalidate_headers != ''
+        run: python farm/invalidate.py --missing-header ${{ inputs.invalidate_headers }}
       - name: Plan (new library releases, or a fresh plan)
         run: |
           if [ -f "$ESP32FARM/plan.json" ] && [ "${{ inputs.replan }}" != "true" ]; then
@@ -150,6 +156,8 @@ jobs:
         run: |
           tar -C "$ESP32FARM" -xzf artifacts/state/state.tgz
           python farm/ci.py merge-results artifacts/res-*
+      - name: Apply the current classification rules to stored logs
+        run: python farm/reclassify.py
       - name: Save results to the results branch
         run: python farm/ci.py save-state
       - name: Build site

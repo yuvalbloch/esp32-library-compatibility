@@ -80,21 +80,30 @@ def protected_headers():
 _providers = None
 
 
-def pick_provider(header, lib, known):
-    """Library that provides `header`, for examples that use a library their own library does not declare."""
+def provider_candidates(header, lib):
+    """Libraries that may provide `header`, for examples that use a library their own library does not
+    declare. Never for ESP-IDF/core headers or headers a core-bundled library provides."""
     global _providers
     if "/" in header or "\\" in header or header.lower().startswith(IDF_LIKE) or header in protected_headers():
-        return None
+        return []
     if _providers is None:
         _providers = store.header_providers()
-    cands = [c for c in _providers.get(header, []) if c != lib]
-    if not cands:
-        return None
-    stem = header.rsplit(".", 1)[0].lower().replace("_", "").replace(" ", "")
-    exact = [c for c in cands if c.lower().replace("_", "").replace(" ", "").replace("-", "") == stem]
-    in_known = [c for c in cands if c in known]
-    pool = exact or in_known or cands
-    return max(pool, key=lambda c: (len(store.versions(c)), c))
+    return [c for c in store.header_candidates(header, _providers) if c != lib]
+
+
+def find_provider(header, lib, libs):
+    """First candidate (newest version) that really contains the header. -> (name, version) or None."""
+    for c in provider_candidates(header, lib)[:6]:
+        if c in libs:
+            continue
+        try:
+            v = store.resolve_dep_version(c)
+            root = store.ensure(c, v)
+        except Exception:
+            continue
+        if store.has_header(root, header):
+            return c, v
+    return None
 
 
 # ---------------- jobs ----------------
@@ -228,14 +237,13 @@ def run_job(job, build_dir):
             continue  # one immediate retry for farm hiccups
         h = missing_header(res["first_error"]) if res["status"] in ("fail", "dep_fail") else None
         if h and attempt < MAX_HEADER_FIXES:
-            prov = pick_provider(h, job["lib"], set(libs) | {job["lib"]})
+            found = find_provider(h, job["lib"], libs)
             # (a core library with the same *name* is no reason to refuse: e.g. the core's "Ethernet"
-            #  is ETH.h for the chip's own MAC and does not provide Ethernet.h; pick_provider already
+            #  is ETH.h for the chip's own MAC and does not provide Ethernet.h; provider_candidates already
             #  refuses headers that any core library really provides)
-            if prov and prov not in libs:
-                pv = store.resolve_dep_version(prov)
+            if found:
+                prov, pv = found
                 try:
-                    store.ensure(prov, pv)
                     for dn, dv in store.deps_closure(prov, pv, skip=names).items():
                         store.ensure(dn, dv)
                         libs.setdefault(dn, dv)

@@ -27,14 +27,14 @@ The examples are picked once per library from its newest version. Older versions
 
 1. **Espressif-checked libraries** use the same sketches as Espressif's External Libraries Test (`lib.json`), so the two sets of results can be compared.
 2. **Hand-picked overrides** ([`farm/examples_override.json`](../farm/examples_override.json)) are used where the automatic choice would pick something unrepresentative, for example a library-specific build test or an ESP32-specific example.
-3. **Otherwise, automatic:** the most "basic" example (names like `Basic`, `Simple`, `HelloWorld`, `Blink`, `strandtest`), plus the best ESP32-specific example if one exists. Examples for other platforms (ESP8266, AVR, RP2040, STM32, …) and examples that need extra hardware setup (SD card, PSRAM, camera, Ethernet) are ranked down.
+3. **Otherwise, automatic:** the most "basic" example (names like `Basic`, `Simple`, `HelloWorld`, `Blink`, `strandtest`), plus the best ESP32-specific example if one exists. Examples for other platforms (ESP8266, AVR, RP2040, STM32, …) and examples that need extra hardware setup (SD card, PSRAM, camera, Ethernet) are ranked down. The sketch source is read too: a sketch that includes ESP8266-only headers (`ESP8266WiFi.h`, …) without any ESP32 alternative is ranked down.
 
 Which examples are compiled is a choice of *what to test*. It never affects *how a result is judged*.
 
 ## 4. Dependencies
 
 - **Declared dependencies.** A library's `depends=` list (from the Library Manager index) is resolved recursively. Each dependency gets its newest stable version that satisfies the declared constraint. Dependencies that are bundled in the core under test are skipped.
-- **Undeclared libraries used by an example.** Many examples include a library their own library does not declare (for example a display example that needs a graphics library). If a compile fails with `fatal error: X.h: No such file or directory`, the farm adds the Library Manager library that provides `X.h` and compiles again, up to 4 times. This is **not** done when the missing header:
+- **Undeclared libraries used by an example.** Many examples include a library their own library does not declare (for example a display example that needs a graphics library). If a compile fails with `fatal error: X.h: No such file or directory`, the farm adds the Library Manager library that provides `X.h` and compiles again, up to 4 times. Candidates come from a short list of well-known headers (`Adafruit_GFX.h` → Adafruit GFX Library, `SoftwareSerial.h` → EspSoftwareSerial, …), from a library named like the header (`FirebaseJson.h` → FirebaseJson), and from the index's `providesIncludes` field. A candidate is used only if `X.h` really is in its root or `src/` folder. This is **not** done when the missing header:
   - contains a path (`driver/rmt.h`, `rom/gpio.h`, …),
   - looks like an ESP-IDF or core header (`esp_*`, `soc*`, `hal*`, `driver*`, `freertos*`, `lwip*`, `mbedtls*`, …), or
   - is provided by a library bundled in any tested core.
@@ -49,7 +49,7 @@ The status is derived mechanically from the compiler's exit code and the log, by
 | Status | Rule |
 |---|---|
 | `pass` | `arduino-cli compile` exited with code 0. A build that exits 0 is always `pass`; a build that exits non-zero is never `pass`. |
-| `config` | The log says the program is too big for the flash partition (`Sketch too big`, `region … overflowed`), **or** the first error is an `#error` asking for a specific board or board setting (select the correct board, enable PSRAM, USB mode, …). |
+| `config` | The log says the program is too big for the flash partition (`Sketch too big`, `region … overflowed`), **or** the first error is an `#error` asking for a specific board or board setting (select the correct board, enable PSRAM, USB mode, …), **or** an `#error` asking the user to edit the sketch first ("please specify your …", "uncomment this", "`X` is required") that is not about the core or ESP-IDF version, **or** a missing user-written configuration file (`lv_conf.h`, `user_settings.h`, …). |
 | `n/a` | The first error is an `#error` saying the chip lacks a feature (Bluetooth Classic not available, not supported on ESP32-C3, …) and the message is *not* about the core or ESP-IDF version. |
 | `dep_fail` | The first compiler error is located in a dependency's source files, not in the library under test or the sketch. |
 | `fail` | Any other compile or link error. |
@@ -61,7 +61,20 @@ The status is derived mechanically from the compiler's exit code and the log, by
 
 ## 6. Results are immutable
 
-Each compile produces one database row keyed by *(library, library version, core, chip, example, board options)* and one gzipped log. Rows are never edited or overwritten. The only exception is `infra_error` rows, which are replaced when the retry succeeds, because they describe the farm rather than the code. A library fix shows up as a new library version with new rows.
+Each compile produces one database row keyed by *(library, library version, core, chip, example, board options)* and one gzipped log. The log and its exit code are never edited or overwritten. A library fix shows up as a new library version with new rows. There are three exceptions, all about the farm rather than the code:
+
+- `infra_error` rows are replaced when the retry succeeds.
+- **Rule changes.** When a rule in `classify.py` changes, [`farm/reclassify.py`](../farm/reclassify.py) applies it to the stored logs of every non-passing row. It can move a failure between `fail`, `dep_fail`, `n/a` and `config`. It never changes a `pass` and never creates one.
+- **Farm-bug corrections.** When the farm set a build up wrongly, [`farm/invalidate.py`](../farm/invalidate.py) deletes those rows and they are compiled again. Every correction is listed below.
+
+The table shows only the examples in the current plan. Rows for sketches the plan dropped stay in the database.
+
+### Corrections
+
+| Date | What was wrong | Rows recompiled |
+|---|---|---|
+| 2026-11-22 | `PubSubClient`: the provider of `Ethernet.h` was refused because a core library is also named "Ethernet" | 24 |
+| 2026-11-22 | Wrong or no provider found for `Adafruit_GFX.h`, `FirebaseJson.h`, `SoftwareSerial.h`, `PciManager.h` (the index's `providesIncludes` is often empty). Fixed by the candidate search in §4 | all rows failing on those headers |
 
 ## 7. What the table shows per cell
 

@@ -8,6 +8,7 @@ function renderShell() {
     <h1>ESP32 Library Compatibility</h1>
     <p class="lede">Which Arduino libraries still compile on <b>Arduino-ESP32 core <span class="target">4.0</span></b>, and which versions to pin.
       Every cell comes from a real compile log — click it to see the log.
+      We test <b>released</b> library versions (what the Library Manager installs); a fix that is merged but not yet released appears after the library's next release.
       <span class="made">A side project, built with AI as an experiment. <a href="#about" data-goto="made">How this was made</a></span></p>
     <div id="stats" class="stats"></div>
     <nav class="tabs" role="tablist">
@@ -74,6 +75,9 @@ function renderShell() {
     <ul>
       <li>Every status comes from a real compile log. Nobody (human or AI) sets a ✅ or ❌ by hand.</li>
       <li>Compile logs are never edited. A library fix shows up as a new library version with its own row.</li>
+      <li>We test only <b>released</b> library versions, the ones the Arduino Library Manager installs, because the
+        table answers "will the version I can install today build?". A fix that is merged into a library's code but
+        not yet released does not show here until the maintainer publishes a new release.</li>
       <li>The table updates itself every night: new library releases are compiled as soon as they appear in the
         Arduino Library Manager, and when Espressif releases a new core version it replaces the older release of
         the same line and every library is compiled against it.</li>

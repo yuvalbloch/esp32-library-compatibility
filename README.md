@@ -62,6 +62,8 @@ Each result is keyed by *(library, library version, core version, chip, example,
 
 A daily job checks the Library Manager for new releases of the tracked libraries and compiles only those. A new core version adds a column and triggers one full run.
 
+**Only released versions are tested.** The table answers "will the version I can install today build?", so it compiles what the Library Manager installs. A fix that is merged into a library's repository but not yet released shows up after the library's next release.
+
 ## Contributing
 
 - **Add a library:** open an [“Add a library” issue](../../issues/new?template=add-library.yml).

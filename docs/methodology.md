@@ -8,7 +8,7 @@ This document describes exactly what the farm does. If the code and this documen
 |---|---|
 | Core | `esp32:esp32`: the newest stable release of each line **2.0**, **3.0**, **3.3** and **4.x** (at launch: 2.0.17, 3.0.7, 3.3.12, 4.0.0) |
 | Chip / FQBN | `esp32:esp32:esp32`, `esp32:esp32:esp32s3`, `esp32:esp32:esp32c3`, default board options |
-| Library versions | newest stable release + the 3 stable releases before it (pre-releases are skipped) |
+| Library versions | newest stable release + the 3 stable releases before it (pre-releases are skipped). Only released versions from the Library Manager index are tested; unreleased code in a library's repository (e.g. a merged fix waiting for a release) is not. |
 | Examples | 1–2 of the library's own example sketches (§3) |
 | Compiler | `arduino-cli` 1.6.0; warnings at the Arduino IDE default (`--warnings none`) |
 

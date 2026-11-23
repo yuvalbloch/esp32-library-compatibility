@@ -5,7 +5,7 @@ labels: ["recheck"]
 body:
   - type: markdown
     attributes:
-      value: New releases of tracked libraries are compiled automatically within a day. Use this form if you need it sooner or if the fix is somewhere else.
+      value: New releases of tracked libraries are compiled automatically within a day. Use this form if you need it sooner or if the fix is somewhere else. The table tests released versions only, so a fix that is merged but not yet released will appear after the next release.
   - type: input
     id: name
     attributes:

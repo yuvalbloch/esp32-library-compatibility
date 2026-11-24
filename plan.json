@@ -682,6 +682,14 @@
    "stars": 1615,
    "versions": [
     {
+     "version": "3.1.1",
+     "examples": [
+      "examples/1_SimpleTestShapes",
+      "examples/2_PatternPlasma"
+     ],
+     "deps": {}
+    },
+    {
      "version": "3.1.0",
      "examples": [
       "examples/1_SimpleTestShapes",
@@ -3597,5 +3605,5 @@
    ]
   }
  ],
- "updated": "2026-11-23T14:16:00"
+ "updated": "2026-11-24T13:36:20"
 }

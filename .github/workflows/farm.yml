@@ -53,8 +53,8 @@ jobs:
     outputs:
       matrix: ${{ steps.matrix.outputs.matrix }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
       - name: Load previous results
@@ -85,7 +85,7 @@ jobs:
         run: |
           python farm/ci.py ensure-state
           tar -C "$ESP32FARM" -czf state.tgz plan.json results.db cores.json news.json dl/library_index.json
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: state
           path: state.tgz
@@ -103,11 +103,11 @@ jobs:
         include: ${{ fromJSON(needs.plan.outputs.matrix) }}
     name: compile ${{ matrix.core }} (${{ matrix.shard }}/${{ matrix.nshards }})
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8
         with:
           name: state
       - name: Free disk space (cores need ~10 GB)
@@ -131,7 +131,7 @@ jobs:
       - name: Pack results
         if: always()
         run: python farm/ci.py pack-results out "$(cat maxid.txt)"
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: res-${{ matrix.core }}-${{ matrix.shard }}
@@ -145,15 +145,15 @@ jobs:
     timeout-minutes: 60
     environment:
       name: github-pages
-      url: ${{ steps.deploy.outputs.page_url }}
+      url: ${{ steps.deploy.outputs.page_url || steps.deploy_retry.outputs.page_url }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
       - name: Load previous logs
         run: python farm/ci.py load-state --logs
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8
         with:
           path: artifacts
       - name: Merge results
@@ -169,11 +169,20 @@ jobs:
         run: python farm/ci.py save-state
       - name: Build site
         run: python farm/export.py
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: site
+      # GitHub sometimes can't see the just-uploaded site for a few seconds
+      # ("No artifacts named github-pages"), so a failed deploy is retried once after a pause.
       - id: deploy
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
+        continue-on-error: true
+      - name: Wait before retrying the site deploy
+        if: steps.deploy.outcome == 'failure'
+        run: sleep 60
+      - id: deploy_retry
+        if: steps.deploy.outcome == 'failure'
+        uses: actions/deploy-pages@v5
       - name: Update the "Farm status" issue (comment = email only when something needs attention)
         env:
           GH_TOKEN: ${{ github.token }}

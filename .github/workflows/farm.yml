@@ -158,7 +158,9 @@ jobs:
           path: artifacts
       - name: Merge results
         run: |
-          tar -C "$ESP32FARM" -xzf artifacts/state/state.tgz
+          # download-artifact v5+ unpacks a lone artifact straight into artifacts/ (no-compile nights)
+          STATE=artifacts/state/state.tgz; [ -f "$STATE" ] || STATE=artifacts/state.tgz
+          tar -C "$ESP32FARM" -xzf "$STATE"
           python farm/ci.py maxid > before.txt
           python farm/ci.py merge-results artifacts/res-*
       - name: Apply the current classification rules to stored logs

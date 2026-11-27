@@ -682,6 +682,14 @@
    "stars": 1615,
    "versions": [
     {
+     "version": "3.1.3",
+     "examples": [
+      "examples/1_SimpleTestShapes",
+      "examples/2_PatternPlasma"
+     ],
+     "deps": {}
+    },
+    {
      "version": "3.1.1",
      "examples": [
       "examples/1_SimpleTestShapes",
@@ -2219,6 +2227,14 @@
    "stars": 308,
    "versions": [
     {
+     "version": "11.2.2",
+     "examples": [
+      "examples/Inkplate10/Basic/Inkplate10_Hello_World",
+      "examples/Inkplate13SPECTRA/Basic/Inkplate13SPECTRA_Hello_World"
+     ],
+     "deps": {}
+    },
+    {
      "version": "11.2.1",
      "examples": [
       "examples/Inkplate10/Basic/Inkplate10_Hello_World",
@@ -3605,5 +3621,5 @@
    ]
   }
  ],
- "updated": "2026-11-26T12:22:08"
+ "updated": "2026-11-27T12:08:38"
 }

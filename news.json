@@ -1,5 +1,15 @@
 [
  {
+  "date": "2026-11-28",
+  "kind": "release",
+  "text": "NimBLE-Arduino 2.6.0 released: builds on core 4.0.0 for ESP32, ESP32-S3, ESP32-C3."
+ },
+ {
+  "date": "2026-11-28",
+  "kind": "release",
+  "text": "Adafruit NeoPixel 1.15.6 released: builds on core 4.0.0 for ESP32, ESP32-S3, ESP32-C3."
+ },
+ {
   "date": "2026-11-27",
   "kind": "release",
   "text": "InkplateLibrary 11.2.2 released: fails on core 4.0.0 for ESP32, ESP32-S3, ESP32-C3."

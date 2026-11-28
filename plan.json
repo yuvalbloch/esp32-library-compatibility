@@ -124,6 +124,14 @@
    "stars": 1134,
    "versions": [
     {
+     "version": "2.6.0",
+     "examples": [
+      "examples/NimBLE_Server",
+      "examples/NimBLE_Client"
+     ],
+     "deps": {}
+    },
+    {
      "version": "2.5.2",
      "examples": [
       "examples/NimBLE_Server",
@@ -3165,6 +3173,14 @@
    "stars": 3438,
    "versions": [
     {
+     "version": "1.15.6",
+     "examples": [
+      "examples/strandtest",
+      "examples/simple"
+     ],
+     "deps": {}
+    },
+    {
      "version": "1.15.5",
      "examples": [
       "examples/strandtest",
@@ -3621,5 +3637,5 @@
    ]
   }
  ],
- "updated": "2026-11-27T12:08:38"
+ "updated": "2026-11-28T11:39:19"
 }
